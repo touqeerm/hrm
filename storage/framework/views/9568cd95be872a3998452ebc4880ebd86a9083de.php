@@ -102,13 +102,13 @@ if ($SITE_RTL == '') {
                             class="list-group-item list-group-item-action border-0"><?php echo e(__('Payment Setting')); ?> <div
                                 class="float-end"><i class="ti ti-chevron-right"></i></div></a>
 
-                        <a href="#pusher-setting" id="pusher-setting-tab"
+                        <!--<a href="#pusher-setting" id="pusher-setting-tab"
                             class="list-group-item list-group-item-action border-0"><?php echo e(__('Pusher Setting')); ?> <div
-                                class="float-end"><i class="ti ti-chevron-right"></i></div></a>
+                                class="float-end"><i class="ti ti-chevron-right"></i></div></a> 
 
                         <a href="#recaptcha-print-setting" id="recaptcha-print-tab"
                             class="list-group-item list-group-item-action border-0"><?php echo e(__('ReCaptcha Setting')); ?> <div
-                                class="float-end"><i class="ti ti-chevron-right"></i></div></a>
+                                class="float-end"><i class="ti ti-chevron-right"></i></div></a> -->
                     </div>
                 </div>
             </div>
@@ -308,13 +308,13 @@ unset($__errorArgs, $__bag); ?>
 
                                         </div>
                                         <div class="row">
-                                            <div class="col-3 ">
+                                            <!--<div class="col-3 ">
                                                 <div class="col switch-width">
                                                     <div class="form-group ml-2 mr-3">
-
+                                                
                                                         <?php echo e(Form::label('display_landing_page', __('Landing Page Display'), ['class' => 'col-form-label'])); ?>
 
-
+                                                
                                                         <div class="custom-control custom-switch">
                                                             <input type="checkbox" data-toggle="switchbutton"
                                                                 data-onstyle="primary" class=""
@@ -323,11 +323,11 @@ unset($__errorArgs, $__bag); ?>
                                                             <label class="custom-control-label mb-1"
                                                                 for="display_landing_page"></label>
                                                         </div>
-
+                                                
 
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div>-->
                                             <div class="col-3 ">
                                                 <div class="col switch-width">
                                                     <div class="form-group ml-2 mr-3">
@@ -1534,7 +1534,7 @@ unset($__errorArgs, $__bag); ?>
                     </div>
                     </form>
                 </div>
-                <div class="" id="pusher-setting">
+                <!--<div class="" id="pusher-setting">
                     <?php echo e(Form::open(['route' => 'pusher.settings', 'method' => 'post'])); ?>
 
                     <div class="row">
@@ -1659,7 +1659,7 @@ unset($__errorArgs, $__bag); ?>
                             </div>
                         </form>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

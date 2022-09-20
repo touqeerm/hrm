@@ -18,16 +18,7 @@
     @if (\Auth::user()->type == 'employee')
         
 
-        <div class="col-xxl-6">
-            <div class="card">
-                <div class="card-header">
-                    <h5>{{ __('Calendar') }}</h5>
-                </div>
-                <div class="card-body">
-                    <div id='event_calendar' class='calendar'></div>
-                </div>
-            </div>
-        </div>
+
         <div class="col-xxl-6">
             <div class="card" style="height: 230px;">
                 <div class="card-header">
@@ -64,7 +55,7 @@
                         </div>
                 </div>
             </div>
-            <div class="card" style="height: 402px;">
+            <!--<div class="card" style="height: 402px;">
                 <div class="card-header card-body table-border-style">
                     <h5>{{ __('Meeting schedule') }}</h5>
                 </div>
@@ -89,6 +80,17 @@
                             </tbody>
                         </table>
                     </div>
+                </div>
+            </div> -->
+        </div>
+
+        <div class="col-xxl-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>{{ __('Calendar') }}</h5>
+                </div>
+                <div class="card-body">
+                    <div id='event_calendar' class='calendar'></div>
                 </div>
             </div>
         </div>
@@ -155,7 +157,7 @@
             </div>
 
             <div class="col-lg-4 col-md-6">
-                
+            <!--    
                 <div class="card">
                     <div class="card-body">
                         <div class="row align-items-center justify-content-between">
@@ -177,7 +179,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-4 col-md-6"> -->
                 
                     <div class="card">
                         <div class="card-body">
@@ -204,7 +206,7 @@
         </div>
       
 
-           
+           <!--
                 <div class="col-lg-4 col-md-6">
                     <div class="card">
                         <div class="card-body">
@@ -225,9 +227,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> 
     
-                </div>
+                </div> 
                 <div class="col-lg-4 col-md-6">
                     
                     <div class="card">
@@ -273,7 +275,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
           
     {{-- </div> --}}
 
@@ -281,7 +283,7 @@
         <div class="col-xxl-12">
             <div class="row">
               <div class="col-xl-5">
-
+                <!--
                 <div class="card">
                     <div class="card-header card-body table-border-style">
                         <h5>{{ __('Meeting schedule') }}</h5>
@@ -308,7 +310,7 @@
                             </table>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="card">
                     <div class="card-header card-body table-border-style">

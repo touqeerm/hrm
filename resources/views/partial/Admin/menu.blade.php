@@ -92,10 +92,10 @@ $emailTemplate = App\Models\EmailTemplate::first();
                                 </li>
 
 
-                                <li class="dash-item">
+                            <!--    <li class="dash-item">
                                     <a class="dash-link"
                                         href="{{ route('report.timesheet') }}">{{ __('Timesheet') }}</a>
-                                </li>
+                                </li>  -->
                             @endcan
 
 
@@ -118,7 +118,7 @@ $emailTemplate = App\Models\EmailTemplate::first();
                     </li>
                 @else
                     @if (Gate::check('Manage User') || Gate::check('Manage Role') || Gate::check('Manage Employee Profile') || Gate::check('Manage Employee Last Login'))
-                        <li class="dash-item dash-hasmenu">
+                        <!--<li class="dash-item dash-hasmenu">
                             <a href="#!" class="dash-link"><span class="dash-micon"><i
                                         class="ti ti-users"></i></span><span
                                     class="dash-mtext">{{ __('Staff') }}</span><span class="dash-arrow"><i
@@ -150,7 +150,7 @@ $emailTemplate = App\Models\EmailTemplate::first();
                                 @endcan
 
                             </ul>
-                        </li>
+                        </li> -->
                     @endif
                 @endif
                 <!-- user-->
@@ -225,14 +225,14 @@ $emailTemplate = App\Models\EmailTemplate::first();
                     <li class="dash-item dash-hasmenu">
                         <a href="#!" class="dash-link"><span class="dash-micon"><i
                                     class="ti ti-clock"></i></span><span
-                                class="dash-mtext">{{ __('Timesheet') }}</span><span class="dash-arrow"><i
+                                class="dash-mtext">{{ __('Attendance') }}</span><span class="dash-arrow"><i
                                     data-feather="chevron-right"></i></span></a>
                         <ul class="dash-submenu">
                             @can('Manage TimeSheet')
-                                <li class="dash-item">
+                              <!--  <li class="dash-item">
                                     <a class="dash-link"
                                         href="{{ route('timesheet.index') }}">{{ __('Timesheet') }}</a>
-                                </li>
+                                </li> -->
                             @endcan
                             @can('Manage Leave')
                                 <li class="dash-item">
@@ -358,7 +358,7 @@ $emailTemplate = App\Models\EmailTemplate::first();
 
                 <!--trainning-->
                 @if (Gate::check('Manage Trainer') || Gate::check('Manage Training'))
-                    <li
+                  <!--  <li
                         class="dash-item dash-hasmenu {{ Request::segment(1) == 'training' ? 'dash-trigger active' : '' }}">
                         <a href="#!" class="dash-link "><span class="dash-micon"><i
                                     class="ti ti-school"></i></span><span
@@ -379,7 +379,7 @@ $emailTemplate = App\Models\EmailTemplate::first();
                                 </li>
                             @endcan
                         </ul>
-                    </li>
+                    </li> -->
                 @endif
 
                 <!-- tranning-->
@@ -394,33 +394,33 @@ $emailTemplate = App\Models\EmailTemplate::first();
                                 class="dash-mtext">{{ __('HR Admin Setup') }}</span><span class="dash-arrow"><i
                                     data-feather="chevron-right"></i></span></a>
                         <ul class="dash-submenu">
-                            <li class="dash-item {{ Request::segment(1) == 'award' ? 'active' : '' }}">
+                         <!--   <li class="dash-item {{ Request::segment(1) == 'award' ? 'active' : '' }}">
                                 <a class="dash-link" href="{{ route('award.index') }}">{{ __('Award') }}</a>
                             </li>
                             <li class="dash-item">
                                 <a class="dash-link"
                                     href="{{ route('transfer.index') }}">{{ __('Transfer') }}</a>
-                            </li>
+                            </li> -->
                             <li class="dash-item">
                                 <a class="dash-link"
                                     href="{{ route('resignation.index') }}">{{ __('Resignation') }}</a>
                             </li>
-                            <li class="dash-item">
+                          <!--  <li class="dash-item">
                                 <a class="dash-link"
                                     href="{{ route('travel.index') }}">{{ __('Trip') }}</a>
-                            </li>
+                            </li> -->
                             <li class="dash-item">
                                 <a class="dash-link"
                                     href="{{ route('promotion.index') }}">{{ __('Promotion') }}</a>
                             </li>
-                            <li class="dash-item">
+                         <!--   <li class="dash-item">
                                 <a class="dash-link"
                                     href="{{ route('complaint.index') }}">{{ __('Complaints') }}</a>
-                            </li>
+                            </li> 
                             <li class="dash-item">
                                 <a class="dash-link"
                                     href="{{ route('warning.index') }}">{{ __('Warning') }}</a>
-                            </li>
+                            </li> -->
                             <li class="dash-item">
                                 <a class="dash-link"
                                     href="{{ route('termination.index') }}">{{ __('Termination') }}</a>
@@ -440,7 +440,7 @@ $emailTemplate = App\Models\EmailTemplate::first();
 
                 <!-- recruitment-->
                 @if (Gate::check('Manage Job') || Gate::check('Manage Job Application') || Gate::check('Manage Job OnBoard') || Gate::check('Manage Custom Question') || Gate::check('Manage Interview Schedule') || Gate::check('Manage Career'))
-                    <li
+                <!--    <li
                         class="dash-item dash-hasmenu  {{ Request::segment(1) == 'job' || Request::segment(1) == 'job-application' ? 'dash-trigger active' : '' }} ">
                         <a href="#!" class="dash-link"><span class="dash-micon"><i
                                     class="ti ti-license"></i></span><span
@@ -498,14 +498,14 @@ $emailTemplate = App\Models\EmailTemplate::first();
                                 </li>
                             @endcan
                         </ul>
-                    </li>
+                    </li> -->
                 @endif
                 <!-- recruitment-->
                 <!--contract-->
                 @can('Manage Contracts')
-                <li class="dash-item {{ (Request::route()->getName() == 'contract.index' || Request::route()->getName() == 'contract.show') ? 'active' : '' }}">
+                <!-- <li class="dash-item {{ (Request::route()->getName() == 'contract.index' || Request::route()->getName() == 'contract.show') ? 'active' : '' }}">
                     <a href="{{route('contract.index')}}" class="dash-link"><span class="dash-micon"><i class="ti ti-device-floppy"></i></span><span class="dash-mtext">{{__('Contracts')}}</span></a>
-                </li>
+                </li> -->
                 @endcan
                
             <!--end-->
@@ -513,59 +513,59 @@ $emailTemplate = App\Models\EmailTemplate::first();
 
                 <!-- ticket-->
                 @can('Manage Ticket')
-                    <li class="dash-item {{ Request::segment(1) == 'ticket' ? 'active' : '' }}">
+                   <!-- <li class="dash-item {{ Request::segment(1) == 'ticket' ? 'active' : '' }}">
                         <a href="{{ route('ticket.index') }}" class="dash-link"><span class="dash-micon"><i
                                     class="ti ti-ticket"></i></span><span
                                 class="dash-mtext">{{ __('Ticket') }}</span></a>
-                    </li>
+                    </li> -->
                 @endcan
 
                 <!-- Event-->
                 @can('Manage Event')
-                    <li class="dash-item">
+                <!--  <li class="dash-item">
                         <a href="{{ route('event.index') }}" class="dash-link"><span class="dash-micon"><i
                                     class="ti ti-calendar-event"></i></span><span
                                 class="dash-mtext">{{ __('Event') }}</span></a>
-                    </li>
+                    </li> -->
                 @endcan
 
 
                 <!--meeting-->
                 @can('Manage Meeting')
-                    <li class="dash-item {{ Request::segment(1) == 'meeting' ? 'active' : '' }}">
+                <!--    <li class="dash-item {{ Request::segment(1) == 'meeting' ? 'active' : '' }}">
                         <a href="{{ route('meeting.index') }}" class="dash-link"><span class="dash-micon"><i
                                     class="ti ti-calendar-time"></i></span><span
                                 class="dash-mtext">{{ __('Meeting') }}</span></a>
-                    </li>
+                    </li> -->
                 @endcan
 
 
                 <!-- Zoom meeting-->
                 @if (\Auth::user()->type != 'super admin')
-                    <li class="dash-item {{ Request::segment(1) == 'zoommeeting' ? 'active' : '' }}">
+                <!--    <li class="dash-item {{ Request::segment(1) == 'zoommeeting' ? 'active' : '' }}">
                         <a href="{{ route('zoom-meeting.index') }}" class="dash-link"><span
                                 class="dash-micon"><i class="ti ti-video"></i></span><span
                                 class="dash-mtext">{{ __('Zoom Meeting') }}</span></a>
-                    </li>
+                    </li> -->
                 @endif
 
                 <!-- assets-->
                 @if (Gate::check('Manage Assets'))
-                    <li class="dash-item">
+                <!--    <li class="dash-item">
                         <a href="{{ route('account-assets.index') }}" class="dash-link"><span
                                 class="dash-micon"><i class="ti ti-medical-cross"></i></span><span
                                 class="dash-mtext">{{ __('Assets') }}</span></a>
-                    </li>
+                    </li> -->
                 @endcan
 
 
                 <!-- document-->
                 @if (Gate::check('Manage Document'))
-                    <li class="dash-item">
+                <!--    <li class="dash-item">
                         <a href="{{ route('document-upload.index') }}" class="dash-link"><span
                                 class="dash-micon"><i class="ti ti-file"></i></span><span
                                 class="dash-mtext">{{ __('Document') }}</span></a>
-                    </li>
+                    </li> -->
                 @endcan
 
                 <!--company policy-->
@@ -573,19 +573,19 @@ $emailTemplate = App\Models\EmailTemplate::first();
 
 
                 @if (Gate::check('Manage Company Policy'))
-                    <li class="dash-item">
+                <!--    <li class="dash-item">
                         <a href="{{ route('company-policy.index') }}" class="dash-link"><span
                                 class="dash-micon"><i class="ti ti-pray"></i></span><span
                                 class="dash-mtext">{{ __('Company Policy') }}</span></a>
-                    </li>
+                    </li> -->
                 @endcan
                  <!--chats-->
                  @if (\Auth::user()->type != 'super admin')
-                 <li class="dash-item">
+            <!--     <li class="dash-item">
                      <a href="{{ url('chats') }}" class="dash-link"><span class="dash-micon"><i
                                  class="ti ti-messages"></i></span><span
                              class="dash-mtext">{{ __('Messenger') }}</span></a>
-                 </li>
+                 </li> -->
              @endif
                 @if (\Auth::user()->type == 'super admin')
                 @if (Gate::check('Manage Plan'))
@@ -598,24 +598,24 @@ $emailTemplate = App\Models\EmailTemplate::first();
                 @endif
                 @endif
                 @if (\Auth::user()->type == 'super admin')
-                    <li class="dash-item ">
+                 <!--   <li class="dash-item ">
                         <a href="{{ route('plan_request.index') }}" class="dash-link"><span
                                 class="dash-micon"><i
                                     class="ti ti-arrow-down-right-circle"></i></span><span
                                 class="dash-mtext">{{ __('Plan Request') }}</span></a>
 
-                    </li>
+                    </li> -->
                 @endif
 
 
                 @if (Auth::user()->type == 'super admin')
-                    @if (Gate::check('manage coupon'))
+                <!--    @if (Gate::check('manage coupon'))
                         <li class="dash-item ">
                             <a href="{{ route('coupons.index') }}" class="dash-link"><span
                                     class="dash-micon"><i class="ti ti-gift"></i></span><span
                                     class="dash-mtext">{{ __('Coupon') }}</span></a>
 
-                        </li>
+                        </li> -->
                     @endif
                 @endif
                 @if (\Auth::user()->type == 'super admin')
@@ -630,11 +630,11 @@ $emailTemplate = App\Models\EmailTemplate::first();
                     {{-- @endif --}}
                 @endif
                 @if (\Auth::user()->type == 'super admin')
-                <li class="dash-item">
+                <!--<li class="dash-item">
                     <a href="{{ route('manage.email.language',[$emailTemplate ->id,\Auth::user()->lang]) }}" class="dash-link"><span
                             class="dash-micon"><i class="ti ti-template"></i></span><span
                             class="dash-mtext">{{ __('Email Template') }}</span></a>
-                </li>
+                </li> -->
             @endif
                 <!--report-->
                 <!-- @if (Gate::check('Manage Report'))

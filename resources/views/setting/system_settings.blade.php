@@ -95,7 +95,7 @@ if ($SITE_RTL == '') {
                         <a href="#site-setting" id="site-setting-tab"
                             class="list-group-item list-group-item-action border-0">{{ __('Site Setting') }} <div
                                 class="float-end"><i class="ti ti-chevron-right"></i></div></a>
-
+                        
                         <a href="#email-setting" id="email-setting-tab"
                             class="list-group-item list-group-item-action border-0">{{ __('Email Setting') }} <div
                                 class="float-end"><i class="ti ti-chevron-right"></i></div></a>
@@ -104,13 +104,13 @@ if ($SITE_RTL == '') {
                             class="list-group-item list-group-item-action border-0">{{ __('Payment Setting') }} <div
                                 class="float-end"><i class="ti ti-chevron-right"></i></div></a>
 
-                        <a href="#pusher-setting" id="pusher-setting-tab"
+                        <!--<a href="#pusher-setting" id="pusher-setting-tab"
                             class="list-group-item list-group-item-action border-0">{{ __('Pusher Setting') }} <div
-                                class="float-end"><i class="ti ti-chevron-right"></i></div></a>
+                                class="float-end"><i class="ti ti-chevron-right"></i></div></a> 
 
                         <a href="#recaptcha-print-setting" id="recaptcha-print-tab"
                             class="list-group-item list-group-item-action border-0">{{ __('ReCaptcha Setting') }} <div
-                                class="float-end"><i class="ti ti-chevron-right"></i></div></a>
+                                class="float-end"><i class="ti ti-chevron-right"></i></div></a> -->
                     </div>
                 </div>
             </div>
@@ -265,12 +265,12 @@ if ($SITE_RTL == '') {
 
                                         </div>
                                         <div class="row">
-                                            <div class="col-3 ">
+                                            <!--<div class="col-3 ">
                                                 <div class="col switch-width">
                                                     <div class="form-group ml-2 mr-3">
-
+                                                
                                                         {{ Form::label('display_landing_page', __('Landing Page Display'), ['class' => 'col-form-label']) }}
-
+                                                
                                                         <div class="custom-control custom-switch">
                                                             <input type="checkbox" data-toggle="switchbutton"
                                                                 data-onstyle="primary" class=""
@@ -279,11 +279,11 @@ if ($SITE_RTL == '') {
                                                             <label class="custom-control-label mb-1"
                                                                 for="display_landing_page"></label>
                                                         </div>
-
+                                                
 
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div>-->
                                             <div class="col-3 ">
                                                 <div class="col switch-width">
                                                     <div class="form-group ml-2 mr-3">
@@ -1370,7 +1370,7 @@ if ($SITE_RTL == '') {
                     </div>
                     </form>
                 </div>
-                <div class="" id="pusher-setting">
+                <!--<div class="" id="pusher-setting">
                     {{ Form::open(['route' => 'pusher.settings', 'method' => 'post']) }}
                     <div class="row">
                         <div class="col-lg-12 col-sm-12 col-md-12">
@@ -1491,7 +1491,7 @@ if ($SITE_RTL == '') {
                             </div>
                         </form>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
