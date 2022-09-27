@@ -205,10 +205,10 @@ $emailTemplate = App\Models\EmailTemplate::first();
                                 class="dash-mtext"><?php echo e(__('Payroll')); ?></span><span class="dash-arrow"><i
                                     data-feather="chevron-right"></i></span></a>
                         <ul class="dash-submenu">
-                            <li class="dash-item <?php echo e(Request::segment(1) == 'setsalary' ? 'active' : '-'); ?>">
+                            <!--<li class="dash-item <?php echo e(Request::segment(1) == 'setsalary' ? 'active' : '-'); ?>">
                                 <a class="dash-link"
                                     href="<?php echo e(route('setsalary.show', \Auth::user()->id)); ?>"><?php echo e(__('Set Salary')); ?></a>
-                            </li>
+                            </li> -->
                             <li class="dash-item">
                                 <a class="dash-link"
                                     href="<?php echo e(route('payslip.index')); ?>"><?php echo e(__('Payslip')); ?></a>
@@ -219,7 +219,7 @@ $emailTemplate = App\Models\EmailTemplate::first();
 
                 <!-- timesheet-->
                 <?php if(Gate::check('Manage Attendance') || Gate::check('Manage Leave') || Gate::check('Manage TimeSheet')): ?>
-                    <li class="dash-item dash-hasmenu">
+                <!--    <li class="dash-item dash-hasmenu">
                         <a href="#!" class="dash-link"><span class="dash-micon"><i
                                     class="ti ti-clock"></i></span><span
                                 class="dash-mtext"><?php echo e(__('Attendance')); ?></span><span class="dash-arrow"><i
@@ -229,7 +229,7 @@ $emailTemplate = App\Models\EmailTemplate::first();
                               <!--  <li class="dash-item">
                                     <a class="dash-link"
                                         href="<?php echo e(route('timesheet.index')); ?>"><?php echo e(__('Timesheet')); ?></a>
-                                </li> -->
+                                </li>
                             <?php endif; ?>
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Leave')): ?>
                                 <li class="dash-item">
@@ -257,7 +257,7 @@ $emailTemplate = App\Models\EmailTemplate::first();
                                 </li>
                             <?php endif; ?>
                         </ul>
-                    </li>
+                    </li> -->
                 <?php endif; ?>
                 <!--timesheet-->
 
@@ -296,7 +296,7 @@ $emailTemplate = App\Models\EmailTemplate::first();
 
                 <!--fianance-->
                 <?php if(Gate::check('Manage Account List') || Gate::check('Manage Payee') || Gate::check('Manage Payer') || Gate::check('Manage Deposit') || Gate::check('Manage Expense') || Gate::check('Manage Transfer Balance')): ?>
-                    <li class="dash-item dash-hasmenu">
+                   <!-- <li class="dash-item dash-hasmenu">
                         <a href="#!" class="dash-link"><span class="dash-micon"><i
                                     class="ti ti-wallet"></i></span><span
                                 class="dash-mtext"><?php echo e(__('Finance')); ?></span><span class="dash-arrow"><i
@@ -349,7 +349,7 @@ $emailTemplate = App\Models\EmailTemplate::first();
                                 </li>
                             <?php endif; ?>
                         </ul>
-                    </li>
+                    </li> -->
                 <?php endif; ?>
                 <!-- fianance-->
 

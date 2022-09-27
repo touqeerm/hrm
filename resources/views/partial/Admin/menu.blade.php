@@ -208,10 +208,10 @@ $emailTemplate = App\Models\EmailTemplate::first();
                                 class="dash-mtext">{{ __('Payroll') }}</span><span class="dash-arrow"><i
                                     data-feather="chevron-right"></i></span></a>
                         <ul class="dash-submenu">
-                            <li class="dash-item {{ Request::segment(1) == 'setsalary' ? 'active' : '-' }}">
+                            <!--<li class="dash-item {{ Request::segment(1) == 'setsalary' ? 'active' : '-' }}">
                                 <a class="dash-link"
                                     href="{{ route('setsalary.show', \Auth::user()->id) }}">{{ __('Set Salary') }}</a>
-                            </li>
+                            </li> -->
                             <li class="dash-item">
                                 <a class="dash-link"
                                     href="{{ route('payslip.index') }}">{{ __('Payslip') }}</a>
@@ -222,7 +222,7 @@ $emailTemplate = App\Models\EmailTemplate::first();
 
                 <!-- timesheet-->
                 @if (Gate::check('Manage Attendance') || Gate::check('Manage Leave') || Gate::check('Manage TimeSheet'))
-                    <li class="dash-item dash-hasmenu">
+                <!--    <li class="dash-item dash-hasmenu">
                         <a href="#!" class="dash-link"><span class="dash-micon"><i
                                     class="ti ti-clock"></i></span><span
                                 class="dash-mtext">{{ __('Attendance') }}</span><span class="dash-arrow"><i
@@ -232,7 +232,7 @@ $emailTemplate = App\Models\EmailTemplate::first();
                               <!--  <li class="dash-item">
                                     <a class="dash-link"
                                         href="{{ route('timesheet.index') }}">{{ __('Timesheet') }}</a>
-                                </li> -->
+                                </li>
                             @endcan
                             @can('Manage Leave')
                                 <li class="dash-item">
@@ -260,7 +260,7 @@ $emailTemplate = App\Models\EmailTemplate::first();
                                 </li>
                             @endcan
                         </ul>
-                    </li>
+                    </li> -->
                 @endif
                 <!--timesheet-->
 
@@ -299,7 +299,7 @@ $emailTemplate = App\Models\EmailTemplate::first();
 
                 <!--fianance-->
                 @if (Gate::check('Manage Account List') || Gate::check('Manage Payee') || Gate::check('Manage Payer') || Gate::check('Manage Deposit') || Gate::check('Manage Expense') || Gate::check('Manage Transfer Balance'))
-                    <li class="dash-item dash-hasmenu">
+                   <!-- <li class="dash-item dash-hasmenu">
                         <a href="#!" class="dash-link"><span class="dash-micon"><i
                                     class="ti ti-wallet"></i></span><span
                                 class="dash-mtext">{{ __('Finance') }}</span><span class="dash-arrow"><i
@@ -352,7 +352,7 @@ $emailTemplate = App\Models\EmailTemplate::first();
                                 </li>
                             @endcan
                         </ul>
-                    </li>
+                    </li> -->
                 @endif
                 <!-- fianance-->
 

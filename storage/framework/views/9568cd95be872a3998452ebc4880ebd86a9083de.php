@@ -93,7 +93,7 @@ if ($SITE_RTL == '') {
                         <a href="#site-setting" id="site-setting-tab"
                             class="list-group-item list-group-item-action border-0"><?php echo e(__('Site Setting')); ?> <div
                                 class="float-end"><i class="ti ti-chevron-right"></i></div></a>
-
+                        
                         <a href="#email-setting" id="email-setting-tab"
                             class="list-group-item list-group-item-action border-0"><?php echo e(__('Email Setting')); ?> <div
                                 class="float-end"><i class="ti ti-chevron-right"></i></div></a>
