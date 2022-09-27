@@ -52,6 +52,7 @@ class DocumentController extends Controller
 
             $document              = new Document();
             $document->name        = $request->name;
+            $document->expiry_date  = $request->expiry;
             $document->is_required = $request->is_required;
             $document->created_by  = \Auth::user()->creatorId();
             $document->save();

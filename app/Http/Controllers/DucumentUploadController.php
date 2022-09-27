@@ -94,6 +94,7 @@ class DucumentUploadController extends Controller
 
             $document              = new DucumentUpload();
             $document->name        = $request->name;
+            $document->expiry_date  = $request->expiry;
             $document->document    = !empty($request->documents) ? $fileNameToStore : '';
             $document->role        = $request->role;
             $document->description = $request->description;
@@ -175,6 +176,7 @@ class DucumentUploadController extends Controller
 
 
             $document->name = $request->name;
+            $document->expiry_date  = $request->expiry;
             if(!empty($request->document))
             {
                 $document->document = !empty($request->document) ? $fileNameToStore : '';

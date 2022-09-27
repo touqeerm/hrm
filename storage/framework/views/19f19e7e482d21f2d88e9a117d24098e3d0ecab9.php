@@ -28,6 +28,7 @@
                         <thead>
                             <tr>
                                 <th><?php echo e(__('Name')); ?></th>
+                                <th><?php echo e(__('Expiry Date')); ?></th>
                                 <th><?php echo e(__('Document')); ?></th>
                                 <th><?php echo e(__('Role')); ?></th>
                                 <th><?php echo e(__('Description')); ?></th>
@@ -44,6 +45,7 @@
                                 ?>
                                 <tr>
                                     <td><?php echo e($document->name); ?></td>
+                                    <td><?php echo e($document->expiry_date); ?></td>
                                     <td>
 
                                         <?php if(!empty($document->document)): ?>

@@ -12,6 +12,17 @@
             </div>
         </div>
 
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="form-group">
+                {{ Form::label('expiry', __('Expiry Date'), ['class' => 'form-label']) }}
+                <div class="form-icon-user">
+                    {{ Form::date('expiry', null, ['class' => 'form-control', 'placeholder' => __('Expiry Date of Document')]) }}
+                </div>
+
+            </div>
+        </div>
+
+
         <div class="col-lg-6 col-md-6 col-sm-6">
             <div class="form-group">
                 {{ Form::label('document', __('Document'), ['class' => 'col-form-label']) }}

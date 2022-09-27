@@ -29,6 +29,7 @@
                         <thead>
                             <tr>
                                 <th>{{ __('Name') }}</th>
+                                <th>{{ __('Expiry Date') }}</th>
                                 <th>{{ __('Document') }}</th>
                                 <th>{{ __('Role') }}</th>
                                 <th>{{ __('Description') }}</th>
@@ -45,6 +46,7 @@
                                 @endphp
                                 <tr>
                                     <td>{{ $document->name }}</td>
+                                    <td>{{ $document->expiry_date }}</td>
                                     <td>
 
                                         @if (!empty($document->document))

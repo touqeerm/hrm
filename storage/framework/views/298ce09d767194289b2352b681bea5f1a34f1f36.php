@@ -1,5 +1,4 @@
-
-<?php echo e(Form::open(['url' => 'document-upload', 'method' => 'post', 'enctype' => 'multipart/form-data'])); ?>
+<?php echo e(Form::model($ducumentUpload, ['route' => ['document-upload.update', $ducumentUpload->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data'])); ?>
 
 <div class="modal-body">
     <div class="row">
@@ -15,6 +14,7 @@
 
             </div>
         </div>
+
         <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="form-group">
                 <?php echo e(Form::label('expiry', __('Expiry Date'), ['class' => 'form-label'])); ?>
@@ -27,6 +27,7 @@
             </div>
         </div>
 
+
         <div class="col-lg-6 col-md-6 col-sm-6">
             <div class="form-group">
                 <?php echo e(Form::label('document', __('Document'), ['class' => 'col-form-label'])); ?>
@@ -38,7 +39,7 @@
 
                         </div>
                         <input style="margin-top: -50px" type="file" class="form-control file" name="documents"  onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
-                        <img id="blah" class="mt-3"  width="100" src="" />
+                        <img id="blah" class="mt-3" alt="your image" width="100" src="<?php if($ducumentUpload->document): ?><?php echo e(asset(Storage::url('uploads/documentUpload/'.$ducumentUpload->document))); ?> <?php else: ?> <?php echo e(asset('/storage/uploads/uploadDocument/document.png')); ?> <?php endif; ?>"/>
                     </label>
                 </div>
             </div>
@@ -56,7 +57,7 @@
             </div>
         </div>
 
-        
+
 
         <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="form-group">
@@ -74,8 +75,8 @@
 </div>
 <div class="modal-footer">
     <input type="button" value="Cancel" class="btn btn-light" data-bs-dismiss="modal">
-    <input type="submit" value="<?php echo e(__('Create')); ?>" class="btn btn-primary">
+    <input type="submit" value="<?php echo e(__('Update')); ?>" class="btn btn-primary">
 </div>
 <?php echo e(Form::close()); ?>
 
-<?php /**PATH E:\xampp\htdocs\hrm\resources\views/documentUpload/create.blade.php ENDPATH**/ ?>
+<?php /**PATH E:\xampp\htdocs\hrm\resources\views/documentUpload/edit.blade.php ENDPATH**/ ?>
