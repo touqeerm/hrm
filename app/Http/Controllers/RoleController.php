@@ -14,7 +14,8 @@ class RoleController extends Controller
     {
         if(\Auth::user()->can('Manage Role'))
         {
-            $roles = Role::where('created_by', '=', \Auth::user()->creatorId())->get();
+            $roles=Role::all();
+            //$roles = Role::where('created_by', '=', \Auth::user()->creatorId())->get();
 
             return view('role.index')->with('roles', $roles);
         }

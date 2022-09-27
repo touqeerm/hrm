@@ -115,7 +115,7 @@ $emailTemplate = App\Models\EmailTemplate::first();
                     </li>
                 <?php else: ?>
                     <?php if(Gate::check('Manage User') || Gate::check('Manage Role') || Gate::check('Manage Employee Profile') || Gate::check('Manage Employee Last Login')): ?>
-                        <!--<li class="dash-item dash-hasmenu">
+                        <li class="dash-item dash-hasmenu">
                             <a href="#!" class="dash-link"><span class="dash-micon"><i
                                         class="ti ti-users"></i></span><span
                                     class="dash-mtext"><?php echo e(__('Staff')); ?></span><span class="dash-arrow"><i
@@ -147,7 +147,7 @@ $emailTemplate = App\Models\EmailTemplate::first();
                                 <?php endif; ?>
 
                             </ul>
-                        </li> -->
+                        </li>
                     <?php endif; ?>
                 <?php endif; ?>
                 <!-- user-->
@@ -557,12 +557,12 @@ $emailTemplate = App\Models\EmailTemplate::first();
 
 
                 <!-- document-->
-                <?php if(Gate::check('Manage Document')): ?>
-                <!--    <li class="dash-item">
+                <?php if(Gate::check('Manage Document')): ?> 
+                    <li class="dash-item">
                         <a href="<?php echo e(route('document-upload.index')); ?>" class="dash-link"><span
                                 class="dash-micon"><i class="ti ti-file"></i></span><span
                                 class="dash-mtext"><?php echo e(__('Document')); ?></span></a>
-                    </li> -->
+                    </li>  
                 <?php endif; ?>
 
                 <!--company policy-->

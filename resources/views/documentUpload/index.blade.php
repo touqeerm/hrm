@@ -10,13 +10,13 @@
 @endsection
 
 @section('action-button')
-    @can('Create Document')
+    @can('Create Document') 
         <a href="#" data-url="{{ route('document-upload.create') }}" data-ajax-popup="true"
             data-title="{{ __('Create New  Document Type') }}" data-size="lg" data-bs-toggle="tooltip" title=""
             class="btn btn-sm btn-primary" data-bs-original-title="{{ __('Create') }}">
             <i class="ti ti-plus"></i>
         </a>
-    @endcan
+    @endcan 
 @endsection
 
 @section('content')
