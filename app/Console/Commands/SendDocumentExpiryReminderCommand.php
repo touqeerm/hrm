@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Console\Commands;
+use App\Models\DucumentUpload;
+use Illuminate\Notifications\DocumentExpiryReminder;
 
 use Illuminate\Console\Command;
 
@@ -11,14 +13,14 @@ class SendDocumentExpiryReminderCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'document_upload_reminder:send';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Send Document Upload Reminders to Users';
 
     /**
      * Create a new command instance.
@@ -37,6 +39,12 @@ class SendDocumentExpiryReminderCommand extends Command
      */
     public function handle()
     {
+        $documents = DucumentUpload::where('expiry_date', '<=', now()->toDate())->get();
+
+    foreach ($documents as $document) {
+        $document->user->notify(new DocumentExpiryReminder($document));
+        //$task->update(['reminder_at' => NULL]);
+    }
         return 0;
     }
 }

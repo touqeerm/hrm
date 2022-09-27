@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Notifications;
-
+use App\Models\DucumentUpload;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -10,15 +10,16 @@ use Illuminate\Notifications\Notification;
 class DocumentExpiryReminder extends Notification
 {
     use Queueable;
+    private $document;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(DucumentUpload $document)
     {
-        //
+        $this->document = $document;
     }
 
     /**
