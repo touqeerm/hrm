@@ -52,7 +52,7 @@
                 </div>
                 
                 <!-- allowance -->
-                <!--<div class="col-md-6">
+                <div class="col-md-6">
                     <div class="card set-card">
                         <div class="card-header">
                             <div class="row">
@@ -135,10 +135,10 @@
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
 
                 <!-- Commission -->
-                <!--<div class="col-md-6">
+                <div class="col-md-6">
                     <div class="card set-card">
                         <div class="card-header">
                             <div class="row">
@@ -224,7 +224,7 @@
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
                 <!-- loan-->
               <!--  <div class="col-md-6">
                     <div class="card set-card">
@@ -317,7 +317,7 @@
                     </div>
                 </div> -->
                 <!-- Saturation -->
-             <!--   <div class="col-md-6">
+                <div class="col-md-6">
                     <div class="card set-card">
                         <div class="card-header">
                             <div class="row">
@@ -401,9 +401,9 @@
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
                 <!-- other payment-->
-            <!--    <div class="col-md-6">
+                <div class="col-md-6">
                     <div class="card set-card">
                         <div class="card-header">
                             <div class="row">
@@ -487,7 +487,7 @@
                     </div>
                 </div> -->
                 <!--overtime-->
-           <!--     <div class="col-md-6">
+                <div class="col-md-6">
                     <div class="card set-card">
                         <div class="card-header">
                             <div class="row">
@@ -562,7 +562,7 @@
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
             </div>
         </div>
 

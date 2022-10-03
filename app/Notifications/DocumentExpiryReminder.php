@@ -40,10 +40,15 @@ class DocumentExpiryReminder extends Notification
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
-    {
+    {   print($this->document["name"]);
+        print('_-------');
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
+                    ->line('Document :{{!!$this->document["name"]!!}}')
+                    //->line()
+                    ->line('Is Expiring on : {{!!$this->document["expiry_date"]!!}}')
+                    //->line()
+                    ->line('Kindly Renew it')
+                    //->action('Notification Action', url('/'))
                     ->line('Thank you for using our application!');
     }
 

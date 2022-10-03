@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 use App\Models\DucumentUpload;
+use App\Models\User;
 use App\Notifications\DocumentExpiryReminder;
 use Carbon\Carbon;
 
@@ -42,9 +43,11 @@ class SendDocumentExpiryReminderCommand extends Command
     {
         $date = Carbon::now();
         $documents = DucumentUpload::where('expiry_date', '<=', $date)->get();
-        print($documents);
+        //print($documents);
     foreach ($documents as $document) {
-        $document->user->notify(new DocumentExpiryReminder($document));
+        $user=User::where('id', $document['created_by'])->first();
+        $user->notify(new DocumentExpiryReminder($document));
+        //$document->user->notify(new DocumentExpiryReminder($document));
         //$task->update(['reminder_at' => NULL]);
     }
         return 0;
