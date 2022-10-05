@@ -103,23 +103,52 @@
 
                             </div>
                         </div>
-                         <div class="col-auto float-end ">
+                        <!-- <div class="col-auto float-end ">
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Create Pay Slip')): ?>
                                 <input type="button" value="<?php echo e(__('Bulk Payment')); ?>" class="btn btn-primary"
                                        id="bulk_payment">
                             <?php endif; ?>
 
 
-                        </div>
+                        </div> -->
                     </div>
 
                     
                     
                 </form>
+                <a href="<?php echo e(route('employee.export')); ?>" data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-original-title="<?php echo e(__('Export Payroll Sheet')); ?>" class="btn btn-sm btn-primary" >
+                    <i class="ti ti-file-export"></i>
+                </a>
+                <a href="<?php echo e(route('employee.export')); ?>" data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-original-title="<?php echo e(__('Export WPS IWIRE')); ?>" class="btn btn-sm btn-primary" >
+                    <i class="ti ti-file-export"></i>
+                </a>
+                <a href="<?php echo e(route('employee.export')); ?>" data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-original-title="<?php echo e(__('Export WPS LULU')); ?>" class="btn btn-sm btn-primary" >
+                    <i class="ti ti-file-export"></i>
+                </a>
+                <a href="<?php echo e(route('employee.export')); ?>" data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-original-title="<?php echo e(__('Export WPS FIRST GULF')); ?>" class="btn btn-sm btn-primary" >
+                    <i class="ti ti-file-export"></i>
+                </a>
+                <a href="<?php echo e(route('employee.export')); ?>" data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-original-title="<?php echo e(__('Export WPS RAK BANK')); ?>" class="btn btn-sm btn-primary" >
+                    <i class="ti ti-file-export"></i>
+                </a>
+                <a href="<?php echo e(route('employee.export')); ?>" data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-original-title="<?php echo e(__('Export WPS AL ANSARI')); ?>" class="btn btn-sm btn-primary" >
+                    <i class="ti ti-file-export"></i>
+                </a>
+                <a href="<?php echo e(route('employee.export')); ?>" data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-original-title="<?php echo e(__('Export WPS AL ROSTAMANI')); ?>" class="btn btn-sm btn-primary" >
+                    <i class="ti ti-file-export"></i>
+                </a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table" id="pc-dt-render-column-cells">
+
+                    <table class="table" id="pc-dt-render-column-cells">                       
                         <thead>
                         <tr>
                             

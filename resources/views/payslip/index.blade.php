@@ -122,10 +122,39 @@
                         @endcan --}}
                     {{-- </div> --}}
                 </form>
+                <a href="{{ route('employee.export') }}" data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-original-title="{{ __('Export Payroll Sheet') }}" class="btn btn-sm btn-primary" >
+                    <i class="ti ti-file-export"></i>
+                </a>
+                <a href="{{ route('employee.export') }}" data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-original-title="{{ __('Export WPS IWIRE') }}" class="btn btn-sm btn-primary" >
+                    <i class="ti ti-file-export"></i>
+                </a>
+                <a href="{{ route('employee.export') }}" data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-original-title="{{ __('Export WPS LULU') }}" class="btn btn-sm btn-primary" >
+                    <i class="ti ti-file-export"></i>
+                </a>
+                <a href="{{ route('employee.export') }}" data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-original-title="{{ __('Export WPS FIRST GULF') }}" class="btn btn-sm btn-primary" >
+                    <i class="ti ti-file-export"></i>
+                </a>
+                <a href="{{ route('employee.export') }}" data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-original-title="{{ __('Export WPS RAK BANK') }}" class="btn btn-sm btn-primary" >
+                    <i class="ti ti-file-export"></i>
+                </a>
+                <a href="{{ route('employee.export') }}" data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-original-title="{{ __('Export WPS AL ANSARI') }}" class="btn btn-sm btn-primary" >
+                    <i class="ti ti-file-export"></i>
+                </a>
+                <a href="{{ route('employee.export') }}" data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-original-title="{{ __('Export WPS AL ROSTAMANI') }}" class="btn btn-sm btn-primary" >
+                    <i class="ti ti-file-export"></i>
+                </a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table" id="pc-dt-render-column-cells">
+
+                    <table class="table" id="pc-dt-render-column-cells">                       
                         <thead>
                         <tr>
                             {{-- <th>{{ __('Id') }}</th> --}}
