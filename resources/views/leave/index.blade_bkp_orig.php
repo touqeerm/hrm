@@ -173,17 +173,13 @@
         data-bs-original-title="{{ __('Export') }}">
         <i class="ti ti-file-export"></i>
     </a>
+
     @can('Create Leave')
-        <a href="#" data-url="{{ route('leave.file.import') }}" data-ajax-popup="true" data-title="{{ __('Import  Leave CSV File') }}" 
-            data-bs-toggle="tooltip" title="" class="btn btn-sm btn-primary" data-bs-original-title="{{ __('Import') }}">
-            <i class="ti ti-file"></i>
-        </a>
         <a href="#" data-url="{{ route('leave.create') }}" data-ajax-popup="true" data-title="{{ __('Create New Leave') }}"
             data-size="lg" data-bs-toggle="tooltip" title="" class="btn btn-sm btn-primary"
             data-bs-original-title="{{ __('Create') }}">
             <i class="ti ti-plus"></i>
         </a>
-
     @endcan
 @endsection
 

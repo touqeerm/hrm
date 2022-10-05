@@ -41,11 +41,15 @@ class DocumentExpiryReminder extends Notification
      */
     public function toMail($notifiable)
     {   print($this->document["name"]);
+        $name=$this->document["name"];
+        $expiry=$this->document["expiry_date"];
         print('_-------');
         return (new MailMessage)
-                    ->line('Document :{{!!$this->document["name"]!!}}')
+                    ->line("Document : $name")
+                    //->greeting(new HtmlString("Document: $name"))
+                    ->line("Is Expiring On: $expiry")
                     //->line()
-                    ->line('Is Expiring on : {{!!$this->document["expiry_date"]!!}}')
+                    //->line('Is Expiring on : {{!!$this->document["expiry_date"]!!}}')
                     //->line()
                     ->line('Kindly Renew it')
                     //->action('Notification Action', url('/'))

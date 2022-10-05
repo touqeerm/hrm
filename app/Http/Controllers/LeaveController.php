@@ -34,12 +34,76 @@ class LeaveController extends Controller
                 $leaves = Leave::where('created_by', '=', \Auth::user()->creatorId())->get();
             }
 
-            return view('leave.index', compact('leaves'));
+      return view('leave.index', compact('leaves'));
         }
         else
         {
             return redirect()->back()->with('error', __('Permission denied.'));
         }
+    }
+    public function importFile()
+    {
+        return view('leave.import');
+    }
+
+    public function import(Request $request)
+    {
+        $rules = [
+            'file' => 'required|mimes:csv,txt,xlsx',
+        ];
+        $validator = \Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            $messages = $validator->getMessageBag();
+
+            return redirect()->back()->with('error', $messages->first());
+        }
+        $leave = (new ImportLeave())->toArray(request()->file('file'))[0];
+         
+
+        $totalLeave = count($leave) - 1;
+        // dd($totalTimesheet);
+        $errorArray    = [];
+        for ($i = 1; $i <= $totalLeave; $i++) {
+            $leaves = $leave[$i];
+            $timesheetData=TimeSheet::where('employee_id',$timesheets[1])->where('date',$timesheets[0])->first();
+            
+            if(!empty($timesheetData))
+            {   
+                $errorArray[]=$timesheetData;
+            }
+            else
+            {
+                // dd($timesheetData);
+                $time_sheet=new TimeSheet();
+                $time_sheet->employee_id=$timesheets[0];
+                $time_sheet->date=$timesheets[1];
+                $time_sheet->hours=$timesheets[2];
+                $time_sheet->remark=$timesheets[3];
+                $time_sheet->created_by=Auth::user()->id;
+                // dd($time_sheet);
+                $time_sheet->save();
+            }
+        }
+       
+        
+        if (empty($errorArray)) {
+            $data['status'] = 'success';
+            $data['msg']    = __('Record successfully imported');
+        } else {
+           
+            $data['status'] = 'error';
+            $data['msg']    = count($errorArray) . ' ' . __('Record imported fail out of' . ' ' . $totalTimesheet . ' ' . 'record');
+
+           
+            foreach ($errorArray as $errorData) {
+                $errorRecord[] = implode(',', $errorData->toArray());
+            }
+            
+            \Session::put('errorArray', $errorRecord);
+        }
+
+        return redirect()->back()->with($data['status'], $data['msg']);
     }
 
     public function create()

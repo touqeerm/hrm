@@ -14,13 +14,17 @@
         data-bs-original-title="<?php echo e(__('Export')); ?>">
         <i class="ti ti-file-export"></i>
     </a>
-
     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Create Leave')): ?>
+        <a href="#" data-url="<?php echo e(route('leave.file.import')); ?>" data-ajax-popup="true" data-title="<?php echo e(__('Import  Leave CSV File')); ?>" 
+            data-bs-toggle="tooltip" title="" class="btn btn-sm btn-primary" data-bs-original-title="<?php echo e(__('Import')); ?>">
+            <i class="ti ti-file"></i>
+        </a>
         <a href="#" data-url="<?php echo e(route('leave.create')); ?>" data-ajax-popup="true" data-title="<?php echo e(__('Create New Leave')); ?>"
             data-size="lg" data-bs-toggle="tooltip" title="" class="btn btn-sm btn-primary"
             data-bs-original-title="<?php echo e(__('Create')); ?>">
             <i class="ti ti-plus"></i>
         </a>
+
     <?php endif; ?>
 <?php $__env->stopSection(); ?>
 

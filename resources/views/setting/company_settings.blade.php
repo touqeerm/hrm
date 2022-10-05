@@ -125,18 +125,18 @@ $SITE_RTL = Utility::getValByName('SITE_RTL');
                         <a href="#company-setting" id="company-setting-tab"
                             class="list-group-item list-group-item-action border-0">{{ __('Company Setting') }} <div
                                 class="float-end"><i class="ti ti-chevron-right"></i></div></a>
-                        <!--
+                        
                         <a id="email-notification-tab" data-toggle="tab" href="#email-notification" role="tab"
                             aria-controls="" aria-selected="false"
                             class="list-group-item list-group-item-action border-0">{{ __('Email Notification') }}<div
-                                class="float-end"><i class="ti ti-chevron-right"></i></div></a> -->
+                                class="float-end"><i class="ti ti-chevron-right"></i></div></a> 
 
                         <a href="#ip-restrict" id="ip-restrict-tab"
                             class="list-group-item list-group-item-action border-0">{{ __('IP Restrict Setting') }} <div
                                 class="float-end"><i class="ti ti-chevron-right"></i></div></a>
 
                         @if (Auth::user()->type == 'company')
-                            <!--<a href="#zoom-meeting-setting" id="zoom-meeting-tab"
+                        <!--    <a href="#zoom-meeting-setting" id="zoom-meeting-tab"
                                 class="list-group-item list-group-item-action border-0">{{ __('Zoom Meeting') }} <div
                                     class="float-end"><i class="ti ti-chevron-right"></i></div></a>
 
@@ -747,7 +747,7 @@ $SITE_RTL = Utility::getValByName('SITE_RTL');
                         {{ Form::close() }}
                     </div>
                 </div>
-                <!--
+                
                 <div class="" id="email-notification">
                     <div class="card">
                         <div class="card-header">
@@ -790,7 +790,7 @@ $SITE_RTL = Utility::getValByName('SITE_RTL');
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div> 
 
 
 
@@ -862,7 +862,7 @@ $SITE_RTL = Utility::getValByName('SITE_RTL');
 
 
                 @if (Auth::user()->type == 'company')
-                <!--    <div class="" id="zoom-meeting-setting">
+               <!--     <div class="" id="zoom-meeting-setting">
                         <div class="card">
                             <div class="card-header">
                                 <h5>{{ __('Zoom Meeting') }}</h5>

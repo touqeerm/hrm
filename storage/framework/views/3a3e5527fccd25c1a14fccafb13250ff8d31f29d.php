@@ -89,10 +89,10 @@ $emailTemplate = App\Models\EmailTemplate::first();
                                 </li>
 
 
-                            <!--    <li class="dash-item">
+                                <li class="dash-item">
                                     <a class="dash-link"
                                         href="<?php echo e(route('report.timesheet')); ?>"><?php echo e(__('Timesheet')); ?></a>
-                                </li>  -->
+                                </li>  
                             <?php endif; ?>
 
 
@@ -180,7 +180,7 @@ $emailTemplate = App\Models\EmailTemplate::first();
                         class="dash-item dash-hasmenu  <?php echo e(Request::segment(1) == 'setsalary' ? 'dash-trigger active' : ''); ?>">
                         <a href="#!" class="dash-link"><span class="dash-micon"><i
                                     class="ti ti-receipt"></i></span><span
-                                class="dash-mtext"><?php echo e(__('Payroll')); ?></span><span class="dash-arrow"><i
+                                class="dash-mtext"><?php echo e(__('Payslip Management')); ?></span><span class="dash-arrow"><i
                                     data-feather="chevron-right"></i></span></a>
                         <ul class="dash-submenu ">
                             <li class="dash-item <?php echo e(Request::segment(1) == 'setsalary' ? 'active' : '-'); ?>">
@@ -205,10 +205,10 @@ $emailTemplate = App\Models\EmailTemplate::first();
                                 class="dash-mtext"><?php echo e(__('Payroll')); ?></span><span class="dash-arrow"><i
                                     data-feather="chevron-right"></i></span></a>
                         <ul class="dash-submenu">
-                            <!--<li class="dash-item <?php echo e(Request::segment(1) == 'setsalary' ? 'active' : '-'); ?>">
+                            <li class="dash-item <?php echo e(Request::segment(1) == 'setsalary' ? 'active' : '-'); ?>">
                                 <a class="dash-link"
                                     href="<?php echo e(route('setsalary.show', \Auth::user()->id)); ?>"><?php echo e(__('Set Salary')); ?></a>
-                            </li> -->
+                            </li> 
                             <li class="dash-item">
                                 <a class="dash-link"
                                     href="<?php echo e(route('payslip.index')); ?>"><?php echo e(__('Payslip')); ?></a>
@@ -219,14 +219,14 @@ $emailTemplate = App\Models\EmailTemplate::first();
 
                 <!-- timesheet-->
                 <?php if(Gate::check('Manage Attendance') || Gate::check('Manage Leave') || Gate::check('Manage TimeSheet')): ?>
-                <!--    <li class="dash-item dash-hasmenu">
+                    <li class="dash-item dash-hasmenu">
                         <a href="#!" class="dash-link"><span class="dash-micon"><i
                                     class="ti ti-clock"></i></span><span
-                                class="dash-mtext"><?php echo e(__('Attendance')); ?></span><span class="dash-arrow"><i
+                                class="dash-mtext"><?php echo e(__('Leave Management')); ?></span><span class="dash-arrow"><i
                                     data-feather="chevron-right"></i></span></a>
                         <ul class="dash-submenu">
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage TimeSheet')): ?>
-                              <!--  <li class="dash-item">
+                                <li class="dash-item">
                                     <a class="dash-link"
                                         href="<?php echo e(route('timesheet.index')); ?>"><?php echo e(__('Timesheet')); ?></a>
                                 </li>
@@ -257,7 +257,7 @@ $emailTemplate = App\Models\EmailTemplate::first();
                                 </li>
                             <?php endif; ?>
                         </ul>
-                    </li> -->
+                    </li> 
                 <?php endif; ?>
                 <!--timesheet-->
 
@@ -296,7 +296,7 @@ $emailTemplate = App\Models\EmailTemplate::first();
 
                 <!--fianance-->
                 <?php if(Gate::check('Manage Account List') || Gate::check('Manage Payee') || Gate::check('Manage Payer') || Gate::check('Manage Deposit') || Gate::check('Manage Expense') || Gate::check('Manage Transfer Balance')): ?>
-                   <!-- <li class="dash-item dash-hasmenu">
+                    <li class="dash-item dash-hasmenu">
                         <a href="#!" class="dash-link"><span class="dash-micon"><i
                                     class="ti ti-wallet"></i></span><span
                                 class="dash-mtext"><?php echo e(__('Finance')); ?></span><span class="dash-arrow"><i
@@ -349,13 +349,13 @@ $emailTemplate = App\Models\EmailTemplate::first();
                                 </li>
                             <?php endif; ?>
                         </ul>
-                    </li> -->
+                    </li> 
                 <?php endif; ?>
                 <!-- fianance-->
 
                 <!--trainning-->
                 <?php if(Gate::check('Manage Trainer') || Gate::check('Manage Training')): ?>
-                  <!--  <li
+                    <li
                         class="dash-item dash-hasmenu <?php echo e(Request::segment(1) == 'training' ? 'dash-trigger active' : ''); ?>">
                         <a href="#!" class="dash-link "><span class="dash-micon"><i
                                     class="ti ti-school"></i></span><span
@@ -376,7 +376,7 @@ $emailTemplate = App\Models\EmailTemplate::first();
                                 </li>
                             <?php endif; ?>
                         </ul>
-                    </li> -->
+                    </li> 
                 <?php endif; ?>
 
                 <!-- tranning-->
@@ -388,56 +388,56 @@ $emailTemplate = App\Models\EmailTemplate::first();
                         class="dash-item dash-hasmenu <?php echo e(Request::segment(1) == 'holiday' ? 'dash-trigger active' : ''); ?>">
                         <a href="#!" class="dash-link"><span class="dash-micon"><i
                                     class="ti ti-user-plus"></i></span><span
-                                class="dash-mtext"><?php echo e(__('HR Admin Setup')); ?></span><span class="dash-arrow"><i
+                                class="dash-mtext"><?php echo e(__('Broadcast')); ?></span><span class="dash-arrow"><i
                                     data-feather="chevron-right"></i></span></a>
                         <ul class="dash-submenu">
-                         <!--   <li class="dash-item <?php echo e(Request::segment(1) == 'award' ? 'active' : ''); ?>">
+                        <!--    <li class="dash-item <?php echo e(Request::segment(1) == 'award' ? 'active' : ''); ?>">
                                 <a class="dash-link" href="<?php echo e(route('award.index')); ?>"><?php echo e(__('Award')); ?></a>
                             </li>
                             <li class="dash-item">
                                 <a class="dash-link"
                                     href="<?php echo e(route('transfer.index')); ?>"><?php echo e(__('Transfer')); ?></a>
-                            </li> -->
+                            </li> 
                             <li class="dash-item">
                                 <a class="dash-link"
                                     href="<?php echo e(route('resignation.index')); ?>"><?php echo e(__('Resignation')); ?></a>
                             </li>
-                          <!--  <li class="dash-item">
+                            <li class="dash-item">
                                 <a class="dash-link"
                                     href="<?php echo e(route('travel.index')); ?>"><?php echo e(__('Trip')); ?></a>
-                            </li> -->
+                            </li> 
                             <li class="dash-item">
                                 <a class="dash-link"
                                     href="<?php echo e(route('promotion.index')); ?>"><?php echo e(__('Promotion')); ?></a>
                             </li>
-                         <!--   <li class="dash-item">
+                            <li class="dash-item">
                                 <a class="dash-link"
                                     href="<?php echo e(route('complaint.index')); ?>"><?php echo e(__('Complaints')); ?></a>
                             </li> 
                             <li class="dash-item">
                                 <a class="dash-link"
                                     href="<?php echo e(route('warning.index')); ?>"><?php echo e(__('Warning')); ?></a>
-                            </li> -->
+                            </li> 
                             <li class="dash-item">
                                 <a class="dash-link"
                                     href="<?php echo e(route('termination.index')); ?>"><?php echo e(__('Termination')); ?></a>
-                            </li>
+                            </li> -->
                             <li class="dash-item">
                                 <a class="dash-link"
                                     href="<?php echo e(route('announcement.index')); ?>"><?php echo e(__('Announcement')); ?></a>
                             </li>
-                            <li class="dash-item <?php echo e(Request::segment(1) == 'holiday' ? ' active' : ''); ?>">
+                        <!--    <li class="dash-item <?php echo e(Request::segment(1) == 'holiday' ? ' active' : ''); ?>">
                                 <a class="dash-link"
                                     href="<?php echo e(route('holiday.index')); ?>"><?php echo e(__('Holidays')); ?></a>
-                            </li>
-                        </ul>
+                            </li> --> 
+                        </ul> 
                     </li>
                 <?php endif; ?>
                 <!-- HR-->
 
                 <!-- recruitment-->
                 <?php if(Gate::check('Manage Job') || Gate::check('Manage Job Application') || Gate::check('Manage Job OnBoard') || Gate::check('Manage Custom Question') || Gate::check('Manage Interview Schedule') || Gate::check('Manage Career')): ?>
-                <!--    <li
+                    <li
                         class="dash-item dash-hasmenu  <?php echo e(Request::segment(1) == 'job' || Request::segment(1) == 'job-application' ? 'dash-trigger active' : ''); ?> ">
                         <a href="#!" class="dash-link"><span class="dash-micon"><i
                                     class="ti ti-license"></i></span><span
@@ -495,14 +495,14 @@ $emailTemplate = App\Models\EmailTemplate::first();
                                 </li>
                             <?php endif; ?>
                         </ul>
-                    </li> -->
+                    </li> 
                 <?php endif; ?>
                 <!-- recruitment-->
                 <!--contract-->
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Contracts')): ?>
-                <!-- <li class="dash-item <?php echo e((Request::route()->getName() == 'contract.index' || Request::route()->getName() == 'contract.show') ? 'active' : ''); ?>">
+                 <li class="dash-item <?php echo e((Request::route()->getName() == 'contract.index' || Request::route()->getName() == 'contract.show') ? 'active' : ''); ?>">
                     <a href="<?php echo e(route('contract.index')); ?>" class="dash-link"><span class="dash-micon"><i class="ti ti-device-floppy"></i></span><span class="dash-mtext"><?php echo e(__('Contracts')); ?></span></a>
-                </li> -->
+                </li> 
                 <?php endif; ?>
                
             <!--end-->
@@ -510,30 +510,30 @@ $emailTemplate = App\Models\EmailTemplate::first();
 
                 <!-- ticket-->
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Ticket')): ?>
-                   <!-- <li class="dash-item <?php echo e(Request::segment(1) == 'ticket' ? 'active' : ''); ?>">
+                    <li class="dash-item <?php echo e(Request::segment(1) == 'ticket' ? 'active' : ''); ?>">
                         <a href="<?php echo e(route('ticket.index')); ?>" class="dash-link"><span class="dash-micon"><i
                                     class="ti ti-ticket"></i></span><span
                                 class="dash-mtext"><?php echo e(__('Ticket')); ?></span></a>
-                    </li> -->
+                    </li> 
                 <?php endif; ?>
 
                 <!-- Event-->
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Event')): ?>
-                <!--  <li class="dash-item">
+                  <li class="dash-item">
                         <a href="<?php echo e(route('event.index')); ?>" class="dash-link"><span class="dash-micon"><i
                                     class="ti ti-calendar-event"></i></span><span
                                 class="dash-mtext"><?php echo e(__('Event')); ?></span></a>
-                    </li> -->
+                    </li> 
                 <?php endif; ?>
 
 
                 <!--meeting-->
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Meeting')): ?>
-                <!--    <li class="dash-item <?php echo e(Request::segment(1) == 'meeting' ? 'active' : ''); ?>">
+                    <li class="dash-item <?php echo e(Request::segment(1) == 'meeting' ? 'active' : ''); ?>">
                         <a href="<?php echo e(route('meeting.index')); ?>" class="dash-link"><span class="dash-micon"><i
                                     class="ti ti-calendar-time"></i></span><span
                                 class="dash-mtext"><?php echo e(__('Meeting')); ?></span></a>
-                    </li> -->
+                    </li>
                 <?php endif; ?>
 
 
@@ -543,16 +543,16 @@ $emailTemplate = App\Models\EmailTemplate::first();
                         <a href="<?php echo e(route('zoom-meeting.index')); ?>" class="dash-link"><span
                                 class="dash-micon"><i class="ti ti-video"></i></span><span
                                 class="dash-mtext"><?php echo e(__('Zoom Meeting')); ?></span></a>
-                    </li> -->
+                    </li>   -->
                 <?php endif; ?>
 
                 <!-- assets-->
                 <?php if(Gate::check('Manage Assets')): ?>
-                <!--    <li class="dash-item">
+                    <li class="dash-item">
                         <a href="<?php echo e(route('account-assets.index')); ?>" class="dash-link"><span
                                 class="dash-micon"><i class="ti ti-medical-cross"></i></span><span
                                 class="dash-mtext"><?php echo e(__('Assets')); ?></span></a>
-                    </li> -->
+                    </li> 
                 <?php endif; ?>
 
 
@@ -570,11 +570,11 @@ $emailTemplate = App\Models\EmailTemplate::first();
 
 
                 <?php if(Gate::check('Manage Company Policy')): ?>
-                <!--    <li class="dash-item">
+                    <li class="dash-item">
                         <a href="<?php echo e(route('company-policy.index')); ?>" class="dash-link"><span
                                 class="dash-micon"><i class="ti ti-pray"></i></span><span
                                 class="dash-mtext"><?php echo e(__('Company Policy')); ?></span></a>
-                    </li> -->
+                    </li> 
                 <?php endif; ?>
                  <!--chats-->
                  <?php if(\Auth::user()->type != 'super admin'): ?>
@@ -582,7 +582,7 @@ $emailTemplate = App\Models\EmailTemplate::first();
                      <a href="<?php echo e(url('chats')); ?>" class="dash-link"><span class="dash-micon"><i
                                  class="ti ti-messages"></i></span><span
                              class="dash-mtext"><?php echo e(__('Messenger')); ?></span></a>
-                 </li> -->
+                 </li>  -->
              <?php endif; ?>
                 <?php if(\Auth::user()->type == 'super admin'): ?>
                 <?php if(Gate::check('Manage Plan')): ?>
@@ -595,24 +595,24 @@ $emailTemplate = App\Models\EmailTemplate::first();
                 <?php endif; ?>
                 <?php endif; ?>
                 <?php if(\Auth::user()->type == 'super admin'): ?>
-                 <!--   <li class="dash-item ">
+                    <li class="dash-item ">
                         <a href="<?php echo e(route('plan_request.index')); ?>" class="dash-link"><span
                                 class="dash-micon"><i
                                     class="ti ti-arrow-down-right-circle"></i></span><span
                                 class="dash-mtext"><?php echo e(__('Plan Request')); ?></span></a>
 
-                    </li> -->
+                    </li> 
                 <?php endif; ?>
 
 
                 <?php if(Auth::user()->type == 'super admin'): ?>
-                <!--    <?php if(Gate::check('manage coupon')): ?>
+                    <?php if(Gate::check('manage coupon')): ?>
                         <li class="dash-item ">
                             <a href="<?php echo e(route('coupons.index')); ?>" class="dash-link"><span
                                     class="dash-micon"><i class="ti ti-gift"></i></span><span
                                     class="dash-mtext"><?php echo e(__('Coupon')); ?></span></a>
 
-                        </li> -->
+                        </li> 
                     <?php endif; ?>
                 <?php endif; ?>
                 <?php if(\Auth::user()->type == 'super admin'): ?>
@@ -627,14 +627,14 @@ $emailTemplate = App\Models\EmailTemplate::first();
                     
                 <?php endif; ?>
                 <?php if(\Auth::user()->type == 'super admin'): ?>
-                <!--<li class="dash-item">
+                <li class="dash-item">
                     <a href="<?php echo e(route('manage.email.language',[$emailTemplate ->id,\Auth::user()->lang])); ?>" class="dash-link"><span
                             class="dash-micon"><i class="ti ti-template"></i></span><span
                             class="dash-mtext"><?php echo e(__('Email Template')); ?></span></a>
-                </li> -->
+                </li>
             <?php endif; ?>
                 <!--report-->
-                <!-- <?php if(Gate::check('Manage Report')): ?>
+                 <?php if(Gate::check('Manage Report')): ?>
                     <li class="dash-item dash-hasmenu">
                         <a href="#!" class="dash-link"><span class="dash-micon"><i
                                     class="ti ti-list"></i></span><span
@@ -679,7 +679,7 @@ $emailTemplate = App\Models\EmailTemplate::first();
 
                         </ul>
                     </li>
-                <?php endif; ?> -->
+                <?php endif; ?> 
 
 
                 <!--constant-->
@@ -703,9 +703,9 @@ $emailTemplate = App\Models\EmailTemplate::first();
                     <li class="dash-item dash-hasmenu">
                         <a href="<?php echo e(route('branch.index')); ?>" class="dash-link"><span class="dash-micon"><i
                                     class="ti ti-table"></i></span><span
-                                class="dash-mtext"><?php echo e(__('HRM System Setup')); ?></span></a>
+                                class="dash-mtext"><?php echo e(__('Master Setup')); ?></span></a>
                         </li>
-                        <!-- <ul class="dash-submenu">
+                         <ul class="dash-submenu">
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Branch')): ?>
                                 <li class="dash-item <?php echo e(request()->is('branch*') ? 'active' : ''); ?>">
                                     <a class="dash-link"
@@ -731,7 +731,7 @@ $emailTemplate = App\Models\EmailTemplate::first();
                                 </li>
                             <?php endif; ?>
 
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Award Type')): ?>
+                        <!--    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Award Type')): ?>
                                 <li class="dash-item <?php echo e(request()->is('awardtype*') ? 'active' : ''); ?>">
                                     <a class="dash-link"
                                         href="<?php echo e(route('awardtype.index')); ?>"><?php echo e(__('Award Type')); ?></a>
@@ -743,7 +743,7 @@ $emailTemplate = App\Models\EmailTemplate::first();
                                     <a class="dash-link"
                                         href="<?php echo e(route('terminationtype.index')); ?>"><?php echo e(__('Termination Type')); ?></a>
                                 </li>
-                            <?php endif; ?>
+                            <?php endif; ?> -->
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Payslip Type')): ?>
                                 <li class="dash-item <?php echo e(request()->is('paysliptype*') ? 'active' : ''); ?>">
                                     <a class="dash-link"
@@ -770,7 +770,7 @@ $emailTemplate = App\Models\EmailTemplate::first();
                                         href="<?php echo e(route('deductionoption.index')); ?>"><?php echo e(__('Deduction Option')); ?></a>
                                 </li>
                             <?php endif; ?>
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Expense Type')): ?>
+                        <!--    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Expense Type')): ?>
                                 <li class="dash-item <?php echo e(request()->is('expensetype*') ? 'active' : ''); ?>">
                                     <a class="dash-link"
                                         href="<?php echo e(route('expensetype.index')); ?>"><?php echo e(__('Expense Type')); ?></a>
@@ -787,14 +787,14 @@ $emailTemplate = App\Models\EmailTemplate::first();
                                     <a class="dash-link"
                                         href="<?php echo e(route('paymenttype.index')); ?>"><?php echo e(__('Payment Type')); ?></a>
                                 </li>
-                            <?php endif; ?>
+                            <?php endif; ?> -->
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Leave Type')): ?>
                                 <li class="dash-item <?php echo e(request()->is('leavetype*') ? 'active' : ''); ?>">
                                     <a class="dash-link"
                                         href="<?php echo e(route('leavetype.index')); ?>"><?php echo e(__('Leave Type')); ?></a>
                                 </li>
                             <?php endif; ?>
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Termination Type')): ?>
+                        <!--    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Termination Type')): ?>
                                 <li
                                     class="dash-item <?php echo e(request()->is('terminationtype*') ? 'active' : ''); ?>">
                                     <a class="dash-link"
@@ -847,7 +847,7 @@ $emailTemplate = App\Models\EmailTemplate::first();
                                         href="<?php echo e(route('competencies.index')); ?>"><?php echo e(__('Competencies')); ?></a>
                                 </li>
                             <?php endif; ?>
-                        </ul> -->
+                        </ul>  --> 
                 <?php endif; ?>
                 <!--constant-->
 

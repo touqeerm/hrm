@@ -1228,8 +1228,11 @@ Route::get('import/timesheet/file', 'TimeSheetController@importFile')->name('tim
 Route::post('import/timesheet', 'TimeSheetController@import')->name('timesheet.import');
 Route::get('export/timesheet', 'TimeSheetController@export')->name('timesheet.export');
 
-//leave export
+//leave import & export
+Route::get('import/leave/file', 'LeaveController@importFile')->name('leave.file.import');
 Route::get('export/leave', 'LeaveController@export')->name('leave.export');
+Route::post('import/leave', 'LeaveController@import')->name('leave.import');
+
 
 //deposite Export
 Route::get('export/deposite', 'DepositController@export')->name('deposite.export');

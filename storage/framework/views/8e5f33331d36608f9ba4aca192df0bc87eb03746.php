@@ -103,14 +103,14 @@
 
                             </div>
                         </div>
-                        <!-- <div class="col-auto float-end ">
+                         <div class="col-auto float-end ">
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Create Pay Slip')): ?>
                                 <input type="button" value="<?php echo e(__('Bulk Payment')); ?>" class="btn btn-primary"
                                        id="bulk_payment">
                             <?php endif; ?>
 
 
-                        </div> -->
+                        </div>
                     </div>
 
                     
