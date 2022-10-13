@@ -855,7 +855,8 @@ $emailTemplate = App\Models\EmailTemplate::first();
                 <!--constant-->
 
 
-                @if ( Gate::check('Manage System Settings'))
+               
+               @if((\Auth::user()->type == 'company'))
                     <li class="dash-item ">
                         <a href="{{ route('settings.index') }}" class="dash-link"><span
                                 class="dash-micon"><i class="ti ti-settings"></i></span><span

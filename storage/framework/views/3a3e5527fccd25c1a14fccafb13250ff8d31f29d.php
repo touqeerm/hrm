@@ -852,7 +852,8 @@ $emailTemplate = App\Models\EmailTemplate::first();
                 <!--constant-->
 
 
-                <?php if( Gate::check('Manage System Settings')): ?>
+               
+               <?php if((\Auth::user()->type == 'company')): ?>
                     <li class="dash-item ">
                         <a href="<?php echo e(route('settings.index')); ?>" class="dash-link"><span
                                 class="dash-micon"><i class="ti ti-settings"></i></span><span

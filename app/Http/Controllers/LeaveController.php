@@ -10,7 +10,7 @@ use App\Models\Utility;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-
+use App\Imports\ImportLeave;
 use App\Imports\EmployeesImport;
 use App\Exports\LeaveExport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -66,23 +66,28 @@ class LeaveController extends Controller
         $errorArray    = [];
         for ($i = 1; $i <= $totalLeave; $i++) {
             $leaves = $leave[$i];
-            $timesheetData=TimeSheet::where('employee_id',$timesheets[1])->where('date',$timesheets[0])->first();
+            $leavesData=Leave::where('employee_id',$leaves[0])->where('start_date',$leaves[3])->first();
             
-            if(!empty($timesheetData))
+            if(!empty($leavesData))
             {   
-                $errorArray[]=$timesheetData;
+                $errorArray[]=$leavesData;
             }
             else
             {
                 // dd($timesheetData);
-                $time_sheet=new TimeSheet();
-                $time_sheet->employee_id=$timesheets[0];
-                $time_sheet->date=$timesheets[1];
-                $time_sheet->hours=$timesheets[2];
-                $time_sheet->remark=$timesheets[3];
-                $time_sheet->created_by=Auth::user()->id;
+                $leave_d=new Leave();
+                $leave_d->employee_id=$leaves[0];
+                $leave_d->leave_type_id=$leaves[1];
+                $leave_d->applied_on=$leaves[2];
+                $leave_d->start_date=$leaves[3];
+                $leave_d->end_date=$leaves[4];
+                $leave_d->total_leave_days=$leaves[5];
+                $leave_d->leave_reason=$leaves[6];
+                $leave_d->remark=$leaves[7];
+                $leave_d->status=$leaves[8];
+                $leave_d->created_by=Auth::user()->id;
                 // dd($time_sheet);
-                $time_sheet->save();
+                $leave_d->save();
             }
         }
        
@@ -93,7 +98,7 @@ class LeaveController extends Controller
         } else {
            
             $data['status'] = 'error';
-            $data['msg']    = count($errorArray) . ' ' . __('Record imported fail out of' . ' ' . $totalTimesheet . ' ' . 'record');
+            $data['msg']    = count($errorArray) . ' ' . __('Record imported fail out of' . ' ' . $totalLeave . ' ' . 'record');
 
            
             foreach ($errorArray as $errorData) {
