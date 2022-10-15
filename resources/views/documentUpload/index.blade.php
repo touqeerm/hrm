@@ -31,7 +31,7 @@
                                 <th>{{ __('Name') }}</th>
                                 <th>{{ __('Expiry Date') }}</th>
                                 <th>{{ __('Document') }}</th>
-                                <th>{{ __('Role') }}</th>
+                               <!-- <th>{{ __('Role') }}</th> -->
                                 <th>{{ __('Description') }}</th>
                                 @if (Gate::check('Edit Document') || Gate::check('Delete Document'))
                                     <th width="200px">{{ __('Action') }}</th>
@@ -64,7 +64,7 @@
                                             <p>-</p>
                                         @endif
                                     </td>
-                                    <td>{{ !empty($roles) ? $roles->name : 'All' }}</td>
+                                 <!--   <td>{{ !empty($roles) ? $roles->name : 'All' }}</td> -->
                                     <td >
                                         <p style="white-space: nowrap;
                                             width: 200px;

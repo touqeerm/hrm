@@ -304,7 +304,11 @@ class SettingsController extends Controller
                     'company_zipcode' => 'required',
                     'company_country' => 'required',
                     'company_telephone' => 'required',
-                    'timezone' => 'required',
+                    'company_email_from_name' => 'required',
+                    'company_account_number' => 'required',
+                    'company_bank_name' => 'required',
+                    'company_iban_number' => 'required',
+                    'company_swift_code' => 'required',
                     ]
                 );
                 
@@ -319,10 +323,10 @@ class SettingsController extends Controller
                 
                 $settings = Utility::settings();
                 foreach ($post as $key => $data) {
-                    // dd($post);
+                     //dd($post);
                     if ((in_array($key, array_keys($settings))&& $data !== null )) {
-                        // dd( $settings);
-                        
+                        //dd( $settings);
+                        //dump($data);
                         \DB::insert(
                             'insert into settings (`value`, `name`,`created_by`) values (?, ?, ?) ON DUPLICATE KEY UPDATE `value` = VALUES(`value`) ',
                             [

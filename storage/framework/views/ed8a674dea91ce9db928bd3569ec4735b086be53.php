@@ -45,7 +45,7 @@
         </div>
 
 
-        <div class="col-lg-6 col-md-6 col-sm-6">
+    <!--    <div class="col-lg-6 col-md-6 col-sm-6">
             <div class="form-group">
                 <?php echo e(Form::label('role', __('Role'), ['class' => 'form-label'])); ?>
 
@@ -54,7 +54,7 @@
 
                 </div>
             </div>
-        </div>
+        </div> -->
 
         
 

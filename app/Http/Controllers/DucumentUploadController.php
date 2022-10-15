@@ -25,7 +25,7 @@ class DucumentUploadController extends Controller
                               $userRole->id,
                               0,
                           ]
-                )->where('created_by', \Auth::user()->creatorId())->get();
+                )->where('created_by', \Auth::user()->creatorId())->where('user',\Auth::id())->get();
             }
 
             return view('documentUpload.index', compact('documents'));
@@ -41,9 +41,10 @@ class DucumentUploadController extends Controller
     {
         if(\Auth::user()->can('Create Document'))
         {
-            $roles = Role::where('created_by', \Auth::user()->creatorId())->get()->pluck('name', 'id');
+            //$roles = Role::where('created_by', \Auth::user()->creatorId())->get()->pluck('name', 'id');
+            $roles = Role::all()->pluck('name');
             $roles->prepend('All', '0');
-
+            //dd(\Auth::id());
             return view('documentUpload.create', compact('roles'));
         }
         else
@@ -99,6 +100,7 @@ class DucumentUploadController extends Controller
             $document->role        = $request->role;
             $document->description = $request->description;
             $document->created_by  = \Auth::user()->creatorId();
+            $document->user = \Auth::id();
             $document->save();
 
             return redirect()->route('document-upload.index')->with('success', __('Document successfully uploaded.'));

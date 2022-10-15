@@ -30,7 +30,7 @@
                                 <th><?php echo e(__('Name')); ?></th>
                                 <th><?php echo e(__('Expiry Date')); ?></th>
                                 <th><?php echo e(__('Document')); ?></th>
-                                <th><?php echo e(__('Role')); ?></th>
+                               <!-- <th><?php echo e(__('Role')); ?></th> -->
                                 <th><?php echo e(__('Description')); ?></th>
                                 <?php if(Gate::check('Edit Document') || Gate::check('Delete Document')): ?>
                                     <th width="200px"><?php echo e(__('Action')); ?></th>
@@ -63,7 +63,7 @@
                                             <p>-</p>
                                         <?php endif; ?>
                                     </td>
-                                    <td><?php echo e(!empty($roles) ? $roles->name : 'All'); ?></td>
+                                 <!--   <td><?php echo e(!empty($roles) ? $roles->name : 'All'); ?></td> -->
                                     <td >
                                         <p style="white-space: nowrap;
                                             width: 200px;

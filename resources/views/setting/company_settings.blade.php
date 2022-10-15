@@ -684,7 +684,81 @@ $SITE_RTL = Utility::getValByName('SITE_RTL');
                                     @enderror
                                 </div>
 
+                                <div class="form-group col-md-4">
+                                    {{ Form::label('company_account_number', __('Account Number *'), ['class' => 'col-form-label']) }}
+                                    {{ Form::text('company_account_number', null, ['class' => 'form-control ', 'placeholder' => 'Enter Company Account Number']) }}
+                                    @error('company_account_number')
+                                        <span class="invalid-company_account_number" role="alert"><strong
+                                                class="text-danger">{{ $message }}</strong></span>
+                                    @enderror
+                                </div>
+                                
+                                <div class="form-group col-md-4">
+                                    {{ Form::label('company_bank_name', __('Account Bank Name *'), ['class' => 'col-form-label']) }}
+                                    {{ Form::text('company_bank_name', null, ['class' => 'form-control ', 'placeholder' => 'Enter Company Account Bank Name']) }}
+                                    @error('company_bank_name')
+                                        <span class="invalid-company_bank_name" role="alert"><strong
+                                                class="text-danger">{{ $message }}</strong></span>
+                                    @enderror
+                                </div>
 
+
+                                <div class="form-group col-md-4">
+                                    {{ Form::label('company_iban_number', __('Account iBan Number *'), ['class' => 'col-form-label']) }}
+                                    {{ Form::text('company_iban_number', null, ['class' => 'form-control ', 'placeholder' => 'Enter Company Account iBan Number']) }}
+                                    @error('company_iban_number')
+                                        <span class="invalid-company_bank_name" role="alert"><strong
+                                                class="text-danger">{{ $message }}</strong></span>
+                                    @enderror
+                                </div>
+                                <div class="form-group col-md-4">
+                                    {{ Form::label('company_swift_code', __('Swift Code *'), ['class' => 'col-form-label']) }}
+                                    {{ Form::text('company_swift_code', null, ['class' => 'form-control ', 'placeholder' => 'Enter Company Swift Code']) }}
+                                    @error('company_swift_code')
+                                        <span class="invalid-company_swift_code" role="alert"><strong
+                                                class="text-danger">{{ $message }}</strong></span>
+                                    @enderror
+                                </div>                                
+                                <div class="form-group col-md-4">
+                                    {{ Form::label('company_tl_num', __('Trade License Number *'), ['class' => 'col-form-label']) }}
+                                    {{ Form::text('company_tl_num', null, ['class' => 'form-control ', 'placeholder' => 'Enter Trade License Number']) }}
+                                    @error('company_tl_num')
+                                        <span class="invalid-company_tl_num" role="alert"><strong
+                                                class="text-danger">{{ $message }}</strong></span>
+                                    @enderror
+                                </div>
+                                <div class="form-group col-md-4">
+                                    {{ Form::label('company_tl_issue_date', __('Trade License Issue Date *'), ['class' => 'col-form-label']) }}
+                                    {{ Form::text('company_tl_issue_date', null, ['class' => 'form-control ', 'placeholder' => 'Enter Trade License Issue Date dd/mm/yy']) }}
+                                    @error('company_tl_issue_date')
+                                        <span class="invalid-company_tl_issue_date" role="alert"><strong
+                                                class="text-danger">{{ $message }}</strong></span>
+                                    @enderror
+                                </div>                                
+                                <div class="form-group col-md-4">
+                                    {{ Form::label('company_tl_expiry_date', __('Trade License Expiry Date *'), ['class' => 'col-form-label']) }}
+                                    {{ Form::text('company_tl_expiry_date', null, ['class' => 'form-control ', 'placeholder' => 'Trade License Expiry Date']) }}
+                                    @error('company_tl_expiry_date')
+                                        <span class="invalid-company_tl_expiry_date" role="alert"><strong
+                                                class="text-danger">{{ $message }}</strong></span>
+                                    @enderror
+                                </div>                                
+                                <div class="form-group col-md-4">
+                                    {{ Form::label('company_partner_details', __('Partner Details *'), ['class' => 'col-form-label']) }}
+                                    {{ Form::text('company_partner_details', null, ['class' => 'form-control ', 'placeholder' => 'Enter Partner Details']) }}
+                                    @error('company_partner_details')
+                                        <span class="invalid-company_partner_details" role="alert"><strong
+                                                class="text-danger">{{ $message }}</strong></span>
+                                    @enderror
+                                </div>
+                                <div class="form-group col-md-4">
+                                    {{ Form::label('company_vat_number', __('Company VAT Number *'), ['class' => 'col-form-label']) }}
+                                    {{ Form::text('company_vat_number', null, ['class' => 'form-control ', 'placeholder' => 'Company VAT Number']) }}
+                                    @error('company_vat_number')
+                                        <span class="invalid-company_vat_number" role="alert"><strong
+                                                class="text-danger">{{ $message }}</strong></span>
+                                    @enderror
+                                </div>
                                 <div class="col-md-6">
                                     <div class="row">
                                         <div class="form-group col-md-6">

@@ -785,7 +785,162 @@ endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
 
+                                <div class="form-group col-md-4">
+                                    <?php echo e(Form::label('company_account_number', __('Account Number *'), ['class' => 'col-form-label'])); ?>
 
+                                    <?php echo e(Form::text('company_account_number', null, ['class' => 'form-control ', 'placeholder' => 'Enter Company Account Number'])); ?>
+
+                                    <?php $__errorArgs = ['company_account_number'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                        <span class="invalid-company_account_number" role="alert"><strong
+                                                class="text-danger"><?php echo e($message); ?></strong></span>
+                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                </div>
+                                
+                                <div class="form-group col-md-4">
+                                    <?php echo e(Form::label('company_bank_name', __('Account Bank Name *'), ['class' => 'col-form-label'])); ?>
+
+                                    <?php echo e(Form::text('company_bank_name', null, ['class' => 'form-control ', 'placeholder' => 'Enter Company Account Bank Name'])); ?>
+
+                                    <?php $__errorArgs = ['company_bank_name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                        <span class="invalid-company_bank_name" role="alert"><strong
+                                                class="text-danger"><?php echo e($message); ?></strong></span>
+                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                </div>
+
+
+                                <div class="form-group col-md-4">
+                                    <?php echo e(Form::label('company_iban_number', __('Account iBan Number *'), ['class' => 'col-form-label'])); ?>
+
+                                    <?php echo e(Form::text('company_iban_number', null, ['class' => 'form-control ', 'placeholder' => 'Enter Company Account iBan Number'])); ?>
+
+                                    <?php $__errorArgs = ['company_iban_number'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                        <span class="invalid-company_bank_name" role="alert"><strong
+                                                class="text-danger"><?php echo e($message); ?></strong></span>
+                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <?php echo e(Form::label('company_swift_code', __('Swift Code *'), ['class' => 'col-form-label'])); ?>
+
+                                    <?php echo e(Form::text('company_swift_code', null, ['class' => 'form-control ', 'placeholder' => 'Enter Company Swift Code'])); ?>
+
+                                    <?php $__errorArgs = ['company_swift_code'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                        <span class="invalid-company_swift_code" role="alert"><strong
+                                                class="text-danger"><?php echo e($message); ?></strong></span>
+                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                </div>                                
+                                <div class="form-group col-md-4">
+                                    <?php echo e(Form::label('company_tl_num', __('Trade License Number *'), ['class' => 'col-form-label'])); ?>
+
+                                    <?php echo e(Form::text('company_tl_num', null, ['class' => 'form-control ', 'placeholder' => 'Enter Trade License Number'])); ?>
+
+                                    <?php $__errorArgs = ['company_tl_num'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                        <span class="invalid-company_tl_num" role="alert"><strong
+                                                class="text-danger"><?php echo e($message); ?></strong></span>
+                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <?php echo e(Form::label('company_tl_issue_date', __('Trade License Issue Date *'), ['class' => 'col-form-label'])); ?>
+
+                                    <?php echo e(Form::text('company_tl_issue_date', null, ['class' => 'form-control ', 'placeholder' => 'Enter Trade License Issue Date dd/mm/yy'])); ?>
+
+                                    <?php $__errorArgs = ['company_tl_issue_date'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                        <span class="invalid-company_tl_issue_date" role="alert"><strong
+                                                class="text-danger"><?php echo e($message); ?></strong></span>
+                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                </div>                                
+                                <div class="form-group col-md-4">
+                                    <?php echo e(Form::label('company_tl_expiry_date', __('Trade License Expiry Date *'), ['class' => 'col-form-label'])); ?>
+
+                                    <?php echo e(Form::text('company_tl_expiry_date', null, ['class' => 'form-control ', 'placeholder' => 'Trade License Expiry Date'])); ?>
+
+                                    <?php $__errorArgs = ['company_tl_expiry_date'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                        <span class="invalid-company_tl_expiry_date" role="alert"><strong
+                                                class="text-danger"><?php echo e($message); ?></strong></span>
+                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                </div>                                
+                                <div class="form-group col-md-4">
+                                    <?php echo e(Form::label('company_partner_details', __('Partner Details *'), ['class' => 'col-form-label'])); ?>
+
+                                    <?php echo e(Form::text('company_partner_details', null, ['class' => 'form-control ', 'placeholder' => 'Enter Partner Details'])); ?>
+
+                                    <?php $__errorArgs = ['company_partner_details'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                        <span class="invalid-company_partner_details" role="alert"><strong
+                                                class="text-danger"><?php echo e($message); ?></strong></span>
+                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <?php echo e(Form::label('company_vat_number', __('Company VAT Number *'), ['class' => 'col-form-label'])); ?>
+
+                                    <?php echo e(Form::text('company_vat_number', null, ['class' => 'form-control ', 'placeholder' => 'Company VAT Number'])); ?>
+
+                                    <?php $__errorArgs = ['company_vat_number'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                        <span class="invalid-company_vat_number" role="alert"><strong
+                                                class="text-danger"><?php echo e($message); ?></strong></span>
+                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                </div>
                                 <div class="col-md-6">
                                     <div class="row">
                                         <div class="form-group col-md-6">
