@@ -122,6 +122,111 @@
                     </div>
                 </div>
             </div>
+            <!-- OTHER DETAILS -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card em-card">
+                        <div class="card-header">
+                            <h5>{{ __('Other Details') }}</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    {!! Form::label('name', __('Name'), ['class' => 'form-label']) !!}<span class="text-danger pl-1">*</span>
+                                    {!! Form::text('name', old('name'), ['class' => 'form-control', 'required' => 'required' ,'placeholder'=>'Enter employee name']) !!}
+                                </div>
+                                <div class="form-group col-md-6">
+                                    {!! Form::label('phone', __('Phone'), ['class' => 'form-label']) !!}<span class="text-danger pl-1">*</span>
+                                    {!! Form::text('phone', old('phone'), ['class' => 'form-control' ,'placeholder'=>'Enter employee phone']) !!}
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {!! Form::label('dob', __('Date of Birth'), ['class' => 'form-label']) !!}<span class="text-danger pl-1">*</span>
+                                        {{ Form::date('dob', null, ['class' => 'form-control ', 'required' => 'required', 'autocomplete' => 'off','placeholder'=>'Select Date of Birth']) }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {!! Form::label('gender', __('Gender'), ['class' => 'form-label']) !!}<span class="text-danger pl-1">*</span>
+                                        <div class="d-flex radio-check">
+                                            <div class="custom-control custom-radio custom-control-inline">
+                                                <input type="radio" id="g_male" value="Male" name="gender"
+                                                    class="form-check-input">
+                                                <label class="form-check-label " for="g_male">{{ __('Male') }}</label>
+                                            </div>
+                                            <div class="custom-control custom-radio ms-1 custom-control-inline">
+                                                <input type="radio" id="g_female" value="Female" name="gender"
+                                                    class="form-check-input">
+                                                <label class="form-check-label "
+                                                    for="g_female">{{ __('Female') }}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    {!! Form::label('email', __('Email'), ['class' => 'form-label']) !!}<span class="text-danger pl-1">*</span>
+                                    {!! Form::email('email', old('email'), ['class' => 'form-control', 'required' => 'required' ,'placeholder'=>'Enter employee email']) !!}
+                                </div>
+                                <div class="form-group col-md-6">
+                                    {!! Form::label('password', __('Password'), ['class' => 'form-label']) !!}<span class="text-danger pl-1">*</span>
+                                    {!! Form::password('password', ['class' => 'form-control', 'required' => 'required' ,'placeholder'=>'Enter employee new password']) !!}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('address', __('Address'), ['class' => 'form-label']) !!}<span class="text-danger pl-1">*</span>
+                                {!! Form::textarea('address', old('address'), ['class' => 'form-control', 'rows' => 2 ,'placeholder'=>'Enter employee address']) !!}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card em-card">
+                        <div class="card-header">
+                            <h5>{{ __('Company Detail') }}</h5>
+                        </div>
+                        <div class="card-body employee-detail-create-body">
+                            <div class="row">
+                                @csrf
+                                <div class="form-group ">
+                                    {!! Form::label('employee_id', __('Employee ID'), ['class' => 'form-label']) !!}
+                                    {!! Form::text('employee_id', $employeesId, ['class' => 'form-control', 'disabled' => 'disabled']) !!}
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    {{ Form::label('branch_id', __('Select Branch*'), ['class' => 'form-label']) }}
+                                    <div class="form-icon-user">
+                                        {{ Form::select('branch_id', $branches, null, ['class' => 'form-control select2', 'required' => 'required', 'placeholder' => 'Select Branch']) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    {{ Form::label('department_id', __('Select Department*'), ['class' => 'form-label']) }}
+                                    <div class="form-icon-user">
+                                        {{ Form::select('department_id', $departments, null, ['class' => 'form-control select2', 'id' => 'department_id', 'required' => 'required' , 'placeholder' => 'Select Department']) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group ">
+                                    {{ Form::label('designation_id', __('Select Designation'), ['class' => 'form-label']) }}
+
+                                    <div class="form-icon-user">
+                                        <div class="designation_div">
+                                            <select class="form-control  designation_id" name="designation_id"
+                                                id="choices-multiple" placeholder="Select Designation">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group  ">
+                                    {!! Form::label('company_doj', __('Company Date Of Joining'), ['class' => '  form-label']) !!}
+                                    {{ Form::date('company_doj', null, ['class' => 'form-control ', 'required' => 'required', 'autocomplete' => 'off' ,'placeholder'=>'Select company date of joining']) }}
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-md-6 ">
                     <div class="card em-card">

@@ -30,6 +30,15 @@ class PaySlipController extends Controller
                 ]
             )->first();
 
+            $format = [
+                '01' => 'IWIRE',
+                '02' => 'LULU',
+                '03' => 'FIRST GULF',
+                '04' => 'RAK BANK',
+                '05' => 'AL ANSARI',
+                '06' => 'AL ROSTAMANI',
+            ];
+
             $month = [
                 '01' => 'JAN',
                 '02' => 'FEB',
@@ -59,7 +68,7 @@ class PaySlipController extends Controller
                 '2032' => '2032',
             ];
 
-            return view('payslip.index', compact('employees', 'month', 'year'));
+            return view('payslip.index', compact('employees', 'month', 'year','format'));
         } else {
             return redirect()->back()->with('error', __('Permission denied.'));
         }

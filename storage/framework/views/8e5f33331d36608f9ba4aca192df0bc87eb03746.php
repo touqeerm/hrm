@@ -13,6 +13,12 @@
     <div class="col-sm-12 col-lg-12 col-xl-12 col-md-12 mt-4">
 
         <div class="card">
+            <div class="card-header">
+                    <div class="d-flex align-items-center justify-content-start">
+                        <h5><?php echo e(__('Payslip')); ?></h5>
+                    </div>
+            </div>
+
             <div class="card-body">
                 <?php echo e(Form::open(['route' => ['payslip.store'], 'method' => 'POST', 'id' => 'payslip_form'])); ?>
 
@@ -58,6 +64,92 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
+                    <div class="d-flex align-items-center justify-content-start">
+                        <h5><?php echo e(__('Payroll Sheet')); ?></h5>
+                    </div>
+                    <div class="card-body">
+                <?php echo e(Form::open(['route' => ['payslip.store'], 'method' => 'POST', 'id' => 'payslip_form'])); ?>
+
+                <div class="d-flex align-items-center justify-content-end">
+
+
+                <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12 col-12 mx-2">
+                        <div class="btn-box">
+                            <?php echo e(Form::label('month', __('Select Month'), ['class' => 'form-label'])); ?>
+
+                            <?php echo e(Form::select('month', $month, null, ['class' => 'form-control select', 'id' => 'month'])); ?>
+
+
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12 col-12 mx-2">
+                        <div class="btn-box">
+                            <?php echo e(Form::label('year', __('Select Year'), ['class' => 'form-label'])); ?>
+
+                            <?php echo e(Form::select('year', $year, null, ['class' => 'form-control select'])); ?>
+
+
+                        </div>
+                    </div>
+
+
+                    <div class="col-auto float-end ms-2 mt-4">
+                        <a href="#" class="btn  btn-primary"
+                           onclick="document.getElementById('payslip_form').submit(); return false;"
+                           data-bs-toggle="tooltip" title="<?php echo e(__('Payroll Sheet')); ?>"
+                           data-original-title="<?php echo e(__('Payroll Sheet')); ?>">
+                            <?php echo e(__('Export Payroll Sheet')); ?>
+
+                        </a>
+
+
+                    </div>
+                </div>
+            </div>
+            <?php echo e(Form::close()); ?>
+
+
+            </div>    
+        </div>
+    </div>    
+
+
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                    <div class="d-flex align-items-center justify-content-start">
+                        <h5><?php echo e(__('Generate WPS')); ?></h5>
+                    </div>
+                    <div class="card-body">
+                <?php echo e(Form::open(['route' => ['payslip.store'], 'method' => 'POST', 'id' => 'payslip_form'])); ?>
+
+                <div class="d-flex align-items-center justify-content-end">
+
+                    <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12 col-12 mx-2">
+                        <div class="btn-box">
+                            <?php echo e(Form::label('format', __('WPS Format'), ['class' => 'form-label'])); ?>
+
+                            <?php echo e(Form::select('format', $format, null, ['class' => 'form-control select', 'id' => 'month'])); ?>
+
+
+                        </div>
+                    </div>
+                    <div class="col-auto float-end ms-2 mt-4">
+                        <a href="#" class="btn  btn-primary"
+                           onclick="document.getElementById('payslip_form').submit(); return false;"
+                           data-bs-toggle="tooltip" title="<?php echo e(__('WPS')); ?>"
+                           data-original-title="<?php echo e(__('WPS')); ?>">
+                            <?php echo e(__('Export WPS')); ?>
+
+                        </a>
+
+
+                    </div>
+                </div>
+            </div>
+            <?php echo e(Form::close()); ?>
+
+
             </div>    
         </div>
     </div>
