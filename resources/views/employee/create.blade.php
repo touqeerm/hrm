@@ -122,64 +122,8 @@
                     </div>
                 </div>
             </div>
-            <!-- OTHER DETAILS -->
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="card em-card">
-                        <div class="card-header">
-                            <h5>{{ __('Other Details') }}</h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    {!! Form::label('name', __('Name'), ['class' => 'form-label']) !!}<span class="text-danger pl-1">*</span>
-                                    {!! Form::text('name', old('name'), ['class' => 'form-control', 'required' => 'required' ,'placeholder'=>'Enter employee name']) !!}
-                                </div>
-                                <div class="form-group col-md-6">
-                                    {!! Form::label('phone', __('Phone'), ['class' => 'form-label']) !!}<span class="text-danger pl-1">*</span>
-                                    {!! Form::text('phone', old('phone'), ['class' => 'form-control' ,'placeholder'=>'Enter employee phone']) !!}
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        {!! Form::label('dob', __('Date of Birth'), ['class' => 'form-label']) !!}<span class="text-danger pl-1">*</span>
-                                        {{ Form::date('dob', null, ['class' => 'form-control ', 'required' => 'required', 'autocomplete' => 'off','placeholder'=>'Select Date of Birth']) }}
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        {!! Form::label('gender', __('Gender'), ['class' => 'form-label']) !!}<span class="text-danger pl-1">*</span>
-                                        <div class="d-flex radio-check">
-                                            <div class="custom-control custom-radio custom-control-inline">
-                                                <input type="radio" id="g_male" value="Male" name="gender"
-                                                    class="form-check-input">
-                                                <label class="form-check-label " for="g_male">{{ __('Male') }}</label>
-                                            </div>
-                                            <div class="custom-control custom-radio ms-1 custom-control-inline">
-                                                <input type="radio" id="g_female" value="Female" name="gender"
-                                                    class="form-check-input">
-                                                <label class="form-check-label "
-                                                    for="g_female">{{ __('Female') }}</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    {!! Form::label('email', __('Email'), ['class' => 'form-label']) !!}<span class="text-danger pl-1">*</span>
-                                    {!! Form::email('email', old('email'), ['class' => 'form-control', 'required' => 'required' ,'placeholder'=>'Enter employee email']) !!}
-                                </div>
-                                <div class="form-group col-md-6">
-                                    {!! Form::label('password', __('Password'), ['class' => 'form-label']) !!}<span class="text-danger pl-1">*</span>
-                                    {!! Form::password('password', ['class' => 'form-control', 'required' => 'required' ,'placeholder'=>'Enter employee new password']) !!}
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                {!! Form::label('address', __('Address'), ['class' => 'form-label']) !!}<span class="text-danger pl-1">*</span>
-                                {!! Form::textarea('address', old('address'), ['class' => 'form-control', 'rows' => 2 ,'placeholder'=>'Enter employee address']) !!}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
+            
+            <!--    <div class="col-md-6">
                     <div class="card em-card">
                         <div class="card-header">
                             <h5>{{ __('Company Detail') }}</h5>
@@ -225,7 +169,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="row">
                 <div class="col-md-6 ">
@@ -326,6 +270,46 @@
                     </div>
                 </div>
             </div>
+
+            <!-- OTHER DETAILS -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card em-card">
+                        <div class="card-header">
+                            <h5>{{ __('Other Details') }}</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    {!! Form::label('agent_code', __('Agent Code'), ['class' => 'form-label']) !!}<span class="text-danger pl-1">*</span>
+                                    {!! Form::text('agent_code', old('agent_code'), ['class' => 'form-control', 'required' => 'required' ,'placeholder'=>'Enter Agent Code']) !!}
+                                </div>
+                                <div class="form-group col-md-6">
+                                    {!! Form::label('passport', __('Passport Number'), ['class' => 'form-label']) !!}<span class="text-danger pl-1">*</span>
+                                    {!! Form::text('passport', old('passport'), ['class' => 'form-control' ,'placeholder'=>'Enter Passport Number']) !!}
+                                </div>
+                                <div class="form-group col-md-6">
+                                    {!! Form::label('eid', __('EID Number'), ['class' => 'form-label']) !!}<span class="text-danger pl-1">*</span>
+                                    {!! Form::text('eid', old('eid'), ['class' => 'form-control' ,'placeholder'=>'EID Number']) !!}
+                                </div>
+                                <div class="form-group col-md-6">
+                                    {!! Form::label('work_permit', __('Work Permit Number'), ['class' => 'form-label']) !!}<span class="text-danger pl-1">*</span>
+                                    {!! Form::text('work_permit', old('work_permit'), ['class' => 'form-control' ,'placeholder'=>'Enter Work Permit Number']) !!}
+                                </div>
+                                <div class="form-group col-md-6">
+                                    {!! Form::label('person_code', __('Person Code'), ['class' => 'form-label']) !!}<span class="text-danger pl-1">*</span>
+                                    {!! Form::text('person_code', old('person_code'), ['class' => 'form-control' ,'placeholder'=>'Enter Person Code']) !!}
+                                </div>
+        
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
 
         </div>
 

@@ -32,6 +32,11 @@ class Employee extends Model
         'salary_type',
         'salary',
         'created_by',
+        'agent_code',
+        'passport',
+        'eid',
+        'work_permit',
+        'person_code',
     ];
 
     public function documents()

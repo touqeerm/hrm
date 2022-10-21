@@ -137,6 +137,64 @@
                     </div>
                 </div>
             </div>
+            
+            <!--    <div class="col-md-6">
+                    <div class="card em-card">
+                        <div class="card-header">
+                            <h5><?php echo e(__('Company Detail')); ?></h5>
+                        </div>
+                        <div class="card-body employee-detail-create-body">
+                            <div class="row">
+                                <?php echo csrf_field(); ?>
+                                <div class="form-group ">
+                                    <?php echo Form::label('employee_id', __('Employee ID'), ['class' => 'form-label']); ?>
+
+                                    <?php echo Form::text('employee_id', $employeesId, ['class' => 'form-control', 'disabled' => 'disabled']); ?>
+
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <?php echo e(Form::label('branch_id', __('Select Branch*'), ['class' => 'form-label'])); ?>
+
+                                    <div class="form-icon-user">
+                                        <?php echo e(Form::select('branch_id', $branches, null, ['class' => 'form-control select2', 'required' => 'required', 'placeholder' => 'Select Branch'])); ?>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <?php echo e(Form::label('department_id', __('Select Department*'), ['class' => 'form-label'])); ?>
+
+                                    <div class="form-icon-user">
+                                        <?php echo e(Form::select('department_id', $departments, null, ['class' => 'form-control select2', 'id' => 'department_id', 'required' => 'required' , 'placeholder' => 'Select Department'])); ?>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group ">
+                                    <?php echo e(Form::label('designation_id', __('Select Designation'), ['class' => 'form-label'])); ?>
+
+
+                                    <div class="form-icon-user">
+                                        <div class="designation_div">
+                                            <select class="form-control  designation_id" name="designation_id"
+                                                id="choices-multiple" placeholder="Select Designation">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group  ">
+                                    <?php echo Form::label('company_doj', __('Company Date Of Joining'), ['class' => '  form-label']); ?>
+
+                                    <?php echo e(Form::date('company_doj', null, ['class' => 'form-control ', 'required' => 'required', 'autocomplete' => 'off' ,'placeholder'=>'Select company date of joining'])); ?>
+
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
             <div class="row">
                 <div class="col-md-6 ">
                     <div class="card em-card">
@@ -243,6 +301,51 @@ unset($__errorArgs, $__bag); ?>"
                     </div>
                 </div>
             </div>
+
+            <!-- OTHER DETAILS -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card em-card">
+                        <div class="card-header">
+                            <h5><?php echo e(__('Other Details')); ?></h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <?php echo Form::label('agent_code', __('Agent Code'), ['class' => 'form-label']); ?><span class="text-danger pl-1">*</span>
+                                    <?php echo Form::text('agent_code', old('agent_code'), ['class' => 'form-control', 'required' => 'required' ,'placeholder'=>'Enter Agent Code']); ?>
+
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <?php echo Form::label('passport', __('Passport Number'), ['class' => 'form-label']); ?><span class="text-danger pl-1">*</span>
+                                    <?php echo Form::text('passport', old('passport'), ['class' => 'form-control' ,'placeholder'=>'Enter Passport Number']); ?>
+
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <?php echo Form::label('eid', __('EID Number'), ['class' => 'form-label']); ?><span class="text-danger pl-1">*</span>
+                                    <?php echo Form::text('eid', old('eid'), ['class' => 'form-control' ,'placeholder'=>'EID Number']); ?>
+
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <?php echo Form::label('work_permit', __('Work Permit Number'), ['class' => 'form-label']); ?><span class="text-danger pl-1">*</span>
+                                    <?php echo Form::text('work_permit', old('work_permit'), ['class' => 'form-control' ,'placeholder'=>'Enter Work Permit Number']); ?>
+
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <?php echo Form::label('person_code', __('Person Code'), ['class' => 'form-label']); ?><span class="text-danger pl-1">*</span>
+                                    <?php echo Form::text('person_code', old('person_code'), ['class' => 'form-control' ,'placeholder'=>'Enter Person Code']); ?>
+
+                                </div>
+        
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
 
         </div>
 

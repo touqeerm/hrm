@@ -72,6 +72,7 @@ class EmployeeController extends Controller
 
     public function store(Request $request)
     {
+        dd($request->all());
 
         if (\Auth::user()->can('Create Employee')) {
             $validator = \Validator::make(
@@ -86,6 +87,11 @@ class EmployeeController extends Controller
                     'password' => 'required',
                     'department_id' => 'required',
                     'designation_id' => 'required',
+                     'agent_code' => 'required',
+                     'passport' => 'required',
+                     'eid' => 'required',
+                     'work_permit' => 'required',
+                     'person_code' => 'required',
                     'document.*' => 'mimes:jpeg,png,jpg,gif,svg,pdf,doc,zip|max:20480',
                 ]
             );
@@ -148,6 +154,11 @@ class EmployeeController extends Controller
                     'branch_location' => $request['branch_location'],
                     'tax_payer_id' => $request['tax_payer_id'],
                     'created_by' => \Auth::user()->creatorId(),
+                    'agent_code' => $request['agent_code'],
+                    'passport' => $request['passport'],
+                    'eid' => $request['eid'],
+                    'work_permit' => $request['work_permit'],
+                    'person_code' => $request['person_code'],
                 ]
                
             );
@@ -235,7 +246,12 @@ class EmployeeController extends Controller
                     'gender' => 'required',
                     'phone' => 'required|numeric',
                     'address' => 'required',
-                    'document.*' => 'mimes:jpeg,png,jpg,gif,svg,pdf,doc,zip|max:20480',
+                    'agent_code' => 'required',
+                    'passport' => 'required',
+                    'eid' => 'required',
+                    'work_permit' => 'required',
+                    'person_code' => 'required',
+                    //'document.*' => 'mimes:jpeg,png,jpg,gif,svg,pdf,doc,zip|max:20480',
                 ]
             );
             if ($validator->fails()) {
@@ -374,6 +390,7 @@ class EmployeeController extends Controller
     
     public function import(Request $request)
     {
+        
         $rules = [
             'file' => 'required|mimes:csv,txt',
         ];

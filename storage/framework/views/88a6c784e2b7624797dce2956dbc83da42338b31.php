@@ -282,6 +282,7 @@ unset($__errorArgs, $__bag); ?>"
 
                                     </div>
                                 </div>
+            
                             </div>
                         </div>
                     </div>
@@ -364,8 +365,47 @@ unset($__errorArgs, $__bag); ?>"
                         </div>
                     </div>
                 </div>
+            
             <?php endif; ?>
+            <!-- OTHER DETAILS -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card em-card">
+                        <div class="card-header">
+                            <h5><?php echo e(__('Other Details')); ?></h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <?php echo Form::label('agent_code', __('Agent Code'), ['class' => 'form-label']); ?><span class="text-danger pl-1">*</span>
+                                    <?php echo Form::text('agent_code', old('agent_code'), ['class' => 'form-control', 'required' => 'required' ,'placeholder'=>'Enter Agent Code']); ?>
 
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <?php echo Form::label('passport', __('Passport Number'), ['class' => 'form-label']); ?><span class="text-danger pl-1">*</span>
+                                    <?php echo Form::text('passport', old('passport'), ['class' => 'form-control' ,'placeholder'=>'Enter Passport Number']); ?>
+
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <?php echo Form::label('eid', __('EID Number'), ['class' => 'form-label']); ?><span class="text-danger pl-1">*</span>
+                                    <?php echo Form::text('eid', old('eid'), ['class' => 'form-control' ,'placeholder'=>'EID Number']); ?>
+
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <?php echo Form::label('work_permit', __('Work Permit Number'), ['class' => 'form-label']); ?><span class="text-danger pl-1">*</span>
+                                    <?php echo Form::text('work_permit', old('work_permit'), ['class' => 'form-control' ,'placeholder'=>'Enter Work Permit Number']); ?>
+
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <?php echo Form::label('person_code', __('Person Code'), ['class' => 'form-label']); ?><span class="text-danger pl-1">*</span>
+                                    <?php echo Form::text('person_code', old('person_code'), ['class' => 'form-control' ,'placeholder'=>'Enter Person Code']); ?>
+
+                                </div>
+        
+                        </div>
+                    </div>
+                </div>
+            </div>
             <?php if(\Auth::user()->type != 'employee'): ?>
                 <div class="float-end">
                     <button type="submit" class="btn  btn-primary"><?php echo e('Update'); ?></button>
