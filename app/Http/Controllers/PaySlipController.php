@@ -17,6 +17,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\PayrollExport;
 
 class PaySlipController extends Controller
 {
@@ -78,6 +80,37 @@ class PaySlipController extends Controller
     {
         //
     }
+    public function export(Request $request)
+    {
+        
+        $validator = \Validator::make(
+            $request->all(),
+            [
+                'month' => 'required',
+                'year' => 'required',
+
+            ]
+        );
+
+        if ($validator->fails()) {
+            $messages = $validator->getMessageBag();
+
+            return redirect()->back()->with('error', $messages->first());
+        }
+
+        $month = $request->month;
+        $year  = $request->year;
+
+        //$formate_month_year = $year . '-' . $month;
+        $formate_month_year = '2022-09';
+        $name = 'payroll_' . date('Y-m-d i:h:s');
+        $data = Excel::download(new PayrollExport($formate_month_year), $name . '.xlsx'); 
+
+        return $data;
+        
+        //$validatePaysilp    = PaySlip::where('salary_month', '=', $formate_month_year)->where('created_by', \Auth::user()->creatorId())->pluck('employee_id');
+
+    }   
 
     public function store(Request $request)
     {

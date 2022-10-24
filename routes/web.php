@@ -451,6 +451,13 @@ Route::resource('setsalary', 'SetSalaryController')->middleware(
     ]
 );
 
+Route::post('payslip/export', 'PaySlipController@export')->name('payslip.export')->middleware(
+    [
+        'auth',
+        'XSS',
+    ]
+);
+
 Route::get('payslip/paysalary/{id}/{date}', 'PaySlipController@paysalary')->name('payslip.paysalary')->middleware(
     [
         'auth',

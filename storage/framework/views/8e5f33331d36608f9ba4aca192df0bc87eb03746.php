@@ -68,7 +68,7 @@
                         <h5><?php echo e(__('Payroll Sheet')); ?></h5>
                     </div>
                     <div class="card-body">
-                <?php echo e(Form::open(['route' => ['payslip.store'], 'method' => 'POST', 'id' => 'payslip_form'])); ?>
+                <?php echo e(Form::open(['route' => ['payslip.export'], 'method' => 'POST', 'id' => 'payslip_form1'])); ?>
 
                 <div class="d-flex align-items-center justify-content-end">
 
@@ -94,8 +94,8 @@
 
 
                     <div class="col-auto float-end ms-2 mt-4">
-                        <a href="#" class="btn  btn-primary"
-                           onclick="document.getElementById('payslip_form').submit(); return false;"
+                        <a href="export" class="btn  btn-primary"
+                           onclick="document.getElementById('payslip_form1').submit(); return false;"
                            data-bs-toggle="tooltip" title="<?php echo e(__('Payroll Sheet')); ?>"
                            data-original-title="<?php echo e(__('Payroll Sheet')); ?>">
                             <?php echo e(__('Export Payroll Sheet')); ?>
