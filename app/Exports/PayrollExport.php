@@ -64,16 +64,18 @@ class PayrollExport implements FromCollection, ShouldAutoSize, WithMapping, With
         $sino=0;
         $emp = Employee::where('id',$payroll->employee_id)->first();
         $payslip_link='<a href="http://localhost/hrm/payslip">Click for Details</a>';
+        $payslip->allowance = Employee::allowance($employee->id);
+        //$payslip->gross_salary = Employee::get_gross_salary();
         //$basic = Employee::where('id',$payroll->employee_id)->pluck('name')->first();
         return[
             $sino++,
             $emp->name,
             $payroll->employee_id,
             $payroll->basic_salary,
-            $payroll->allowance,
+            $payslip->allowance,
             $payroll->other_payment,
-            "GROSS SALARY",
-            "DEDUCTIONS",
+            $payroll->gross_salary,
+            $payroll->deductions,
             $payroll->net_payble,
             "YTD SALARY",
             "WORKING DAYS",

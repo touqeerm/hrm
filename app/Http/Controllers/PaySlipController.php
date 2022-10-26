@@ -161,6 +161,9 @@ class PaySlipController extends Controller
                 $payslipEmployee->other_payment        = Employee::other_payment($employee->id);
                 $payslipEmployee->overtime             = Employee::overtime($employee->id);
                 $payslipEmployee->created_by           = \Auth::user()->creatorId();
+                $payslipEmployee->gross_salary           = Employee::get_gross_salary($employee->id);
+                $payslipEmployee->deductions           = Employee::deductions($employee->id);
+
 
                 $payslipEmployee->save();
 
