@@ -244,6 +244,8 @@ class Employee extends Model
         return $gross_salary;
     }
 
+   
+
     public static function allowance($id)
     {
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Allowance;
 use App\Models\Commission;
 use App\Models\Employee;
+use App\Models\Leave;
 use App\Models\Loan;
 use App\Mail\InvoiceSend;
 use App\Mail\PayslipSend;
@@ -19,6 +20,7 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\PayrollExport;
+use Carbon\Carbon;
 
 class PaySlipController extends Controller
 {
@@ -219,6 +221,56 @@ class PaySlipController extends Controller
 
         return view('payslip.show', compact('payslip'));
     }
+
+     //New Function Added - Touqeer
+     public static function ytd_salary($id)
+     {
+        //$ytd_salary = DB::table('pay_slips')->where('employee_id' '=' $id)->where('salary_month' 'like' $year'%')->sum('net_payble');
+         // dd('hey');
+         //allowance
+        $ytd_salary =   PaySlip::sum('net_payble')->where('employee_id','=',$id)->where('salary_month','like',$year.'%')->get();
+ 
+         return $ytd_salary;
+     }
+
+    //New Function Added - Touqeer
+    public static function get_weekdays($m,$y) {
+        $lastday = date("t",mktime(0,0,0,$m,1,$y));
+        $weekdays=0;
+        for($d=29;$d<=$lastday;$d++) {
+            $wd = date("w",mktime(0,0,0,$m,$d,$y));
+            if($wd > 0 && $wd < 6) $weekdays++;
+            }
+        return $weekdays+20;
+    }
+
+
+    //New Function Added - Touqeer
+    public static function get_leaves($m,$y,$id) {
+    $total_leave_days =   PaySlip::sum('total_leave_days')->where('employee_id','=',$id)->where('start_date','like',$y.'-'.'m'.'%')->get();
+    return $total_leave_days;
+    }
+
+    //New Function Added - Touqeer
+    public static function get_gratuity($id) {
+        $now = (new DateTime)->format('Y.m.d');
+        $doj= Employee::where('employee_id','=',$id)->pluck('company_doj')->get();
+        // $startDate = Carbon::parse('05-07-2019'); 
+        // $endDate = Carbon::parse('10-08-2021'); 
+        $diff = $doj->diffInYears($now);
+        if($diff > 1):
+            $gratuity=0;
+        endif;
+        if($diff > 5):
+            $gratuity=0;
+        endif;
+        if($diff > 5):
+            $gratuity=0;
+        endif;
+        return $gratuity;
+        }
+
+
 
     public function search_json(Request $request)
     {
