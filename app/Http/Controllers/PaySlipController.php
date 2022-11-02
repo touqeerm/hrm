@@ -163,8 +163,12 @@ class PaySlipController extends Controller
                 $payslipEmployee->other_payment        = Employee::other_payment($employee->id);
                 $payslipEmployee->overtime             = Employee::overtime($employee->id);
                 $payslipEmployee->created_by           = \Auth::user()->creatorId();
-                $payslipEmployee->gross_salary           = Employee::get_gross_salary($employee->id);
+                $payslipEmployee->gross_salary         = Employee::get_gross_salary($employee->id);
                 $payslipEmployee->deductions           = Employee::deductions($employee->id);
+                $payslipEmployee->ytd_salary           = ytd_salary($employee->id);
+                $payslipEmployee->working_days         = get_weekdays($month,$year);
+                $payslipEmployee->leave_days           = get_leaves($month,$year,$employee->id);
+                $payslipEmployee->gratuity             = get_gratuity($employee->id);
 
 
                 $payslipEmployee->save();
@@ -254,19 +258,22 @@ class PaySlipController extends Controller
     //New Function Added - Touqeer
     public static function get_gratuity($id) {
         $now = (new DateTime)->format('Y.m.d');
-        $doj= Employee::where('employee_id','=',$id)->pluck('company_doj')->get();
+        $emp= Employee::where('employee_id','=',$id)->get();
+        $doj=$emp->company_doj;
+        $basic=$emp->basic_salary;
         // $startDate = Carbon::parse('05-07-2019'); 
         // $endDate = Carbon::parse('10-08-2021'); 
         $diff = $doj->diffInYears($now);
-        if($diff > 1):
+        if($diff < 1){
             $gratuity=0;
-        endif;
-        if($diff > 5):
-            $gratuity=0;
-        endif;
-        if($diff > 5):
-            $gratuity=0;
-        endif;
+        }
+        else if($diff <= 5){
+            $gratuity=($basic/21)*$diff;
+        }
+        else if($diff > 5){
+            $excess=$diff-5;
+            $gratuity=(($basic/30)*21*$diff)+($basic*$excess);
+        }
         return $gratuity;
         }
 
