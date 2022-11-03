@@ -101,7 +101,9 @@ class PaySlipController extends Controller
         }
 
         $month = $request->month;
+        //$m  =   $month;
         $year  = $request->year;
+        //$y  =   $year;
 
         //$formate_month_year = $year . '-' . $month;
         $formate_month_year = '2022-09';
@@ -133,6 +135,8 @@ class PaySlipController extends Controller
 
         $month = $request->month;
         $year  = $request->year;
+        $m  =   $month;
+        $y  =   $year;
 
         $formate_month_year = $year . '-' . $month;
         $validatePaysilp    = PaySlip::where('salary_month', '=', $formate_month_year)->where('created_by', \Auth::user()->creatorId())->pluck('employee_id');
@@ -165,9 +169,9 @@ class PaySlipController extends Controller
                 $payslipEmployee->created_by           = \Auth::user()->creatorId();
                 $payslipEmployee->gross_salary         = Employee::get_gross_salary($employee->id);
                 $payslipEmployee->deductions           = Employee::deductions($employee->id);
-                $payslipEmployee->ytd_salary           = $this->ytd_salary($year,$employee->id);
-                $payslipEmployee->working_days         = $this->get_weekdays($month,$year);
-                $payslipEmployee->leave_days           = $this->get_leaves($month,$year,$employee->id);
+                $payslipEmployee->ytd_salary           = $this->ytd_salary($y,$employee->id);
+                $payslipEmployee->working_days         = $this->get_weekdays($m,$y);
+                $payslipEmployee->leave_days           = $this->get_leaves($m,$y,$employee->id);
                 $payslipEmployee->gratuity             = $this->get_gratuity($employee->id);
 
 
@@ -239,6 +243,8 @@ class PaySlipController extends Controller
 
     //New Function Added - Touqeer
     public static function get_weekdays($m,$y) {
+        echo($m);
+        echo($y);
         $lastday = date("t",mktime(0,0,0,$m,1,$y));
         $weekdays=0;
         for($d=29;$d<=$lastday;$d++) {
