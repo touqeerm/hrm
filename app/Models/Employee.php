@@ -140,7 +140,7 @@ class Employee extends Model
 
 
     // New Function added - Touqeer
-    public function deductions($id)
+    public static function deductions($id)
     {
     
         //Loan
@@ -181,7 +181,7 @@ class Employee extends Model
     }
 
     // New Function added - Touqeer
-    public function get_gross_salary($id)
+    public static function get_gross_salary($id)
     {
 
         //allowance

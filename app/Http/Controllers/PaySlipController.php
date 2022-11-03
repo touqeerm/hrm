@@ -165,10 +165,10 @@ class PaySlipController extends Controller
                 $payslipEmployee->created_by           = \Auth::user()->creatorId();
                 $payslipEmployee->gross_salary         = Employee::get_gross_salary($employee->id);
                 $payslipEmployee->deductions           = Employee::deductions($employee->id);
-                $payslipEmployee->ytd_salary           = ytd_salary($employee->id);
-                $payslipEmployee->working_days         = get_weekdays($month,$year);
-                $payslipEmployee->leave_days           = get_leaves($month,$year,$employee->id);
-                $payslipEmployee->gratuity             = get_gratuity($employee->id);
+                $payslipEmployee->ytd_salary           = $this->ytd_salary($year,$employee->id);
+                $payslipEmployee->working_days         = $this->get_weekdays($month,$year);
+                $payslipEmployee->leave_days           = $this->get_leaves($month,$year,$employee->id);
+                $payslipEmployee->gratuity             = $this->get_gratuity($employee->id);
 
 
                 $payslipEmployee->save();
@@ -227,12 +227,12 @@ class PaySlipController extends Controller
     }
 
      //New Function Added - Touqeer
-     public static function ytd_salary($id)
+     public static function ytd_salary($year,$id)
      {
         //$ytd_salary = DB::table('pay_slips')->where('employee_id' '=' $id)->where('salary_month' 'like' $year'%')->sum('net_payble');
          // dd('hey');
          //allowance
-        $ytd_salary =   PaySlip::sum('net_payble')->where('employee_id','=',$id)->where('salary_month','like',$year.'%')->get();
+        $ytd_salary =   PaySlip::where('employee_id','=',$id)->where('salary_month','like',$year.'%')->sum('net_payble');
  
          return $ytd_salary;
      }
@@ -251,19 +251,22 @@ class PaySlipController extends Controller
 
     //New Function Added - Touqeer
     public static function get_leaves($m,$y,$id) {
-    $total_leave_days =   PaySlip::sum('total_leave_days')->where('employee_id','=',$id)->where('start_date','like',$y.'-'.'m'.'%')->get();
+    $total_leave_days =   Leave::where('employee_id','=',$id)->where('start_date','like',$y.'-'.$m.'%')->sum('total_leave_days');
     return $total_leave_days;
     }
 
     //New Function Added - Touqeer
     public static function get_gratuity($id) {
-        $now = (new DateTime)->format('Y.m.d');
-        $emp= Employee::where('employee_id','=',$id)->get();
+        $now=\Carbon\Carbon::now()->format('Y-m-d');
+        #$now = (new DateTime)->format('Y.m.d');
+        $emp= Employee::where('employee_id','=',$id)->first();
         $doj=$emp->company_doj;
         $basic=$emp->basic_salary;
-        // $startDate = Carbon::parse('05-07-2019'); 
-        // $endDate = Carbon::parse('10-08-2021'); 
-        $diff = $doj->diffInYears($now);
+        echo($doj);
+        echo($now);
+         $startDate = Carbon::parse($doj); 
+         $endDate = Carbon::parse($now); 
+        $diff = $startDate->diffInYears($endDate);
         if($diff < 1){
             $gratuity=0;
         }
