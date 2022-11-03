@@ -57,27 +57,17 @@ class AlAnsariWPSExport implements FromCollection, ShouldAutoSize, WithMapping, 
         //$payslip->gross_salary = Employee::get_gross_salary();
         //$basic = Employee::where('id',$payroll->employee_id)->pluck('name')->first();
         return[
-            $sino++,
-            $emp->name,
-            $payroll->employee_id,
-            $payroll->basic_salary,
-            $payslip->allowance,
-            $payroll->other_payment,
-            $payroll->gross_salary,
-            $payroll->deductions,
-            $payroll->net_payble,
-            "YTD SALARY",
-            "WORKING DAYS",
-            "LEAVE DAYS",
+            "EDR",
+            $emp->user_id,
             $emp->bank_name,
-            $emp->agent_code,
             $emp->account_number,
-            "GRATUITY",
-            $emp->passport,
-            $emp->eid,
-            $emp->work_permit,
-            $emp->person_code,
-            $payslip_link,
+            "Pay Start Date",
+            "Pay End Date",
+            $payroll->working_days,
+            "Fixed",
+            "Variable",
+            $payroll->leave_days,
+            $emp->name
         ];
     }
 }

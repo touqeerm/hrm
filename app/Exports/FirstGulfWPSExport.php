@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Exports;
-
+use App\Models\Settings;
 use App\Models\PaySlip;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -54,32 +54,26 @@ class FirstGulfWPSExport implements FromCollection, ShouldAutoSize, WithMapping,
     {
         $sino=0;
         $emp = Employee::where('id',$payroll->employee_id)->first();
-        $payslip_link='<a href="http://localhost/hrm/payslip">Click for Details</a>';
-        $payslip->allowance = Employee::allowance($employee->id);
+        $salmon=explode('-',$this->salary_month);
+        $year=$salmon[0];
+        $month=$salmon[1];
+        $company=User::where('id',$emp->created_by)->pluck('name')->first();
+        $company_molid=Settings::where('created_by',$emp->created_by)->where('name','company_name')->pluck('value')->first();
         //$payslip->gross_salary = Employee::get_gross_salary();
         //$basic = Employee::where('id',$payroll->employee_id)->pluck('name')->first();
         return[
-            $sino++,
-            $emp->name,
-            $payroll->employee_id,
-            $payroll->basic_salary,
-            $payslip->allowance,
-            $payroll->other_payment,
-            $payroll->gross_salary,
-            $payroll->deductions,
-            $payroll->net_payble,
-            "YTD SALARY",
-            "WORKING DAYS",
-            "LEAVE DAYS",
-            $emp->bank_name,
+            $month,
+            $company_molid,
             $emp->agent_code,
             $emp->account_number,
-            "GRATUITY",
-            $emp->passport,
+            $emp->name,
             $emp->eid,
-            $emp->work_permit,
-            $emp->person_code,
-            $payslip_link,
+            $payroll->leave_days,
+            $payroll->gross_salary,
+            $payroll->basic_salary,
+            $payroll->net_payable,
+            "REMARKS",
+            $payroll->work_permit
         ];
     }
 }

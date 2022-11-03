@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Exports;
-
+use App\Models\User;
 use App\Models\PaySlip;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -53,32 +53,28 @@ class IwireWPSExport implements FromCollection, ShouldAutoSize, WithMapping, Wit
     {
         $sino=0;
         $emp = Employee::where('id',$payroll->employee_id)->first();
-        $payslip_link='<a href="http://localhost/hrm/payslip">Click for Details</a>';
+        //$payslip_link='<a href="http://localhost/hrm/payslip">Click for Details</a>';
         $payslip->allowance = Employee::allowance($employee->id);
+        $company=User::where('id',$emp->created_by)->pluck('name')->first();
+        $salmon=explode('-',$this->salary_month);
+        $year=$salmon[0];
+        $month=$salmon[1];
+
         //$payslip->gross_salary = Employee::get_gross_salary();
         //$basic = Employee::where('id',$payroll->employee_id)->pluck('name')->first();
         return[
-            $sino++,
-            $emp->name,
-            $payroll->employee_id,
-            $payroll->basic_salary,
-            $payslip->allowance,
-            $payroll->other_payment,
-            $payroll->gross_salary,
-            $payroll->deductions,
-            $payroll->net_payble,
-            "YTD SALARY",
-            "WORKING DAYS",
-            "LEAVE DAYS",
-            $emp->bank_name,
-            $emp->agent_code,
-            $emp->account_number,
-            "GRATUITY",
-            $emp->passport,
+            $company,
             $emp->eid,
-            $emp->work_permit,
+            $year,
+            $month,
+            $emp->name,
             $emp->person_code,
-            $payslip_link,
+            "Account Transfer",
+            $emp->bank_name,
+            $emp->bank_identifier_code,
+            $emp->basic,
+            $emp->net_payable,
+            $payroll->leave_days
         ];
     }
 

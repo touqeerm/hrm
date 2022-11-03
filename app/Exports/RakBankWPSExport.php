@@ -56,27 +56,16 @@ class RakBankWPSExport implements FromCollection, ShouldAutoSize, WithMapping, W
         //$payslip->gross_salary = Employee::get_gross_salary();
         //$basic = Employee::where('id',$payroll->employee_id)->pluck('name')->first();
         return[
-            $sino++,
-            $emp->name,
-            $payroll->employee_id,
-            $payroll->basic_salary,
-            $payslip->allowance,
-            $payroll->other_payment,
-            $payroll->gross_salary,
-            $payroll->deductions,
-            $payroll->net_payble,
-            "YTD SALARY",
-            "WORKING DAYS",
-            "LEAVE DAYS",
-            $emp->bank_name,
+            $emp->user_id,
             $emp->agent_code,
             $emp->account_number,
-            "GRATUITY",
-            $emp->passport,
-            $emp->eid,
-            $emp->work_permit,
-            $emp->person_code,
-            $payslip_link,
+            "Pay Start Date",
+            "Pay End Date",
+            $payroll->working_days,
+            $payroll->basic,
+            $payroll->deductions,
+            $payroll->leave_days,
+            "Validation Remarks"
         ];
     }
 }

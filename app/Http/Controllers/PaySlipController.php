@@ -243,8 +243,8 @@ class PaySlipController extends Controller
 
     //New Function Added - Touqeer
     public static function get_weekdays($m,$y) {
-        echo($m);
-        echo($y);
+        //echo($m);
+        //echo($y);
         $lastday = date("t",mktime(0,0,0,$m,1,$y));
         $weekdays=0;
         for($d=29;$d<=$lastday;$d++) {
@@ -268,8 +268,8 @@ class PaySlipController extends Controller
         $emp= Employee::where('employee_id','=',$id)->first();
         $doj=$emp->company_doj;
         $basic=$emp->basic_salary;
-        echo($doj);
-        echo($now);
+        //echo($doj);
+        //echo($now);
          $startDate = Carbon::parse($doj); 
          $endDate = Carbon::parse($now); 
         $diff = $startDate->diffInYears($endDate);
