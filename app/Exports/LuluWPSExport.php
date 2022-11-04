@@ -7,6 +7,7 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithMapping;
+use App\Models\Employee;
 
 class LuluWPSExport implements FromCollection, ShouldAutoSize, WithMapping, WithHeadings
 {
@@ -17,9 +18,16 @@ class LuluWPSExport implements FromCollection, ShouldAutoSize, WithMapping, With
     // {
     //     return PaySlip::all();
     // }
+    //protected $sino=0;
+    protected $salary_month;
+    protected $sino=0;
+
+    function __construct($salary_month) {
+        $this->salary_month = $salary_month;
+    }
     public function collection()
     {
-        $this->salary_month='2022-10';
+        //$this->salary_month='2022-10';
         //dd($this->salary_month);
         //return PaySlip::all();
         //return PaySlip::where('salary_month',$this->salary_month)->get()([ 'employee_id', 'net_payble', 'salary_month', 'status', 'basic_salary', 'allowance', 'commission', 'loan', 'saturation_deduction', 'other_payment', 'overtime']);
@@ -49,14 +57,14 @@ class LuluWPSExport implements FromCollection, ShouldAutoSize, WithMapping, With
 
     public function map ($payroll): array
     {
-        $sino=0;
+        $this->sino++;
         $emp = Employee::where('id',$payroll->employee_id)->first();
         //$payslip_link='<a href="http://localhost/hrm/payslip">Click for Details</a>';
         //$payslip->allowance = Employee::allowance($employee->id);
         //$payslip->gross_salary = Employee::get_gross_salary();
         //$basic = Employee::where('id',$payroll->employee_id)->pluck('name')->first();
         return[
-            $sino++,
+            $this->sino,
             $emp->name,
             $emp->work_permit,
             $emp->phone,

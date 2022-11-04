@@ -20,6 +20,13 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\PayrollExport;
+use App\Exports\IwireWPSExport;
+use App\Exports\LuluWPSExport;
+use App\Exports\FirstGulfWPSExport;
+use App\Exports\RakBankWPSExport;
+use App\Exports\AlAnsariWPSExport;
+use App\Exports\AlRostamaniWPSExport;
+
 use Carbon\Carbon;
 
 class PaySlipController extends Controller
@@ -118,6 +125,73 @@ class PaySlipController extends Controller
         //$validatePaysilp    = PaySlip::where('salary_month', '=', $formate_month_year)->where('created_by', \Auth::user()->creatorId())->pluck('employee_id');
 
     }   
+
+    public function wps(Request $request)
+    {
+        
+        $validator = \Validator::make(
+            $request->all(),
+            [
+                'month' => 'required',
+                'year' => 'required',
+                'format' => 'required',
+
+            ]
+        );
+
+        if ($validator->fails()) {
+            $messages = $validator->getMessageBag();
+
+            return redirect()->back()->with('error', $messages->first());
+        }
+
+        $month = $request->month;
+        //dd($month);
+        //$m  =   $month;
+        $year  = $request->year;
+        $format = $request->format;
+        //dd($year);
+        //$y  =   $year;
+
+        $formate_month_year = $year . '-' . $month;
+        //dd($formate_month_year);
+        //$formate_month_year = '2022-09';
+        if($format=='01')
+        {
+            $name = 'IwireWPSExport_' . date('Y-m-d i:h:s');
+            $data = Excel::download(new IwireWPSExport($formate_month_year), $name . '.xlsx');     
+        }
+        else if($format=='02')
+        {
+            $name = 'LuluWPSExport_' . date('Y-m-d i:h:s');
+            $data = Excel::download(new LuluWPSExport($formate_month_year), $name . '.xlsx');     
+        }
+        else if($format=='03')
+        {
+            $name = 'FirstGulfWPSExport_' . date('Y-m-d i:h:s');
+            $data = Excel::download(new FirstGulfWPSExport($formate_month_year), $name . '.xlsx');     
+        }
+        else if($format=='04')
+        {
+            $name = 'RakBankWPSExport_' . date('Y-m-d i:h:s');
+            $data = Excel::download(new RakBankWPSExport($formate_month_year), $name . '.xlsx');     
+        }
+        else if($format=='05')
+        {
+            $name = 'AlAnsariWPSExport_' . date('Y-m-d i:h:s');
+            $data = Excel::download(new AlAnsariWPSExport($formate_month_year), $name . '.xlsx');     
+        }
+        else if($format=='06')
+        {
+            $name = 'AlRostamaniWPSExport_' . date('Y-m-d i:h:s');
+            $data = Excel::download(new AlRostamaniWPSExport($formate_month_year), $name . '.xlsx');     
+        }
+      
+        return $data;
+        
+        //$validatePaysilp    = PaySlip::where('salary_month', '=', $formate_month_year)->where('created_by', \Auth::user()->creatorId())->pluck('employee_id');
+
+    }  
 
     public function store(Request $request)
     {

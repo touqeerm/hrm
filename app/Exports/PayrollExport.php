@@ -13,6 +13,7 @@ use SebastianBergmann\CodeCoverage\Percentage;
 class PayrollExport implements FromCollection, ShouldAutoSize, WithMapping, WithHeadings
 {
     protected $salary_month;
+    protected $sino=0;
 
     function __construct($salary_month) {
         $this->salary_month = $salary_month;
@@ -73,16 +74,17 @@ class PayrollExport implements FromCollection, ShouldAutoSize, WithMapping, With
                 $total_allowance = $allowance->amount + $total_allowance;
             }
         }
-        
-        $sino=0;
+        $this->sino++;
+        //$sino=0;
         $emp = Employee::where('id',$payroll->employee_id)->first();
         //dd($emp);
-        $payslip_link='<a href="http://localhost/hrm/payslip">Click for Details</a>';
+        $payslip_link="http://localhost/hrm";
+        $hyp="=HYPERLINK(U1,U1)";
         //$payslip->allowance = Employee::allowance($payroll->employee_id);
         //$payslip->gross_salary = Employee::get_gross_salary();
         //$basic = Employee::where('id',$payroll->employee_id)->pluck('name')->first();
         return[
-            $sino++,
+            $this->sino,
             $emp->name,
             $payroll->employee_id,
             $payroll->basic_salary,
@@ -103,6 +105,7 @@ class PayrollExport implements FromCollection, ShouldAutoSize, WithMapping, With
             $emp->work_permit,
             $emp->person_code,
             $payslip_link,
+            $hyp
         ];
     }
 

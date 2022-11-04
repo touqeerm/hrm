@@ -457,7 +457,12 @@ Route::post('payslip/export', 'PaySlipController@export')->name('payslip.export'
         'XSS',
     ]
 );
-
+Route::post('payslip/wps', 'PaySlipController@wps')->name('payslip.wps')->middleware(
+    [
+        'auth',
+        'XSS',
+    ]
+);
 Route::get('payslip/paysalary/{id}/{date}', 'PaySlipController@paysalary')->name('payslip.paysalary')->middleware(
     [
         'auth',

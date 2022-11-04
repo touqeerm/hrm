@@ -108,7 +108,7 @@
                         <h5>{{ __('Generate WPS') }}</h5>
                     </div>
                     <div class="card-body">
-                {{ Form::open(['route' => ['payslip.store'], 'method' => 'POST', 'id' => 'payslip_form']) }}
+                {{ Form::open(['route' => ['payslip.wps'], 'method' => 'POST', 'id' => 'payslip_form2']) }}
                 <div class="d-flex align-items-center justify-content-end">
 
 
@@ -136,7 +136,7 @@
                     </div>
                     <div class="col-auto float-end ms-2 mt-4">
                         <a href="#" class="btn  btn-primary"
-                           onclick="document.getElementById('payslip_form').submit(); return false;"
+                           onclick="document.getElementById('payslip_form2').submit(); return false;"
                            data-bs-toggle="tooltip" title="{{ __('WPS') }}"
                            data-original-title="{{ __('WPS') }}">
                             {{ __('Export WPS') }}

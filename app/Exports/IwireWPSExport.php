@@ -7,6 +7,7 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithMapping;
+use App\Models\Employee;
 
 class IwireWPSExport implements FromCollection, ShouldAutoSize, WithMapping, WithHeadings
 {
@@ -17,9 +18,15 @@ class IwireWPSExport implements FromCollection, ShouldAutoSize, WithMapping, Wit
     // {
     //     return PaySlip::all();
     // }
+    protected $salary_month;
+    //protected $sino=0;
+
+    function __construct($salary_month) {
+        $this->salary_month = $salary_month;
+    }
     public function collection()
     {
-        $this->salary_month='2022-10';
+        //$this->salary_month='2022-10';
         //dd($this->salary_month);
         //return PaySlip::all();
         //return PaySlip::where('salary_month',$this->salary_month)->get()([ 'employee_id', 'net_payble', 'salary_month', 'status', 'basic_salary', 'allowance', 'commission', 'loan', 'saturation_deduction', 'other_payment', 'overtime']);
@@ -54,7 +61,7 @@ class IwireWPSExport implements FromCollection, ShouldAutoSize, WithMapping, Wit
         $sino=0;
         $emp = Employee::where('id',$payroll->employee_id)->first();
         //$payslip_link='<a href="http://localhost/hrm/payslip">Click for Details</a>';
-        $payslip->allowance = Employee::allowance($employee->id);
+        //$payslip->allowance = Employee::allowance($employee->id);
         $company=User::where('id',$emp->created_by)->pluck('name')->first();
         $salmon=explode('-',$this->salary_month);
         $year=$salmon[0];

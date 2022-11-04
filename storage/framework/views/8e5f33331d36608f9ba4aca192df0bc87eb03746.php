@@ -121,7 +121,7 @@
                         <h5><?php echo e(__('Generate WPS')); ?></h5>
                     </div>
                     <div class="card-body">
-                <?php echo e(Form::open(['route' => ['payslip.store'], 'method' => 'POST', 'id' => 'payslip_form'])); ?>
+                <?php echo e(Form::open(['route' => ['payslip.wps'], 'method' => 'POST', 'id' => 'payslip_form2'])); ?>
 
                 <div class="d-flex align-items-center justify-content-end">
 
@@ -155,14 +155,14 @@
                         </div>
                     </div>
                     <div class="col-auto float-end ms-2 mt-4">
-                      <!--  <a href="#" class="btn  btn-primary"
-                           onclick="document.getElementById('payslip_form').submit(); return false;"
+                        <a href="#" class="btn  btn-primary"
+                           onclick="document.getElementById('payslip_form2').submit(); return false;"
                            data-bs-toggle="tooltip" title="<?php echo e(__('WPS')); ?>"
                            data-original-title="<?php echo e(__('WPS')); ?>">
                             <?php echo e(__('Export WPS')); ?>
 
-                        </a> -->
-                        <input type="button" value="<?php echo e(__('Export WPS')); ?>" class="btn btn-primary" id="wps_export">
+                        </a>
+                        
 
 
                     </div>
@@ -580,49 +580,6 @@
 
                 }
             });
-            // Below Function Newly added - Touqeer
-            $(document).on('click', '#wps_export',
-                'a[data-ajax-popup="true"], button[data-ajax-popup="true"], div[data-ajax-popup="true"]',
-                function () {
-                    var month = $(".month").val();
-                    var year = $(".year").val();
-                    var datePicker = year + '-' + month;
-                    var format =$(".format").val();
-                    console.log(month);
-                    console.log(year);
-                    console.log(format);
-
-                    var title = 'WPS Export';
-                    var size = 'md';
-                    var url = 'payslip/bulk_pay_create/' + datePicker;
-
-                    // return false;
-
-                    $("#commonModal .modal-title").html(title);
-                    $("#commonModal .modal-dialog").addClass('modal-' + size);
-                    $.ajax({
-                        url: url,
-                        success: function (data) {
-
-                            // alert(data);
-                            // return false;
-                            if (data.length) {
-                                $('#commonModal .modal-body').html(data);
-                                $("#commonModal").modal('show');
-                                // common_bind();
-                            } else {
-                                show_toastr('Error', 'Permission denied.');
-                                $("#commonModal").modal('hide');
-                            }
-                        },
-                        error: function (data) {
-                            data = data.responseJSON;
-                            show_toastr('Error', data.error);
-                        }
-                    });
-                });
-
-        });
 
     </script>
 <?php $__env->stopPush(); ?>
