@@ -2,25 +2,27 @@
 
 namespace App\Exports;
 use App\Models\Employee;
+use App\Models\Allowance;
 use App\Models\PaySlip;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithMapping;
+use SebastianBergmann\CodeCoverage\Percentage;
 
 class PayrollExport implements FromCollection, ShouldAutoSize, WithMapping, WithHeadings
 {
     protected $salary_month;
 
     function __construct($salary_month) {
-        $this->id = $salary_month;
+        $this->salary_month = $salary_month;
     }
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
-        $this->salary_month='2022-10';
+        //$this->salary_month='2022-10';
         //dd($this->salary_month);
         //return PaySlip::all();
         //return PaySlip::where('salary_month',$this->salary_month)->get()([ 'employee_id', 'net_payble', 'salary_month', 'status', 'basic_salary', 'allowance', 'commission', 'loan', 'saturation_deduction', 'other_payment', 'overtime']);
@@ -61,10 +63,22 @@ class PayrollExport implements FromCollection, ShouldAutoSize, WithMapping, With
 
     public function map ($payroll): array
     {
+        $allowances      = Allowance::where('employee_id', '=', $payroll->employee_id)->get();
+        $total_allowance = 0;
+        foreach ($allowances as $allowance) {
+            if ($allowance->type == 'percentage') {
+                $employee          = Employee::find($allowance->employee_id);
+                $total_allowance  = $allowance->amount * $employee->salary / 100  + $total_allowance;
+            } else {
+                $total_allowance = $allowance->amount + $total_allowance;
+            }
+        }
+        
         $sino=0;
         $emp = Employee::where('id',$payroll->employee_id)->first();
+        //dd($emp);
         $payslip_link='<a href="http://localhost/hrm/payslip">Click for Details</a>';
-        $payslip->allowance = Employee::allowance($employee->id);
+        //$payslip->allowance = Employee::allowance($payroll->employee_id);
         //$payslip->gross_salary = Employee::get_gross_salary();
         //$basic = Employee::where('id',$payroll->employee_id)->pluck('name')->first();
         return[
@@ -72,7 +86,7 @@ class PayrollExport implements FromCollection, ShouldAutoSize, WithMapping, With
             $emp->name,
             $payroll->employee_id,
             $payroll->basic_salary,
-            $payslip->allowance,
+            $total_allowance,
             $payroll->other_payment,
             $payroll->gross_salary,
             $payroll->deductions,

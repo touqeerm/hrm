@@ -125,23 +125,44 @@
 
                 <div class="d-flex align-items-center justify-content-end">
 
+
+                <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12 col-12 mx-2">
+                        <div class="btn-box">
+                            <?php echo e(Form::label('month', __('Select Month'), ['class' => 'form-label'])); ?>
+
+                            <?php echo e(Form::select('month', $month, null, ['class' => 'form-control select', 'id' => 'month'])); ?>
+
+
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12 col-12 mx-2">
+                        <div class="btn-box">
+                            <?php echo e(Form::label('year', __('Select Year'), ['class' => 'form-label'])); ?>
+
+                            <?php echo e(Form::select('year', $year, null, ['class' => 'form-control select', 'id' => 'year'])); ?>
+
+
+                        </div>
+                    </div>
+
                     <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12 col-12 mx-2">
                         <div class="btn-box">
                             <?php echo e(Form::label('format', __('WPS Format'), ['class' => 'form-label'])); ?>
 
-                            <?php echo e(Form::select('format', $format, null, ['class' => 'form-control select', 'id' => 'month'])); ?>
+                            <?php echo e(Form::select('format', $format, null, ['class' => 'form-control select', 'id' => 'format'])); ?>
 
 
                         </div>
                     </div>
                     <div class="col-auto float-end ms-2 mt-4">
-                        <a href="#" class="btn  btn-primary"
+                      <!--  <a href="#" class="btn  btn-primary"
                            onclick="document.getElementById('payslip_form').submit(); return false;"
                            data-bs-toggle="tooltip" title="<?php echo e(__('WPS')); ?>"
                            data-original-title="<?php echo e(__('WPS')); ?>">
                             <?php echo e(__('Export WPS')); ?>
 
-                        </a>
+                        </a> -->
+                        <input type="button" value="<?php echo e(__('Export WPS')); ?>" class="btn btn-primary" id="wps_export">
 
 
                     </div>
@@ -214,34 +235,7 @@
                     
                     
                 </form>
-                <a href="<?php echo e(route('employee.export')); ?>" data-bs-toggle="tooltip" data-bs-placement="top"
-                    data-bs-original-title="<?php echo e(__('Export Payroll Sheet')); ?>" class="btn btn-sm btn-primary" >
-                    <i class="ti ti-file-export"></i>
-                </a>
-                <a href="<?php echo e(route('employee.export')); ?>" data-bs-toggle="tooltip" data-bs-placement="top"
-                    data-bs-original-title="<?php echo e(__('Export WPS IWIRE')); ?>" class="btn btn-sm btn-primary" >
-                    <i class="ti ti-file-export"></i>
-                </a>
-                <a href="<?php echo e(route('employee.export')); ?>" data-bs-toggle="tooltip" data-bs-placement="top"
-                    data-bs-original-title="<?php echo e(__('Export WPS LULU')); ?>" class="btn btn-sm btn-primary" >
-                    <i class="ti ti-file-export"></i>
-                </a>
-                <a href="<?php echo e(route('employee.export')); ?>" data-bs-toggle="tooltip" data-bs-placement="top"
-                    data-bs-original-title="<?php echo e(__('Export WPS FIRST GULF')); ?>" class="btn btn-sm btn-primary" >
-                    <i class="ti ti-file-export"></i>
-                </a>
-                <a href="<?php echo e(route('employee.export')); ?>" data-bs-toggle="tooltip" data-bs-placement="top"
-                    data-bs-original-title="<?php echo e(__('Export WPS RAK BANK')); ?>" class="btn btn-sm btn-primary" >
-                    <i class="ti ti-file-export"></i>
-                </a>
-                <a href="<?php echo e(route('employee.export')); ?>" data-bs-toggle="tooltip" data-bs-placement="top"
-                    data-bs-original-title="<?php echo e(__('Export WPS AL ANSARI')); ?>" class="btn btn-sm btn-primary" >
-                    <i class="ti ti-file-export"></i>
-                </a>
-                <a href="<?php echo e(route('employee.export')); ?>" data-bs-toggle="tooltip" data-bs-placement="top"
-                    data-bs-original-title="<?php echo e(__('Export WPS AL ROSTAMANI')); ?>" class="btn btn-sm btn-primary" >
-                    <i class="ti ti-file-export"></i>
-                </a>
+                
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -586,6 +580,48 @@
 
                 }
             });
+            // Below Function Newly added - Touqeer
+            $(document).on('click', '#wps_export',
+                'a[data-ajax-popup="true"], button[data-ajax-popup="true"], div[data-ajax-popup="true"]',
+                function () {
+                    var month = $(".month").val();
+                    var year = $(".year").val();
+                    var datePicker = year + '-' + month;
+                    var format =$(".format").val();
+                    console.log(month);
+                    console.log(year);
+                    console.log(format);
+
+                    var title = 'WPS Export';
+                    var size = 'md';
+                    var url = 'payslip/bulk_pay_create/' + datePicker;
+
+                    // return false;
+
+                    $("#commonModal .modal-title").html(title);
+                    $("#commonModal .modal-dialog").addClass('modal-' + size);
+                    $.ajax({
+                        url: url,
+                        success: function (data) {
+
+                            // alert(data);
+                            // return false;
+                            if (data.length) {
+                                $('#commonModal .modal-body').html(data);
+                                $("#commonModal").modal('show');
+                                // common_bind();
+                            } else {
+                                show_toastr('Error', 'Permission denied.');
+                                $("#commonModal").modal('hide');
+                            }
+                        },
+                        error: function (data) {
+                            data = data.responseJSON;
+                            show_toastr('Error', data.error);
+                        }
+                    });
+                });
+
         });
 
     </script>

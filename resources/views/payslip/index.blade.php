@@ -111,10 +111,26 @@
                 {{ Form::open(['route' => ['payslip.store'], 'method' => 'POST', 'id' => 'payslip_form']) }}
                 <div class="d-flex align-items-center justify-content-end">
 
+
+                <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12 col-12 mx-2">
+                        <div class="btn-box">
+                            {{ Form::label('month', __('Select Month'), ['class' => 'form-label']) }}
+                            {{ Form::select('month', $month, null, ['class' => 'form-control select', 'id' => 'month']) }}
+
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12 col-12 mx-2">
+                        <div class="btn-box">
+                            {{ Form::label('year', __('Select Year'), ['class' => 'form-label']) }}
+                            {{ Form::select('year', $year, null, ['class' => 'form-control select', 'id' => 'year']) }}
+
+                        </div>
+                    </div>
+
                     <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12 col-12 mx-2">
                         <div class="btn-box">
                             {{ Form::label('format', __('WPS Format'), ['class' => 'form-label']) }}
-                            {{ Form::select('format', $format, null, ['class' => 'form-control select', 'id' => 'month']) }}
+                            {{ Form::select('format', $format, null, ['class' => 'form-control select', 'id' => 'format']) }}
 
                         </div>
                     </div>
@@ -125,6 +141,7 @@
                            data-original-title="{{ __('WPS') }}">
                             {{ __('Export WPS') }}
                         </a>
+                        
 
 
                     </div>
@@ -208,34 +225,7 @@
                         @endcan --}}
                     {{-- </div> --}}
                 </form>
-                <a href="{{ route('employee.export') }}" data-bs-toggle="tooltip" data-bs-placement="top"
-                    data-bs-original-title="{{ __('Export Payroll Sheet') }}" class="btn btn-sm btn-primary" >
-                    <i class="ti ti-file-export"></i>
-                </a>
-                <a href="{{ route('employee.export') }}" data-bs-toggle="tooltip" data-bs-placement="top"
-                    data-bs-original-title="{{ __('Export WPS IWIRE') }}" class="btn btn-sm btn-primary" >
-                    <i class="ti ti-file-export"></i>
-                </a>
-                <a href="{{ route('employee.export') }}" data-bs-toggle="tooltip" data-bs-placement="top"
-                    data-bs-original-title="{{ __('Export WPS LULU') }}" class="btn btn-sm btn-primary" >
-                    <i class="ti ti-file-export"></i>
-                </a>
-                <a href="{{ route('employee.export') }}" data-bs-toggle="tooltip" data-bs-placement="top"
-                    data-bs-original-title="{{ __('Export WPS FIRST GULF') }}" class="btn btn-sm btn-primary" >
-                    <i class="ti ti-file-export"></i>
-                </a>
-                <a href="{{ route('employee.export') }}" data-bs-toggle="tooltip" data-bs-placement="top"
-                    data-bs-original-title="{{ __('Export WPS RAK BANK') }}" class="btn btn-sm btn-primary" >
-                    <i class="ti ti-file-export"></i>
-                </a>
-                <a href="{{ route('employee.export') }}" data-bs-toggle="tooltip" data-bs-placement="top"
-                    data-bs-original-title="{{ __('Export WPS AL ANSARI') }}" class="btn btn-sm btn-primary" >
-                    <i class="ti ti-file-export"></i>
-                </a>
-                <a href="{{ route('employee.export') }}" data-bs-toggle="tooltip" data-bs-placement="top"
-                    data-bs-original-title="{{ __('Export WPS AL ROSTAMANI') }}" class="btn btn-sm btn-primary" >
-                    <i class="ti ti-file-export"></i>
-                </a>
+                
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -580,7 +570,6 @@
 
                 }
             });
-        });
 
     </script>
 @endpush

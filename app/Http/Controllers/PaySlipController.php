@@ -101,12 +101,15 @@ class PaySlipController extends Controller
         }
 
         $month = $request->month;
+        //dd($month);
         //$m  =   $month;
         $year  = $request->year;
+        //dd($year);
         //$y  =   $year;
 
-        //$formate_month_year = $year . '-' . $month;
-        $formate_month_year = '2022-09';
+        $formate_month_year = $year . '-' . $month;
+        //dd($formate_month_year);
+        //$formate_month_year = '2022-09';
         $name = 'payroll_' . date('Y-m-d i:h:s');
         $data = Excel::download(new PayrollExport($formate_month_year), $name . '.xlsx'); 
 
