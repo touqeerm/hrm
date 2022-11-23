@@ -14,6 +14,8 @@ use App\Imports\ImportLeave;
 use App\Imports\EmployeesImport;
 use App\Exports\LeaveExport;
 use Maatwebsite\Excel\Facades\Excel;
+use Carbon\Carbon;
+
 
 class LeaveController extends Controller
 {
@@ -74,14 +76,19 @@ class LeaveController extends Controller
             }
             else
             {
-                // dd($timesheetData);
+                 //dd($leaves[3]);
                 $leave_d=new Leave();
                 $leave_d->employee_id=$leaves[0];
                 $leave_d->leave_type_id=$leaves[1];
-                $leave_d->applied_on=$leaves[2];
-                $leave_d->start_date=$leaves[3];
-                $leave_d->end_date=$leaves[4];
-                $leave_d->total_leave_days=$leaves[5];
+                $leave_d->applied_on=date('Y-m-d');
+                $leave_d->start_date=\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($leaves[3]);
+                $leave_d->end_date=\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($leaves[4]);
+                //$startDate = new \DateTime($leave_d->start_date);
+                //$endDate = new \DateTime($leave_d->end_date);
+                //$total_leave_days = $startDate->diff($endDate);
+                //dd($leave_d->start_date);
+                $diff= $leave_d->start_date->diff($leave_d->end_date);
+                $leave_d->total_leave_days=$diff->format('%d');
                 $leave_d->leave_reason=$leaves[6];
                 $leave_d->remark=$leaves[7];
                 $leave_d->status=$leaves[8];
