@@ -72,7 +72,7 @@ class EmployeeController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
+        //dd($request->all());
 
         if (\Auth::user()->can('Create Employee')) {
             $validator = \Validator::make(
