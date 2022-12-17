@@ -367,7 +367,7 @@ class PaySlipController extends Controller
 
     public function search_json(Request $request)
     {
-
+        //dd($request);
         $formate_month_year = $request->datePicker;
         $validatePaysilp    = PaySlip::where('salary_month', '=', $formate_month_year)->where('created_by', \Auth::user()->creatorId())->get()->toarray();
 

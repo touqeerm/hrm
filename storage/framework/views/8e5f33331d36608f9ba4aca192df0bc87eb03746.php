@@ -60,7 +60,7 @@
         </div>
 
     </div>
-
+<!--
     <div class="col-12">
         <div class="card">
             <div class="card-header">
@@ -174,7 +174,7 @@
             </div>    
         </div>
     </div>
-
+-->
     <div class="col-12">
         <div class="card">
             <div class="card-header">
@@ -273,7 +273,7 @@
             function callback() {
                 var month = $(".month_date").val();
                 var year = $(".year_date").val();
-
+                console.log("log1");
                 if (month == '') {
                     month = '<?php echo e(date('m', strtotime('last month'))); ?>';
                     year = '<?php echo e(date('Y')); ?>';
@@ -290,7 +290,7 @@
                     },
                     success: function (data) {
 
-
+                        console.log("Success");
                         var datatable_data = {
                             data: data
                         };
@@ -305,7 +305,7 @@
                         }
 
                         function renderButton(data, cell, row) {
-
+                            console.log("Render");
                             var $div = $(row);
                             employee_id = $div.find('td:eq(0)').text();
                             status = $div.find('td:eq(6)').text();
@@ -495,7 +495,7 @@
 
                     },
                     error: function (data) {
-
+                        console.log("Error");
                     }
 
                 });
@@ -580,6 +580,7 @@
 
                 }
             });
+        });
 
     </script>
 <?php $__env->stopPush(); ?>
