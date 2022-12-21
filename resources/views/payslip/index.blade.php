@@ -54,7 +54,7 @@
         </div>
 
     </div>
-<!--
+
     <div class="col-12">
         <div class="card">
             <div class="card-header">
@@ -152,7 +152,7 @@
             </div>    
         </div>
     </div>
--->
+
     <div class="col-12">
         <div class="card">
             <div class="card-header">
@@ -324,7 +324,7 @@
                             if (status == "UnPaid" && data != 0) {
                                 clickToPaid = '<a href="{{ url('payslip/paysalary/') }}/' + id +
                                     '/' + datePicker + '"  class="view-btn primary-bg btn-sm">' +
-                                    '{{ __('Click To Paid') }}' + '</a>  ';
+                                    '{{ __('Click To Pay') }}' + '</a>  ';
                             }
 
                             if (data != 0) {
@@ -390,7 +390,7 @@
                                     var clickToPaid =
                                         '<a href="{{ url('payslip/paysalary/') }}/' + id +
                                         '/' + datePicker + '"  class="btn-sm btn btn-primary">' +
-                                        '{{ __('Click To Paid') }}' + '</a>  ';
+                                        '{{ __('Click To Pay') }}' + '</a>  ';
                                 } else {
                                     var clickToPaid = '';
                                 }
