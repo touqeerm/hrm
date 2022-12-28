@@ -109,81 +109,53 @@ $emailTemplate = App\Models\EmailTemplate::first();
             @endif
                 <!--dashboard-->
 
-            <!--Master Setup-->
-            @if (\Auth::user()->type == 'company')
-                @if (Gate::check('Manage Department') ||
-                    Gate::check('Manage Designation') ||
-                    Gate::check('Manage Document Type') ||
-                    Gate::check('Manage Branch') ||
-                    Gate::check('Manage Award Type') ||
-                    Gate::check('Manage Termination Types') ||
-                    Gate::check('Manage Payslip Type') ||
-                    Gate::check('Manage Allowance Option') ||
-                    Gate::check('Manage Loan Options') ||
-                    Gate::check('Manage Deduction Options') ||
-                    Gate::check('Manage Expense Type') ||
-                    Gate::check('Manage Income Type') ||
-                    Gate::check('Manage Payment Type') ||
-                    Gate::check('Manage Leave Type') ||
-                    Gate::check('Manage Training Type') ||
-                    Gate::check('Manage Job Category') ||
-                    Gate::check('Manage Job Stage'))
-                    <li class="dash-item dash-hasmenu">
-                    
-                        <a href="{{route('branch.index')}}" class="dash-link"><span class="dash-micon"><i
-                                    class="ti ti-table"></i></span><span
-                                class="dash-mtext">{{ __('Master Setup') }}</span></a>
-                        </li>
-
-                @endif
-            @endif
-            <!--Master Setup End-->
-
-
-            <!--------------------- Start System Setup ----------------------------------->
-            @if((\Auth::user()->type == 'company'))
-                    <li class="dash-item ">
-                        <a href="{{ route('settings.index') }}" class="dash-link"><span
-                                class="dash-micon"><i class="ti ti-settings"></i></span><span
-                                class="dash-mtext">{{ __('Company Details') }}</span></a>
-
+                <!-- user-->
+                @if (\Auth::user()->type == 'super admin')
+                    <li class="dash-item">
+                        <a href="{{ route('user.index') }}" class="dash-link"><span class="dash-micon"><i
+                                    class="ti ti-user"></i></span><span
+                                class="dash-mtext">{{ __('Company') }}</span></a>
                     </li>
+                @else
+                    @if (Gate::check('Manage User') || Gate::check('Manage Role') || Gate::check('Manage Employee Profile') || Gate::check('Manage Employee Last Login'))
+                        <li class="dash-item dash-hasmenu">
+                            <a href="#!" class="dash-link"><span class="dash-micon"><i
+                                        class="ti ti-users"></i></span><span
+                                    class="dash-mtext">{{ __('Staff') }}</span><span class="dash-arrow"><i
+                                        data-feather="chevron-right"></i></span></a>
+                            <ul class="dash-submenu">
+                                @can('Manage User')
+                                    <li class="dash-item">
+                                        <a class="dash-link"
+                                            href="{{ route('user.index') }}">{{ __('User') }}</a>
+                                    </li>
+                                @endcan
+                                @can('Manage Role')
+                                    <li class="dash-item">
+                                        <a class="dash-link"
+                                            href="{{ route('roles.index') }}">{{ __('Role') }}</a>
+                                    </li>
+                                @endcan
+                                @can('Manage Employee Profile')
+                                    <li class="dash-item">
+                                        <a class="dash-link"
+                                            href="{{ route('employee.profile') }}">{{ __('Employee Profile') }}</a>
+                                    </li>
+                                @endcan
+                                @can('Manage Employee Last Login')
+                                    <li class="dash-item">
+                                        <a class="dash-link"
+                                            href="{{ route('lastlogin') }}">{{ __('Last Login') }}</a>
+                                    </li>
+                                @endcan
+
+                            </ul>
+                        </li>
+                    @endif
                 @endif
-                
+                <!-- user-->
 
-             @if((\Auth::user()->type != 'super admin'))
-
-             @if( Gate::check('Manage Plan') || Gate::check('Manage Order') || Gate::check('Manage Company Settings'))
-                 <li class="dash-item dash-hasmenu">
-                     <a href="#!" class="dash-link ">
-                         <span class="dash-micon"><i class="ti ti-settings"></i></span><span class="dash-mtext">{{__('System Setup')}}</span><span class="dash-arrow">
-                                 <i data-feather="chevron-right"></i></span>
-                     </a>
-                     <ul class="dash-submenu">
-                         @if(Gate::check('Manage Company Settings'))
-                             <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'company-setting') ? ' active' : '' }}">
-                                 <a href="{{ route('settings.index') }}" class="dash-link">{{__('System Settings')}}</a>
-                             </li>
-                         @endif
-                         @if(Gate::check('Manage Plan'))
-                             <li class="dash-item{{ (Request::route()->getName() == 'plans.index' || Request::route()->getName() == 'stripe') ? ' active' : '' }}">
-                                 <a href="{{ route('plans.index') }}" class="dash-link">{{__('Setup Subscription Plan')}}</a>
-                             </li>
-                         @endif
-                         @if(\Auth::user()->type == 'super admin' || \Auth::user()->type == 'company')
-                             <li class="dash-item {{ (Request::segment(1) == 'order')? 'active' : ''}}">
-                                 <a href="{{ route('order.index') }}" class="dash-link">{{__('Order')}}</a>
-                             </li>
-                         @endif
-                     </ul>
-                 </li>
-         @endif
-             @endif
-
-         <!--------------------- End System Setup ----------------------------------->
-
-
-            <!-- Employee Start-->
+                <!-- employee-->
                 @if (Gate::check('Manage Employee'))
                     @if (\Auth::user()->type == 'employee')
                         @php
@@ -193,26 +165,25 @@ $emailTemplate = App\Models\EmailTemplate::first();
                             <a href="{{ route('employee.show', \Illuminate\Support\Facades\Crypt::encrypt($employee->id)) }}"
                                 class="dash-link"><span class="dash-micon"><i
                                         class="ti ti-user"></i></span><span
-                                    class="dash-mtext">{{ __('Employee Details') }}</span></a>
+                                    class="dash-mtext">{{ __('Employee') }}</span></a>
                         </li>
                     @else
                         <li class="dash-item {{ Request::segment(1) == 'employee' ? 'active' : '' }}">
                             <a href="{{ route('employee.index') }}" class="dash-link"><span
                                     class="dash-micon"><i class="ti ti-user"></i></span><span
-                                    class="dash-mtext">{{ __('Employee Details') }}</span></a>
+                                    class="dash-mtext">{{ __('Employee') }}</span></a>
                         </li>
                     @endif
                 @endif
-                
-                <!-- Employee End-->
+                <!-- employee-->
 
-                <!-- Payroll Start-->
+                <!-- payroll-->
                 @if (Gate::check('Manage Set Salary') || Gate::check('Manage Pay Slip'))
                     <li
                         class="dash-item dash-hasmenu  {{ Request::segment(1) == 'setsalary' ? 'dash-trigger active' : '' }}">
                         <a href="#!" class="dash-link"><span class="dash-micon"><i
                                     class="ti ti-receipt"></i></span><span
-                                class="dash-mtext">{{ __('Payroll') }}</span><span class="dash-arrow"><i
+                                class="dash-mtext">{{ __('Payslip Management') }}</span><span class="dash-arrow"><i
                                     data-feather="chevron-right"></i></span></a>
                         <ul class="dash-submenu ">
                             <li class="dash-item {{ Request::segment(1) == 'setsalary' ? 'active' : '-' }}">
@@ -227,7 +198,7 @@ $emailTemplate = App\Models\EmailTemplate::first();
                         </ul>
                     </li>
                 @endif
-                <!-- Payroll End-->
+                <!-- payroll-->
 
                 @if (\Auth::user()->type == 'employee')
                     <li
@@ -239,7 +210,7 @@ $emailTemplate = App\Models\EmailTemplate::first();
                         <ul class="dash-submenu">
                             <li class="dash-item {{ Request::segment(1) == 'setsalary' ? 'active' : '-' }}">
                                 <a class="dash-link"
-                                    href="{{ route('setsalary.show', \Auth::user()->id) }}">{{ __('Salary Details') }}</a>
+                                    href="{{ route('setsalary.show', \Auth::user()->id) }}">{{ __('Set Salary') }}</a>
                             </li> 
                             <li class="dash-item">
                                 <a class="dash-link"
@@ -249,27 +220,171 @@ $emailTemplate = App\Models\EmailTemplate::first();
                     </li>
                 @endif
 
-                <!-- Document Start-->
-                @if (Gate::check('Manage Document')) 
-                    <li class="dash-item">
-                        <a href="{{ route('document-upload.index') }}" class="dash-link"><span
-                                class="dash-micon"><i class="ti ti-file"></i></span><span
-                                class="dash-mtext">{{ __('Document') }}</span></a>
-                    </li>  
-                @endcan
-                <!-- Document End -->
-
-
-                <!-- Assets Start-->
-                @if (Gate::check('Manage Assets'))
-                    <li class="dash-item">
-                        <a href="{{ route('account-assets.index') }}" class="dash-link"><span
-                                class="dash-micon"><i class="ti ti-medical-cross"></i></span><span
-                                class="dash-mtext">{{ __('Assets') }}</span></a>
+                <!-- timesheet-->
+                @if (Gate::check('Manage Attendance') || Gate::check('Manage Leave') || Gate::check('Manage TimeSheet'))
+                    <li class="dash-item dash-hasmenu">
+                        <a href="#!" class="dash-link"><span class="dash-micon"><i
+                                    class="ti ti-clock"></i></span><span
+                                class="dash-mtext">{{ __('Leave Management') }}</span><span class="dash-arrow"><i
+                                    data-feather="chevron-right"></i></span></a>
+                        <ul class="dash-submenu">
+                            @can('Manage TimeSheet')
+                                <li class="dash-item">
+                                    <a class="dash-link"
+                                        href="{{ route('timesheet.index') }}">{{ __('Timesheet') }}</a>
+                                </li>
+                            @endcan
+                            @can('Manage Leave')
+                                <li class="dash-item">
+                                    <a class="dash-link"
+                                        href="{{ route('leave.index') }}">{{ __('Manage Leave') }}</a>
+                                </li>
+                            @endcan
+                            @can('Manage Attendance')
+                                <li class="dash-item dash-hasmenu">
+                                    <a href="#!" class="dash-link"><span
+                                            class="dash-mtext">{{ __('Attendance') }}</span><span
+                                            class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
+                                    <ul class="dash-submenu">
+                                        <li class="dash-item">
+                                            <a class="dash-link"
+                                                href="{{ route('attendanceemployee.index') }}">{{ __('Marked Attendance') }}</a>
+                                        </li>
+                                        @can('Create Attendance')
+                                            <li class="dash-item">
+                                                <a class="dash-link"
+                                                    href="{{ route('attendanceemployee.bulkattendance') }}">{{ __('Bulk Attendance') }}</a>
+                                            </li>
+                                        @endcan
+                                    </ul>
+                                </li>
+                            @endcan
+                        </ul>
                     </li> 
-                @endcan                
-                <!-- Assets End-->
-                
+                @endif
+                <!--timesheet-->
+
+                <!-- performance-->
+                @if (Gate::check('Manage Indicator') || Gate::check('Manage Appraisal') || Gate::check('Manage Goal Tracking'))
+                    <li class="dash-item dash-hasmenu">
+                        <a href="#!" class="dash-link"><span class="dash-micon"><i
+                                    class="ti ti-3d-cube-sphere"></i></span><span
+                                class="dash-mtext">{{ __('Performance') }}</span><span class="dash-arrow"><i
+                                    data-feather="chevron-right"></i></span></a>
+                        <ul class="dash-submenu">
+                            @can('Manage Indicator')
+                                <li class="dash-item">
+                                    <a class="dash-link"
+                                        href="{{ route('indicator.index') }}">{{ __('Indicator') }}</a>
+                                </li>
+                            @endcan
+
+                            @can('Manage Appraisal')
+                                <li class="dash-item">
+                                    <a class="dash-link"
+                                        href="{{ route('appraisal.index') }}">{{ __('Appraisal') }}</a>
+                                </li>
+                            @endcan
+
+                            @can('Manage Goal Tracking')
+                                <li class="dash-item">
+                                    <a class="dash-link"
+                                        href="{{ route('goaltracking.index') }}">{{ __('Goal Tracking') }}</a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endif
+                <!--performance-->
+
+                <!--fianance-->
+                @if (Gate::check('Manage Account List') || Gate::check('Manage Payee') || Gate::check('Manage Payer') || Gate::check('Manage Deposit') || Gate::check('Manage Expense') || Gate::check('Manage Transfer Balance'))
+                    <li class="dash-item dash-hasmenu">
+                        <a href="#!" class="dash-link"><span class="dash-micon"><i
+                                    class="ti ti-wallet"></i></span><span
+                                class="dash-mtext">{{ __('Finance') }}</span><span class="dash-arrow"><i
+                                    data-feather="chevron-right"></i></span></a>
+                        <ul class="dash-submenu">
+                            @can('Manage Account List')
+                                <li class="dash-item">
+                                    <a class="dash-link"
+                                        href="{{ route('accountlist.index') }}">{{ __('Account List') }}</a>
+                                </li>
+                            @endcan
+                            @can('View Balance Account List')
+                                <li class="dash-item">
+                                    <a class="dash-link"
+                                        href="{{ route('accountbalance') }}">{{ __('Account Balance') }}</a>
+                                </li>
+                            @endcan
+                            @can('Manage Payee')
+                                <li class="dash-item">
+                                    <a class="dash-link"
+                                        href="{{ route('payees.index') }}">{{ __('Payees') }}</a>
+                                </li>
+                            @endcan
+
+                            @can('Manage Payer')
+                                <li class="dash-item">
+                                    <a class="dash-link"
+                                        href="{{ route('payer.index') }}">{{ __('Payers') }}</a>
+                                </li>
+                            @endcan
+
+                            @can('Manage Deposit')
+                                <li class="dash-item">
+                                    <a class="dash-link"
+                                        href="{{ route('deposit.index') }}">{{ __('Deposit') }}</a>
+                                </li>
+                            @endcan
+
+                            @can('Manage Expense')
+                                <li class="dash-item">
+                                    <a class="dash-link"
+                                        href="{{ route('expense.index') }}">{{ __('Expense') }}</a>
+                                </li>
+                            @endcan
+
+                            @can('Manage Transfer Balance')
+                                <li class="dash-item">
+                                    <a class="dash-link"
+                                        href="{{ route('transferbalance.index') }}">{{ __('Transfer Balance') }}</a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </li> 
+                @endif
+                <!-- fianance-->
+
+                <!--trainning-->
+                @if (Gate::check('Manage Trainer') || Gate::check('Manage Training'))
+                    <li
+                        class="dash-item dash-hasmenu {{ Request::segment(1) == 'training' ? 'dash-trigger active' : '' }}">
+                        <a href="#!" class="dash-link "><span class="dash-micon"><i
+                                    class="ti ti-school"></i></span><span
+                                class="dash-mtext">{{ __('Training') }}</span><span class="dash-arrow"><i
+                                    data-feather="chevron-right"></i></span></a>
+                        <ul class="dash-submenu">
+                            @can('Manage Training')
+                                <li class="dash-item {{ Request::segment(1) == 'training' ? ' active' : '' }}">
+                                    <a class="dash-link"
+                                        href="{{ route('training.index') }}">{{ __('Training List') }}</a>
+                                </li>
+                            @endcan
+
+                            @can('Manage Trainer')
+                                <li class="dash-item ">
+                                    <a class="dash-link"
+                                        href="{{ route('trainer.index') }}">{{ __('Trainer') }}</a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </li> 
+                @endif
+
+                <!-- tranning-->
+
+
                 <!-- HR-->
                 @if (Gate::check('Manage Awards') || Gate::check('Manage Transfer') || Gate::check('Manage Resignation') || Gate::check('Manage Travels') || Gate::check('Manage Promotion') || Gate::check('Manage Complaint') || Gate::check('Manage Warning') || Gate::check('Manage Termination') || Gate::check('Manage Announcement') || Gate::check('Manage Holiday'))
                     <li
@@ -393,55 +508,7 @@ $emailTemplate = App\Models\EmailTemplate::first();
                 </li> 
                 @endcan
                
-            <!--Employee End-->
-
-                <!-- user-->
-                @if (\Auth::user()->type == 'super admin')
-                    <li class="dash-item">
-                        <a href="{{ route('user.index') }}" class="dash-link"><span class="dash-micon"><i
-                                    class="ti ti-user"></i></span><span
-                                class="dash-mtext">{{ __('Company') }}</span></a>
-                    </li>
-                @else
-                    @if (Gate::check('Manage User') || Gate::check('Manage Role') || Gate::check('Manage Employee Profile') || Gate::check('Manage Employee Last Login'))
-                        <li class="dash-item dash-hasmenu">
-                            <a href="#!" class="dash-link"><span class="dash-micon"><i
-                                        class="ti ti-users"></i></span><span
-                                    class="dash-mtext">{{ __('Staff') }}</span><span class="dash-arrow"><i
-                                        data-feather="chevron-right"></i></span></a>
-                            <ul class="dash-submenu">
-                                @can('Manage User')
-                                    <li class="dash-item">
-                                        <a class="dash-link"
-                                            href="{{ route('user.index') }}">{{ __('User') }}</a>
-                                    </li>
-                                @endcan
-                                @can('Manage Role')
-                                    <li class="dash-item">
-                                        <a class="dash-link"
-                                            href="{{ route('roles.index') }}">{{ __('Role') }}</a>
-                                    </li>
-                                @endcan
-                                @can('Manage Employee Profile')
-                                    <li class="dash-item">
-                                        <a class="dash-link"
-                                            href="{{ route('employee.profile') }}">{{ __('Employee Profile') }}</a>
-                                    </li>
-                                @endcan
-                                @can('Manage Employee Last Login')
-                                    <li class="dash-item">
-                                        <a class="dash-link"
-                                            href="{{ route('lastlogin') }}">{{ __('Last Login') }}</a>
-                                    </li>
-                                @endcan
-
-                            </ul>
-                        </li>
-                    @endif
-                @endif
-                <!-- user-->
-
-                
+            <!--end-->
                
 
                 <!-- ticket-->
@@ -482,9 +549,24 @@ $emailTemplate = App\Models\EmailTemplate::first();
                     </li>   -->
                 @endif
 
+                <!-- assets-->
+                @if (Gate::check('Manage Assets'))
+                    <li class="dash-item">
+                        <a href="{{ route('account-assets.index') }}" class="dash-link"><span
+                                class="dash-micon"><i class="ti ti-medical-cross"></i></span><span
+                                class="dash-mtext">{{ __('Assets') }}</span></a>
+                    </li> 
+                @endcan
 
 
-
+                <!-- document-->
+                @if (Gate::check('Manage Document')) 
+                    <li class="dash-item">
+                        <a href="{{ route('document-upload.index') }}" class="dash-link"><span
+                                class="dash-micon"><i class="ti ti-file"></i></span><span
+                                class="dash-mtext">{{ __('Document') }}</span></a>
+                    </li>  
+                @endcan
 
                 <!--company policy-->
 
@@ -602,8 +684,8 @@ $emailTemplate = App\Models\EmailTemplate::first();
                     </li>
                 @endif 
 
-                <!-- Master Setup original
-                
+
+                <!--constant-->
                 @if (Gate::check('Manage Department') ||
                     Gate::check('Manage Designation') ||
                     Gate::check('Manage Document Type') ||
@@ -622,13 +704,10 @@ $emailTemplate = App\Models\EmailTemplate::first();
                     Gate::check('Manage Job Category') ||
                     Gate::check('Manage Job Stage'))
                     <li class="dash-item dash-hasmenu">
-                    
                         <a href="{{route('branch.index')}}" class="dash-link"><span class="dash-micon"><i
                                     class="ti ti-table"></i></span><span
                                 class="dash-mtext">{{ __('Master Setup') }}</span></a>
                         </li>
-                
-                        
                          <ul class="dash-submenu">
                             @can('Manage Branch')
                                 <li class="dash-item {{ request()->is('branch*') ? 'active' : '' }}">
@@ -655,7 +734,7 @@ $emailTemplate = App\Models\EmailTemplate::first();
                                 </li>
                             @endcan
 
-                            @can('Manage Award Type')
+                        <!--    @can('Manage Award Type')
                                 <li class="dash-item {{ request()->is('awardtype*') ? 'active' : '' }}">
                                     <a class="dash-link"
                                         href="{{ route('awardtype.index') }}">{{ __('Award Type') }}</a>
@@ -667,7 +746,7 @@ $emailTemplate = App\Models\EmailTemplate::first();
                                     <a class="dash-link"
                                         href="{{ route('terminationtype.index') }}">{{ __('Termination Type') }}</a>
                                 </li>
-                            @endcan 
+                            @endcan -->
                             @can('Manage Payslip Type')
                                 <li class="dash-item {{ request()->is('paysliptype*') ? 'active' : '' }}">
                                     <a class="dash-link"
@@ -694,7 +773,7 @@ $emailTemplate = App\Models\EmailTemplate::first();
                                         href="{{ route('deductionoption.index') }}">{{ __('Deduction Option') }}</a>
                                 </li>
                             @endcan
-                            @can('Manage Expense Type')
+                        <!--    @can('Manage Expense Type')
                                 <li class="dash-item {{ request()->is('expensetype*') ? 'active' : '' }}">
                                     <a class="dash-link"
                                         href="{{ route('expensetype.index') }}">{{ __('Expense Type') }}</a>
@@ -711,14 +790,14 @@ $emailTemplate = App\Models\EmailTemplate::first();
                                     <a class="dash-link"
                                         href="{{ route('paymenttype.index') }}">{{ __('Payment Type') }}</a>
                                 </li>
-                            @endcan 
+                            @endcan -->
                             @can('Manage Leave Type')
                                 <li class="dash-item {{ request()->is('leavetype*') ? 'active' : '' }}">
                                     <a class="dash-link"
                                         href="{{ route('leavetype.index') }}">{{ __('Leave Type') }}</a>
                                 </li>
                             @endcan
-                            @can('Manage Termination Type')
+                        <!--    @can('Manage Termination Type')
                                 <li
                                     class="dash-item {{ request()->is('terminationtype*') ? 'active' : '' }}">
                                     <a class="dash-link"
@@ -771,13 +850,52 @@ $emailTemplate = App\Models\EmailTemplate::first();
                                         href="{{ route('competencies.index') }}">{{ __('Competencies') }}</a>
                                 </li>
                             @endcan
-                        </ul>   
+                        </ul>  --> 
                 @endif
-                    -->
+                <!--constant-->
 
 
                
-               
+               @if((\Auth::user()->type == 'company'))
+                    <li class="dash-item ">
+                        <a href="{{ route('settings.index') }}" class="dash-link"><span
+                                class="dash-micon"><i class="ti ti-settings"></i></span><span
+                                class="dash-mtext">{{ __('System Setting') }}</span></a>
+
+                    </li>
+                @endif
+                 <!--------------------- Start System Setup ----------------------------------->
+
+             @if((\Auth::user()->type != 'super admin'))
+
+             @if( Gate::check('Manage Plan') || Gate::check('Manage Order') || Gate::check('Manage Company Settings'))
+                 <li class="dash-item dash-hasmenu">
+                     <a href="#!" class="dash-link ">
+                         <span class="dash-micon"><i class="ti ti-settings"></i></span><span class="dash-mtext">{{__('System Setup')}}</span><span class="dash-arrow">
+                                 <i data-feather="chevron-right"></i></span>
+                     </a>
+                     <ul class="dash-submenu">
+                         @if(Gate::check('Manage Company Settings'))
+                             <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'company-setting') ? ' active' : '' }}">
+                                 <a href="{{ route('settings.index') }}" class="dash-link">{{__('System Settings')}}</a>
+                             </li>
+                         @endif
+                         @if(Gate::check('Manage Plan'))
+                             <li class="dash-item{{ (Request::route()->getName() == 'plans.index' || Request::route()->getName() == 'stripe') ? ' active' : '' }}">
+                                 <a href="{{ route('plans.index') }}" class="dash-link">{{__('Setup Subscription Plan')}}</a>
+                             </li>
+                         @endif
+                         @if(\Auth::user()->type == 'super admin' || \Auth::user()->type == 'company')
+                             <li class="dash-item {{ (Request::segment(1) == 'order')? 'active' : ''}}">
+                                 <a href="{{ route('order.index') }}" class="dash-link">{{__('Order')}}</a>
+                             </li>
+                         @endif
+                     </ul>
+                 </li>
+         @endif
+             @endif
+
+         <!--------------------- End System Setup ----------------------------------->
 
 </ul>
 

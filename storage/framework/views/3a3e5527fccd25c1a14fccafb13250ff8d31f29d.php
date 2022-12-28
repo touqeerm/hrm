@@ -106,53 +106,81 @@ $emailTemplate = App\Models\EmailTemplate::first();
             <?php endif; ?>
                 <!--dashboard-->
 
-                <!-- user-->
-                <?php if(\Auth::user()->type == 'super admin'): ?>
-                    <li class="dash-item">
-                        <a href="<?php echo e(route('user.index')); ?>" class="dash-link"><span class="dash-micon"><i
-                                    class="ti ti-user"></i></span><span
-                                class="dash-mtext"><?php echo e(__('Company')); ?></span></a>
-                    </li>
-                <?php else: ?>
-                    <?php if(Gate::check('Manage User') || Gate::check('Manage Role') || Gate::check('Manage Employee Profile') || Gate::check('Manage Employee Last Login')): ?>
-                        <li class="dash-item dash-hasmenu">
-                            <a href="#!" class="dash-link"><span class="dash-micon"><i
-                                        class="ti ti-users"></i></span><span
-                                    class="dash-mtext"><?php echo e(__('Staff')); ?></span><span class="dash-arrow"><i
-                                        data-feather="chevron-right"></i></span></a>
-                            <ul class="dash-submenu">
-                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage User')): ?>
-                                    <li class="dash-item">
-                                        <a class="dash-link"
-                                            href="<?php echo e(route('user.index')); ?>"><?php echo e(__('User')); ?></a>
-                                    </li>
-                                <?php endif; ?>
-                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Role')): ?>
-                                    <li class="dash-item">
-                                        <a class="dash-link"
-                                            href="<?php echo e(route('roles.index')); ?>"><?php echo e(__('Role')); ?></a>
-                                    </li>
-                                <?php endif; ?>
-                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Employee Profile')): ?>
-                                    <li class="dash-item">
-                                        <a class="dash-link"
-                                            href="<?php echo e(route('employee.profile')); ?>"><?php echo e(__('Employee Profile')); ?></a>
-                                    </li>
-                                <?php endif; ?>
-                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Employee Last Login')): ?>
-                                    <li class="dash-item">
-                                        <a class="dash-link"
-                                            href="<?php echo e(route('lastlogin')); ?>"><?php echo e(__('Last Login')); ?></a>
-                                    </li>
-                                <?php endif; ?>
-
-                            </ul>
+            <!--Master Setup-->
+            <?php if(\Auth::user()->type == 'company'): ?>
+                <?php if(Gate::check('Manage Department') ||
+                    Gate::check('Manage Designation') ||
+                    Gate::check('Manage Document Type') ||
+                    Gate::check('Manage Branch') ||
+                    Gate::check('Manage Award Type') ||
+                    Gate::check('Manage Termination Types') ||
+                    Gate::check('Manage Payslip Type') ||
+                    Gate::check('Manage Allowance Option') ||
+                    Gate::check('Manage Loan Options') ||
+                    Gate::check('Manage Deduction Options') ||
+                    Gate::check('Manage Expense Type') ||
+                    Gate::check('Manage Income Type') ||
+                    Gate::check('Manage Payment Type') ||
+                    Gate::check('Manage Leave Type') ||
+                    Gate::check('Manage Training Type') ||
+                    Gate::check('Manage Job Category') ||
+                    Gate::check('Manage Job Stage')): ?>
+                    <li class="dash-item dash-hasmenu">
+                    
+                        <a href="<?php echo e(route('branch.index')); ?>" class="dash-link"><span class="dash-micon"><i
+                                    class="ti ti-table"></i></span><span
+                                class="dash-mtext"><?php echo e(__('Master Setup')); ?></span></a>
                         </li>
-                    <?php endif; ?>
-                <?php endif; ?>
-                <!-- user-->
 
-                <!-- employee-->
+                <?php endif; ?>
+            <?php endif; ?>
+            <!--Master Setup End-->
+
+
+            <!--------------------- Start System Setup ----------------------------------->
+            <?php if((\Auth::user()->type == 'company')): ?>
+                    <li class="dash-item ">
+                        <a href="<?php echo e(route('settings.index')); ?>" class="dash-link"><span
+                                class="dash-micon"><i class="ti ti-settings"></i></span><span
+                                class="dash-mtext"><?php echo e(__('Company Details')); ?></span></a>
+
+                    </li>
+                <?php endif; ?>
+                
+
+             <?php if((\Auth::user()->type != 'super admin')): ?>
+
+             <?php if( Gate::check('Manage Plan') || Gate::check('Manage Order') || Gate::check('Manage Company Settings')): ?>
+                 <li class="dash-item dash-hasmenu">
+                     <a href="#!" class="dash-link ">
+                         <span class="dash-micon"><i class="ti ti-settings"></i></span><span class="dash-mtext"><?php echo e(__('System Setup')); ?></span><span class="dash-arrow">
+                                 <i data-feather="chevron-right"></i></span>
+                     </a>
+                     <ul class="dash-submenu">
+                         <?php if(Gate::check('Manage Company Settings')): ?>
+                             <li class="dash-item dash-hasmenu <?php echo e((Request::segment(1) == 'company-setting') ? ' active' : ''); ?>">
+                                 <a href="<?php echo e(route('settings.index')); ?>" class="dash-link"><?php echo e(__('System Settings')); ?></a>
+                             </li>
+                         <?php endif; ?>
+                         <?php if(Gate::check('Manage Plan')): ?>
+                             <li class="dash-item<?php echo e((Request::route()->getName() == 'plans.index' || Request::route()->getName() == 'stripe') ? ' active' : ''); ?>">
+                                 <a href="<?php echo e(route('plans.index')); ?>" class="dash-link"><?php echo e(__('Setup Subscription Plan')); ?></a>
+                             </li>
+                         <?php endif; ?>
+                         <?php if(\Auth::user()->type == 'super admin' || \Auth::user()->type == 'company'): ?>
+                             <li class="dash-item <?php echo e((Request::segment(1) == 'order')? 'active' : ''); ?>">
+                                 <a href="<?php echo e(route('order.index')); ?>" class="dash-link"><?php echo e(__('Order')); ?></a>
+                             </li>
+                         <?php endif; ?>
+                     </ul>
+                 </li>
+         <?php endif; ?>
+             <?php endif; ?>
+
+         <!--------------------- End System Setup ----------------------------------->
+
+
+            <!-- Employee Start-->
                 <?php if(Gate::check('Manage Employee')): ?>
                     <?php if(\Auth::user()->type == 'employee'): ?>
                         <?php
@@ -162,25 +190,26 @@ $emailTemplate = App\Models\EmailTemplate::first();
                             <a href="<?php echo e(route('employee.show', \Illuminate\Support\Facades\Crypt::encrypt($employee->id))); ?>"
                                 class="dash-link"><span class="dash-micon"><i
                                         class="ti ti-user"></i></span><span
-                                    class="dash-mtext"><?php echo e(__('Employee')); ?></span></a>
+                                    class="dash-mtext"><?php echo e(__('Employee Details')); ?></span></a>
                         </li>
                     <?php else: ?>
                         <li class="dash-item <?php echo e(Request::segment(1) == 'employee' ? 'active' : ''); ?>">
                             <a href="<?php echo e(route('employee.index')); ?>" class="dash-link"><span
                                     class="dash-micon"><i class="ti ti-user"></i></span><span
-                                    class="dash-mtext"><?php echo e(__('Employee')); ?></span></a>
+                                    class="dash-mtext"><?php echo e(__('Employee Details')); ?></span></a>
                         </li>
                     <?php endif; ?>
                 <?php endif; ?>
-                <!-- employee-->
+                
+                <!-- Employee End-->
 
-                <!-- payroll-->
+                <!-- Payroll Start-->
                 <?php if(Gate::check('Manage Set Salary') || Gate::check('Manage Pay Slip')): ?>
                     <li
                         class="dash-item dash-hasmenu  <?php echo e(Request::segment(1) == 'setsalary' ? 'dash-trigger active' : ''); ?>">
                         <a href="#!" class="dash-link"><span class="dash-micon"><i
                                     class="ti ti-receipt"></i></span><span
-                                class="dash-mtext"><?php echo e(__('Payslip Management')); ?></span><span class="dash-arrow"><i
+                                class="dash-mtext"><?php echo e(__('Payroll')); ?></span><span class="dash-arrow"><i
                                     data-feather="chevron-right"></i></span></a>
                         <ul class="dash-submenu ">
                             <li class="dash-item <?php echo e(Request::segment(1) == 'setsalary' ? 'active' : '-'); ?>">
@@ -195,7 +224,7 @@ $emailTemplate = App\Models\EmailTemplate::first();
                         </ul>
                     </li>
                 <?php endif; ?>
-                <!-- payroll-->
+                <!-- Payroll End-->
 
                 <?php if(\Auth::user()->type == 'employee'): ?>
                     <li
@@ -207,7 +236,7 @@ $emailTemplate = App\Models\EmailTemplate::first();
                         <ul class="dash-submenu">
                             <li class="dash-item <?php echo e(Request::segment(1) == 'setsalary' ? 'active' : '-'); ?>">
                                 <a class="dash-link"
-                                    href="<?php echo e(route('setsalary.show', \Auth::user()->id)); ?>"><?php echo e(__('Set Salary')); ?></a>
+                                    href="<?php echo e(route('setsalary.show', \Auth::user()->id)); ?>"><?php echo e(__('Salary Details')); ?></a>
                             </li> 
                             <li class="dash-item">
                                 <a class="dash-link"
@@ -217,171 +246,27 @@ $emailTemplate = App\Models\EmailTemplate::first();
                     </li>
                 <?php endif; ?>
 
-                <!-- timesheet-->
-                <?php if(Gate::check('Manage Attendance') || Gate::check('Manage Leave') || Gate::check('Manage TimeSheet')): ?>
-                    <li class="dash-item dash-hasmenu">
-                        <a href="#!" class="dash-link"><span class="dash-micon"><i
-                                    class="ti ti-clock"></i></span><span
-                                class="dash-mtext"><?php echo e(__('Leave Management')); ?></span><span class="dash-arrow"><i
-                                    data-feather="chevron-right"></i></span></a>
-                        <ul class="dash-submenu">
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage TimeSheet')): ?>
-                                <li class="dash-item">
-                                    <a class="dash-link"
-                                        href="<?php echo e(route('timesheet.index')); ?>"><?php echo e(__('Timesheet')); ?></a>
-                                </li>
-                            <?php endif; ?>
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Leave')): ?>
-                                <li class="dash-item">
-                                    <a class="dash-link"
-                                        href="<?php echo e(route('leave.index')); ?>"><?php echo e(__('Manage Leave')); ?></a>
-                                </li>
-                            <?php endif; ?>
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Attendance')): ?>
-                                <li class="dash-item dash-hasmenu">
-                                    <a href="#!" class="dash-link"><span
-                                            class="dash-mtext"><?php echo e(__('Attendance')); ?></span><span
-                                            class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
-                                    <ul class="dash-submenu">
-                                        <li class="dash-item">
-                                            <a class="dash-link"
-                                                href="<?php echo e(route('attendanceemployee.index')); ?>"><?php echo e(__('Marked Attendance')); ?></a>
-                                        </li>
-                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Create Attendance')): ?>
-                                            <li class="dash-item">
-                                                <a class="dash-link"
-                                                    href="<?php echo e(route('attendanceemployee.bulkattendance')); ?>"><?php echo e(__('Bulk Attendance')); ?></a>
-                                            </li>
-                                        <?php endif; ?>
-                                    </ul>
-                                </li>
-                            <?php endif; ?>
-                        </ul>
+                <!-- Document Start-->
+                <?php if(Gate::check('Manage Document')): ?> 
+                    <li class="dash-item">
+                        <a href="<?php echo e(route('document-upload.index')); ?>" class="dash-link"><span
+                                class="dash-micon"><i class="ti ti-file"></i></span><span
+                                class="dash-mtext"><?php echo e(__('Document')); ?></span></a>
+                    </li>  
+                <?php endif; ?>
+                <!-- Document End -->
+
+
+                <!-- Assets Start-->
+                <?php if(Gate::check('Manage Assets')): ?>
+                    <li class="dash-item">
+                        <a href="<?php echo e(route('account-assets.index')); ?>" class="dash-link"><span
+                                class="dash-micon"><i class="ti ti-medical-cross"></i></span><span
+                                class="dash-mtext"><?php echo e(__('Assets')); ?></span></a>
                     </li> 
-                <?php endif; ?>
-                <!--timesheet-->
-
-                <!-- performance-->
-                <?php if(Gate::check('Manage Indicator') || Gate::check('Manage Appraisal') || Gate::check('Manage Goal Tracking')): ?>
-                    <li class="dash-item dash-hasmenu">
-                        <a href="#!" class="dash-link"><span class="dash-micon"><i
-                                    class="ti ti-3d-cube-sphere"></i></span><span
-                                class="dash-mtext"><?php echo e(__('Performance')); ?></span><span class="dash-arrow"><i
-                                    data-feather="chevron-right"></i></span></a>
-                        <ul class="dash-submenu">
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Indicator')): ?>
-                                <li class="dash-item">
-                                    <a class="dash-link"
-                                        href="<?php echo e(route('indicator.index')); ?>"><?php echo e(__('Indicator')); ?></a>
-                                </li>
-                            <?php endif; ?>
-
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Appraisal')): ?>
-                                <li class="dash-item">
-                                    <a class="dash-link"
-                                        href="<?php echo e(route('appraisal.index')); ?>"><?php echo e(__('Appraisal')); ?></a>
-                                </li>
-                            <?php endif; ?>
-
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Goal Tracking')): ?>
-                                <li class="dash-item">
-                                    <a class="dash-link"
-                                        href="<?php echo e(route('goaltracking.index')); ?>"><?php echo e(__('Goal Tracking')); ?></a>
-                                </li>
-                            <?php endif; ?>
-                        </ul>
-                    </li>
-                <?php endif; ?>
-                <!--performance-->
-
-                <!--fianance-->
-                <?php if(Gate::check('Manage Account List') || Gate::check('Manage Payee') || Gate::check('Manage Payer') || Gate::check('Manage Deposit') || Gate::check('Manage Expense') || Gate::check('Manage Transfer Balance')): ?>
-                    <li class="dash-item dash-hasmenu">
-                        <a href="#!" class="dash-link"><span class="dash-micon"><i
-                                    class="ti ti-wallet"></i></span><span
-                                class="dash-mtext"><?php echo e(__('Finance')); ?></span><span class="dash-arrow"><i
-                                    data-feather="chevron-right"></i></span></a>
-                        <ul class="dash-submenu">
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Account List')): ?>
-                                <li class="dash-item">
-                                    <a class="dash-link"
-                                        href="<?php echo e(route('accountlist.index')); ?>"><?php echo e(__('Account List')); ?></a>
-                                </li>
-                            <?php endif; ?>
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('View Balance Account List')): ?>
-                                <li class="dash-item">
-                                    <a class="dash-link"
-                                        href="<?php echo e(route('accountbalance')); ?>"><?php echo e(__('Account Balance')); ?></a>
-                                </li>
-                            <?php endif; ?>
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Payee')): ?>
-                                <li class="dash-item">
-                                    <a class="dash-link"
-                                        href="<?php echo e(route('payees.index')); ?>"><?php echo e(__('Payees')); ?></a>
-                                </li>
-                            <?php endif; ?>
-
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Payer')): ?>
-                                <li class="dash-item">
-                                    <a class="dash-link"
-                                        href="<?php echo e(route('payer.index')); ?>"><?php echo e(__('Payers')); ?></a>
-                                </li>
-                            <?php endif; ?>
-
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Deposit')): ?>
-                                <li class="dash-item">
-                                    <a class="dash-link"
-                                        href="<?php echo e(route('deposit.index')); ?>"><?php echo e(__('Deposit')); ?></a>
-                                </li>
-                            <?php endif; ?>
-
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Expense')): ?>
-                                <li class="dash-item">
-                                    <a class="dash-link"
-                                        href="<?php echo e(route('expense.index')); ?>"><?php echo e(__('Expense')); ?></a>
-                                </li>
-                            <?php endif; ?>
-
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Transfer Balance')): ?>
-                                <li class="dash-item">
-                                    <a class="dash-link"
-                                        href="<?php echo e(route('transferbalance.index')); ?>"><?php echo e(__('Transfer Balance')); ?></a>
-                                </li>
-                            <?php endif; ?>
-                        </ul>
-                    </li> 
-                <?php endif; ?>
-                <!-- fianance-->
-
-                <!--trainning-->
-                <?php if(Gate::check('Manage Trainer') || Gate::check('Manage Training')): ?>
-                    <li
-                        class="dash-item dash-hasmenu <?php echo e(Request::segment(1) == 'training' ? 'dash-trigger active' : ''); ?>">
-                        <a href="#!" class="dash-link "><span class="dash-micon"><i
-                                    class="ti ti-school"></i></span><span
-                                class="dash-mtext"><?php echo e(__('Training')); ?></span><span class="dash-arrow"><i
-                                    data-feather="chevron-right"></i></span></a>
-                        <ul class="dash-submenu">
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Training')): ?>
-                                <li class="dash-item <?php echo e(Request::segment(1) == 'training' ? ' active' : ''); ?>">
-                                    <a class="dash-link"
-                                        href="<?php echo e(route('training.index')); ?>"><?php echo e(__('Training List')); ?></a>
-                                </li>
-                            <?php endif; ?>
-
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Trainer')): ?>
-                                <li class="dash-item ">
-                                    <a class="dash-link"
-                                        href="<?php echo e(route('trainer.index')); ?>"><?php echo e(__('Trainer')); ?></a>
-                                </li>
-                            <?php endif; ?>
-                        </ul>
-                    </li> 
-                <?php endif; ?>
-
-                <!-- tranning-->
-
-
+                <?php endif; ?>                
+                <!-- Assets End-->
+                
                 <!-- HR-->
                 <?php if(Gate::check('Manage Awards') || Gate::check('Manage Transfer') || Gate::check('Manage Resignation') || Gate::check('Manage Travels') || Gate::check('Manage Promotion') || Gate::check('Manage Complaint') || Gate::check('Manage Warning') || Gate::check('Manage Termination') || Gate::check('Manage Announcement') || Gate::check('Manage Holiday')): ?>
                     <li
@@ -505,7 +390,55 @@ $emailTemplate = App\Models\EmailTemplate::first();
                 </li> 
                 <?php endif; ?>
                
-            <!--end-->
+            <!--Employee End-->
+
+                <!-- user-->
+                <?php if(\Auth::user()->type == 'super admin'): ?>
+                    <li class="dash-item">
+                        <a href="<?php echo e(route('user.index')); ?>" class="dash-link"><span class="dash-micon"><i
+                                    class="ti ti-user"></i></span><span
+                                class="dash-mtext"><?php echo e(__('Company')); ?></span></a>
+                    </li>
+                <?php else: ?>
+                    <?php if(Gate::check('Manage User') || Gate::check('Manage Role') || Gate::check('Manage Employee Profile') || Gate::check('Manage Employee Last Login')): ?>
+                        <li class="dash-item dash-hasmenu">
+                            <a href="#!" class="dash-link"><span class="dash-micon"><i
+                                        class="ti ti-users"></i></span><span
+                                    class="dash-mtext"><?php echo e(__('Staff')); ?></span><span class="dash-arrow"><i
+                                        data-feather="chevron-right"></i></span></a>
+                            <ul class="dash-submenu">
+                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage User')): ?>
+                                    <li class="dash-item">
+                                        <a class="dash-link"
+                                            href="<?php echo e(route('user.index')); ?>"><?php echo e(__('User')); ?></a>
+                                    </li>
+                                <?php endif; ?>
+                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Role')): ?>
+                                    <li class="dash-item">
+                                        <a class="dash-link"
+                                            href="<?php echo e(route('roles.index')); ?>"><?php echo e(__('Role')); ?></a>
+                                    </li>
+                                <?php endif; ?>
+                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Employee Profile')): ?>
+                                    <li class="dash-item">
+                                        <a class="dash-link"
+                                            href="<?php echo e(route('employee.profile')); ?>"><?php echo e(__('Employee Profile')); ?></a>
+                                    </li>
+                                <?php endif; ?>
+                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Employee Last Login')): ?>
+                                    <li class="dash-item">
+                                        <a class="dash-link"
+                                            href="<?php echo e(route('lastlogin')); ?>"><?php echo e(__('Last Login')); ?></a>
+                                    </li>
+                                <?php endif; ?>
+
+                            </ul>
+                        </li>
+                    <?php endif; ?>
+                <?php endif; ?>
+                <!-- user-->
+
+                
                
 
                 <!-- ticket-->
@@ -546,24 +479,9 @@ $emailTemplate = App\Models\EmailTemplate::first();
                     </li>   -->
                 <?php endif; ?>
 
-                <!-- assets-->
-                <?php if(Gate::check('Manage Assets')): ?>
-                    <li class="dash-item">
-                        <a href="<?php echo e(route('account-assets.index')); ?>" class="dash-link"><span
-                                class="dash-micon"><i class="ti ti-medical-cross"></i></span><span
-                                class="dash-mtext"><?php echo e(__('Assets')); ?></span></a>
-                    </li> 
-                <?php endif; ?>
 
 
-                <!-- document-->
-                <?php if(Gate::check('Manage Document')): ?> 
-                    <li class="dash-item">
-                        <a href="<?php echo e(route('document-upload.index')); ?>" class="dash-link"><span
-                                class="dash-micon"><i class="ti ti-file"></i></span><span
-                                class="dash-mtext"><?php echo e(__('Document')); ?></span></a>
-                    </li>  
-                <?php endif; ?>
+
 
                 <!--company policy-->
 
@@ -681,8 +599,8 @@ $emailTemplate = App\Models\EmailTemplate::first();
                     </li>
                 <?php endif; ?> 
 
-
-                <!--constant-->
+                <!-- Master Setup original
+                
                 <?php if(Gate::check('Manage Department') ||
                     Gate::check('Manage Designation') ||
                     Gate::check('Manage Document Type') ||
@@ -701,10 +619,13 @@ $emailTemplate = App\Models\EmailTemplate::first();
                     Gate::check('Manage Job Category') ||
                     Gate::check('Manage Job Stage')): ?>
                     <li class="dash-item dash-hasmenu">
+                    
                         <a href="<?php echo e(route('branch.index')); ?>" class="dash-link"><span class="dash-micon"><i
                                     class="ti ti-table"></i></span><span
                                 class="dash-mtext"><?php echo e(__('Master Setup')); ?></span></a>
                         </li>
+                
+                        
                          <ul class="dash-submenu">
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Branch')): ?>
                                 <li class="dash-item <?php echo e(request()->is('branch*') ? 'active' : ''); ?>">
@@ -731,7 +652,7 @@ $emailTemplate = App\Models\EmailTemplate::first();
                                 </li>
                             <?php endif; ?>
 
-                        <!--    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Award Type')): ?>
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Award Type')): ?>
                                 <li class="dash-item <?php echo e(request()->is('awardtype*') ? 'active' : ''); ?>">
                                     <a class="dash-link"
                                         href="<?php echo e(route('awardtype.index')); ?>"><?php echo e(__('Award Type')); ?></a>
@@ -743,7 +664,7 @@ $emailTemplate = App\Models\EmailTemplate::first();
                                     <a class="dash-link"
                                         href="<?php echo e(route('terminationtype.index')); ?>"><?php echo e(__('Termination Type')); ?></a>
                                 </li>
-                            <?php endif; ?> -->
+                            <?php endif; ?> 
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Payslip Type')): ?>
                                 <li class="dash-item <?php echo e(request()->is('paysliptype*') ? 'active' : ''); ?>">
                                     <a class="dash-link"
@@ -770,7 +691,7 @@ $emailTemplate = App\Models\EmailTemplate::first();
                                         href="<?php echo e(route('deductionoption.index')); ?>"><?php echo e(__('Deduction Option')); ?></a>
                                 </li>
                             <?php endif; ?>
-                        <!--    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Expense Type')): ?>
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Expense Type')): ?>
                                 <li class="dash-item <?php echo e(request()->is('expensetype*') ? 'active' : ''); ?>">
                                     <a class="dash-link"
                                         href="<?php echo e(route('expensetype.index')); ?>"><?php echo e(__('Expense Type')); ?></a>
@@ -787,14 +708,14 @@ $emailTemplate = App\Models\EmailTemplate::first();
                                     <a class="dash-link"
                                         href="<?php echo e(route('paymenttype.index')); ?>"><?php echo e(__('Payment Type')); ?></a>
                                 </li>
-                            <?php endif; ?> -->
+                            <?php endif; ?> 
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Leave Type')): ?>
                                 <li class="dash-item <?php echo e(request()->is('leavetype*') ? 'active' : ''); ?>">
                                     <a class="dash-link"
                                         href="<?php echo e(route('leavetype.index')); ?>"><?php echo e(__('Leave Type')); ?></a>
                                 </li>
                             <?php endif; ?>
-                        <!--    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Termination Type')): ?>
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Termination Type')): ?>
                                 <li
                                     class="dash-item <?php echo e(request()->is('terminationtype*') ? 'active' : ''); ?>">
                                     <a class="dash-link"
@@ -847,52 +768,13 @@ $emailTemplate = App\Models\EmailTemplate::first();
                                         href="<?php echo e(route('competencies.index')); ?>"><?php echo e(__('Competencies')); ?></a>
                                 </li>
                             <?php endif; ?>
-                        </ul>  --> 
+                        </ul>   
                 <?php endif; ?>
-                <!--constant-->
+                    -->
 
 
                
-               <?php if((\Auth::user()->type == 'company')): ?>
-                    <li class="dash-item ">
-                        <a href="<?php echo e(route('settings.index')); ?>" class="dash-link"><span
-                                class="dash-micon"><i class="ti ti-settings"></i></span><span
-                                class="dash-mtext"><?php echo e(__('System Setting')); ?></span></a>
-
-                    </li>
-                <?php endif; ?>
-                 <!--------------------- Start System Setup ----------------------------------->
-
-             <?php if((\Auth::user()->type != 'super admin')): ?>
-
-             <?php if( Gate::check('Manage Plan') || Gate::check('Manage Order') || Gate::check('Manage Company Settings')): ?>
-                 <li class="dash-item dash-hasmenu">
-                     <a href="#!" class="dash-link ">
-                         <span class="dash-micon"><i class="ti ti-settings"></i></span><span class="dash-mtext"><?php echo e(__('System Setup')); ?></span><span class="dash-arrow">
-                                 <i data-feather="chevron-right"></i></span>
-                     </a>
-                     <ul class="dash-submenu">
-                         <?php if(Gate::check('Manage Company Settings')): ?>
-                             <li class="dash-item dash-hasmenu <?php echo e((Request::segment(1) == 'company-setting') ? ' active' : ''); ?>">
-                                 <a href="<?php echo e(route('settings.index')); ?>" class="dash-link"><?php echo e(__('System Settings')); ?></a>
-                             </li>
-                         <?php endif; ?>
-                         <?php if(Gate::check('Manage Plan')): ?>
-                             <li class="dash-item<?php echo e((Request::route()->getName() == 'plans.index' || Request::route()->getName() == 'stripe') ? ' active' : ''); ?>">
-                                 <a href="<?php echo e(route('plans.index')); ?>" class="dash-link"><?php echo e(__('Setup Subscription Plan')); ?></a>
-                             </li>
-                         <?php endif; ?>
-                         <?php if(\Auth::user()->type == 'super admin' || \Auth::user()->type == 'company'): ?>
-                             <li class="dash-item <?php echo e((Request::segment(1) == 'order')? 'active' : ''); ?>">
-                                 <a href="<?php echo e(route('order.index')); ?>" class="dash-link"><?php echo e(__('Order')); ?></a>
-                             </li>
-                         <?php endif; ?>
-                     </ul>
-                 </li>
-         <?php endif; ?>
-             <?php endif; ?>
-
-         <!--------------------- End System Setup ----------------------------------->
+               
 
 </ul>
 
