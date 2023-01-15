@@ -307,7 +307,7 @@ class SettingsController extends Controller
                     'company_email_from_name' => 'required',
                     'company_account_number' => 'required',
                     'company_bank_name' => 'required',
-                    'company_iban_number' => 'required',
+                    'company_iban_number' => 'required | digits:23',
                     'company_swift_code' => 'required',
                     ]
                 );

@@ -463,6 +463,12 @@ Route::post('payslip/wps', 'PaySlipController@wps')->name('payslip.wps')->middle
         'XSS',
     ]
 );
+Route::post('payslip/nonwps', 'PaySlipController@nonwps')->name('payslip.nonwps')->middleware(
+    [
+        'auth',
+        'XSS',
+    ]
+);
 Route::get('payslip/paysalary/{id}/{date}', 'PaySlipController@paysalary')->name('payslip.paysalary')->middleware(
     [
         'auth',
@@ -859,6 +865,14 @@ Route::resource('document-upload', 'DucumentUploadController')->middleware(
         'XSS',
     ]
 );
+
+Route::get('/documentUpload', 'DucumentUploadController@index')->name('document-upload')->middleware(
+    [
+        'auth',
+        'XSS',
+    ]
+);
+
 Route::resource('indicator', 'IndicatorController')->middleware(
     [
         'auth',

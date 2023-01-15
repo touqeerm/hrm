@@ -156,6 +156,58 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
+                    <div class="d-flex align-items-center justify-content-start">
+                        <h5>{{ __('Generate Non WPS') }}</h5>
+                    </div>
+                    <div class="card-body">
+                {{ Form::open(['route' => ['payslip.nonwps'], 'method' => 'POST', 'id' => 'payslip_form3']) }}
+                <div class="d-flex align-items-center justify-content-end">
+
+
+                <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12 col-12 mx-2">
+                        <div class="btn-box">
+                            {{ Form::label('month', __('Select Month'), ['class' => 'form-label']) }}
+                            {{ Form::select('month', $month, null, ['class' => 'form-control select', 'id' => 'month']) }}
+
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12 col-12 mx-2">
+                        <div class="btn-box">
+                            {{ Form::label('year', __('Select Year'), ['class' => 'form-label']) }}
+                            {{ Form::select('year', $year, null, ['class' => 'form-control select', 'id' => 'year']) }}
+
+                        </div>
+                    </div>
+
+                    <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12 col-12 mx-2">
+                        <div class="btn-box">
+                            {{ Form::label('format1', __('Non WPS Format'), ['class' => 'form-label']) }}
+                            {{ Form::select('format1', $format1, null, ['class' => 'form-control select', 'id' => 'format']) }}
+
+                        </div>
+                    </div>
+                    <div class="col-auto float-end ms-2 mt-4">
+                        <a href="#" class="btn  btn-primary"
+                           onclick="document.getElementById('payslip_form3').submit(); return false;"
+                           data-bs-toggle="tooltip" title="{{ __('NON WPS') }}"
+                           data-original-title="{{ __('NON WPS') }}">
+                            {{ __('Export Non WPS') }}
+                        </a>
+                        
+
+
+                    </div>
+                </div>
+            </div>
+            {{ Form::close() }}
+
+            </div>    
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
                 <form>
                     {{-- <div class="d-flex justify-content-between w-100"> --}}
                     <div class="d-flex align-items-center justify-content-start">

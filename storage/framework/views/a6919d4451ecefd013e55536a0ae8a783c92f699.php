@@ -126,14 +126,14 @@ $SITE_RTL = Utility::getValByName('SITE_RTL');
                             class="list-group-item list-group-item-action border-0"><?php echo e(__('Company Setting')); ?> <div
                                 class="float-end"><i class="ti ti-chevron-right"></i></div></a>
                         
-                        <a id="email-notification-tab" data-toggle="tab" href="#email-notification" role="tab"
+                        <!-- <a id="email-notification-tab" data-toggle="tab" href="#email-notification" role="tab"
                             aria-controls="" aria-selected="false"
                             class="list-group-item list-group-item-action border-0"><?php echo e(__('Email Notification')); ?><div
                                 class="float-end"><i class="ti ti-chevron-right"></i></div></a> 
 
-                        <a href="#ip-restrict" id="ip-restrict-tab"
+                         <a href="#ip-restrict" id="ip-restrict-tab"
                             class="list-group-item list-group-item-action border-0"><?php echo e(__('IP Restrict Setting')); ?> <div
-                                class="float-end"><i class="ti ti-chevron-right"></i></div></a>
+                                class="float-end"><i class="ti ti-chevron-right"></i></div></a> -->
 
                         <?php if(Auth::user()->type == 'company'): ?>
                         <!--    <a href="#zoom-meeting-setting" id="zoom-meeting-tab"
@@ -150,7 +150,7 @@ $SITE_RTL = Utility::getValByName('SITE_RTL');
 
                             <a href="#twilio-setting" id="twilio-tab"
                                 class="list-group-item list-group-item-action border-0"><?php echo e(__('Twilio Setting')); ?> <div
-                                    class="float-end"><i class="ti ti-chevron-right"></i></div></a> -->
+                                    class="float-end"><i class="ti ti-chevron-right"></i></div></a> 
                         <?php endif; ?>
                         <a href="#offer-letter" id="offer-letter-tab"
                         class="list-group-item list-group-item-action border-0"><?php echo e(__('Offer Letter Setting')); ?> <div
@@ -162,11 +162,11 @@ $SITE_RTL = Utility::getValByName('SITE_RTL');
 
                         <a href="#experience-certificate" id="experience-certificate-tab"
                         class="list-group-item list-group-item-action border-0"><?php echo e(__('Experience Certificate Setting')); ?> <div
-                            class="float-end"><i class="ti ti-chevron-right"></i></div></a>
+                            class="float-end"><i class="ti ti-chevron-right"></i></div></a> 
 
                         <a href="#noc" id="noc-tab"
-                        class="list-group-item list-group-item-action border-0"><?php echo e(__('NOC Setting')); ?> <div
-                            class="float-end"><i class="ti ti-chevron-right"></i></div></a>
+                        class="list-group-item list-group-item-action border-0"><?php echo e(__('Letter Head Setting')); ?> <div
+                            class="float-end"><i class="ti ti-chevron-right"></i></div></a>  -->
                     </div>
 
                 </div>
@@ -1008,7 +1008,7 @@ endif;
 unset($__errorArgs, $__bag); ?>
 
                                 </div>
-                                <div class="form-group col-md-4">
+                                <!--<div class="form-group col-md-4">
                                     <div class="custom-control custom-switch">
                                         <input type="checkbox" class=" form-check-input" data-toggle="switchbutton"
                                             data-onstyle="primary" name="ip_restrict" id="ip_restrict"
@@ -1016,7 +1016,7 @@ unset($__errorArgs, $__bag); ?>
                                         <label class=" col-form-label p-0"
                                             for="ip_restrict"><?php echo e(__('Ip Restrict')); ?></label>
                                     </div>
-                                </div>
+                                </div> -->
                             
                             </div>
                         </div>
@@ -1032,7 +1032,7 @@ unset($__errorArgs, $__bag); ?>
                     </div>
                 </div>
                 
-                <div class="" id="email-notification">
+            <!--    <div class="" id="email-notification">
                     <div class="card">
                         <div class="card-header">
                             <h5><?php echo e(__('Email Notification')); ?></h5>
@@ -1077,7 +1077,7 @@ unset($__errorArgs, $__bag); ?>
                 </div> 
 
 
-
+                                                                                    
                 <div class="" id="ip-restrict">
                     <div class="card">
                         <div class="card-header d-flex justify-content-between">
@@ -1144,7 +1144,7 @@ unset($__errorArgs, $__bag); ?>
 
                         </div>
                     </div>
-                </div>
+                </div> -->
 
 
                 <?php if(Auth::user()->type == 'company'): ?>
@@ -1591,7 +1591,7 @@ unset($__errorArgs, $__bag); ?>
                         </div>
                     </div> -->
                 <?php endif; ?>
-
+                <!--
                 <div class="" id="offer-letter">
                     <div class="card">
                         <div class="card-header d-flex justify-content-between">
@@ -1828,12 +1828,12 @@ unset($__errorArgs, $__bag); ?>
 
                         </div>
                     </div>
-                </div>
+                </div>  -->
 
                 <div class="" id="noc">
                     <div class="card">
                         <div class="card-header d-flex justify-content-between">
-                            <h5><?php echo e(__('NOC Setting')); ?></h5>
+                            <h5><?php echo e(__('Letter Head Setting')); ?></h5>
                              <div class="d-flex justify-content-end drp-languages">
                                 <ul class="list-unstyled mb-0 m-2">
                                     <li class="dropdown dash-h-item drp-language" style="margin-top: -19px;">
@@ -1897,12 +1897,17 @@ unset($__errorArgs, $__bag); ?>
         
                                 <?php echo e(Form::close()); ?>
 
-                        </div>
+                        </div> 
+                        <!--<iframe src="<?php echo e(route('document-upload')); ?>">Your browser isn't compatible</iframe> -->
+                        
                     </div>
+                    <iframe src="<?php echo e(url('document-upload')); ?>" class="col-sm-12"">Your browser isn't compatible</iframe>
                 </div>
             </div>
         </div>
     </div>
 <?php $__env->stopSection(); ?>
+
+
 
 <?php echo $__env->make('layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\xampp\htdocs\hrm\resources\views/setting/company_settings.blade.php ENDPATH**/ ?>

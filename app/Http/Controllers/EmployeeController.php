@@ -87,11 +87,9 @@ class EmployeeController extends Controller
                     'password' => 'required',
                     'department_id' => 'required',
                     'designation_id' => 'required',
-                     'agent_code' => 'required',
                      'passport' => 'required',
-                     'eid' => 'required',
+                     'eid' => 'required | digits:15',
                      'work_permit' => 'required',
-                     'person_code' => 'required',
                     'document.*' => 'mimes:jpeg,png,jpg,gif,svg,pdf,doc,zip|max:20480',
                 ]
             );
@@ -704,7 +702,7 @@ class EmployeeController extends Controller
         $users = \Auth::user();
         
         $currantLang = $users->currentLanguage();
-        $noc_certificate=NOC::where(['lang' =>   $currantLang,'created_by' =>  \Auth::user()->id])->first();
+        $noc_certificate=NOC::where(['lang' =>   "en",'created_by' =>  \Auth::user()->id])->first();
         $date=date('Y-m-d');
         $employees = Employee::find($id);
         $settings = Utility::settings();
@@ -728,7 +726,9 @@ class EmployeeController extends Controller
         $users = \Auth::user();
         
         $currantLang = $users->currentLanguage();
-        $noc_certificate=NOC::where(['lang' =>   $currantLang,'created_by' =>  \Auth::user()->id])->first();
+        //dd($currantLang);
+        $noc_certificate=NOC::where(['lang' =>   "en",'created_by' =>  \Auth::user()->id])->first();
+        //dd($noc_certificate);
         $date=date('Y-m-d');
         $employees = Employee::find($id);
         $settings = Utility::settings();
@@ -742,7 +742,7 @@ class EmployeeController extends Controller
             'designation' => !empty($employees->designation->name)?$employees->designation->name:'',
             'app_name' => env('APP_NAME'),
         ];
-       
+        
         $noc_certificate->content=NOC::replaceVariable($noc_certificate->content, $obj);
         return view('employee.template.Nocdocx', compact('noc_certificate','employees'));
 

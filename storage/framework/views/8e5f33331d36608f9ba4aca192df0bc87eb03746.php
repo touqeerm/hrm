@@ -178,6 +178,67 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
+                    <div class="d-flex align-items-center justify-content-start">
+                        <h5><?php echo e(__('Generate Non WPS')); ?></h5>
+                    </div>
+                    <div class="card-body">
+                <?php echo e(Form::open(['route' => ['payslip.nonwps'], 'method' => 'POST', 'id' => 'payslip_form3'])); ?>
+
+                <div class="d-flex align-items-center justify-content-end">
+
+
+                <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12 col-12 mx-2">
+                        <div class="btn-box">
+                            <?php echo e(Form::label('month', __('Select Month'), ['class' => 'form-label'])); ?>
+
+                            <?php echo e(Form::select('month', $month, null, ['class' => 'form-control select', 'id' => 'month'])); ?>
+
+
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12 col-12 mx-2">
+                        <div class="btn-box">
+                            <?php echo e(Form::label('year', __('Select Year'), ['class' => 'form-label'])); ?>
+
+                            <?php echo e(Form::select('year', $year, null, ['class' => 'form-control select', 'id' => 'year'])); ?>
+
+
+                        </div>
+                    </div>
+
+                    <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12 col-12 mx-2">
+                        <div class="btn-box">
+                            <?php echo e(Form::label('format1', __('Non WPS Format'), ['class' => 'form-label'])); ?>
+
+                            <?php echo e(Form::select('format1', $format1, null, ['class' => 'form-control select', 'id' => 'format'])); ?>
+
+
+                        </div>
+                    </div>
+                    <div class="col-auto float-end ms-2 mt-4">
+                        <a href="#" class="btn  btn-primary"
+                           onclick="document.getElementById('payslip_form3').submit(); return false;"
+                           data-bs-toggle="tooltip" title="<?php echo e(__('NON WPS')); ?>"
+                           data-original-title="<?php echo e(__('NON WPS')); ?>">
+                            <?php echo e(__('Export Non WPS')); ?>
+
+                        </a>
+                        
+
+
+                    </div>
+                </div>
+            </div>
+            <?php echo e(Form::close()); ?>
+
+
+            </div>    
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
                 <form>
                     
                     <div class="d-flex align-items-center justify-content-start">

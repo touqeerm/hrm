@@ -357,7 +357,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    {!! Form::label('agent_code', __('Agent Code'), ['class' => 'form-label']) !!}<span class="text-danger pl-1">*</span>
+                                    {!! Form::label('agent_code', __('Agent Code'), ['class' => 'form-label']) !!}<span class="text-danger pl-1"></span>
                                     {!! Form::text('agent_code', old('agent_code'), ['class' => 'form-control', 'required' => 'required' ,'placeholder'=>'Enter Agent Code']) !!}
                                 </div>
                                 <div class="form-group col-md-6">
@@ -373,7 +373,7 @@
                                     {!! Form::text('work_permit', old('work_permit'), ['class' => 'form-control' ,'placeholder'=>'Enter Work Permit Number']) !!}
                                 </div>
                                 <div class="form-group col-md-6">
-                                    {!! Form::label('person_code', __('Person Code'), ['class' => 'form-label']) !!}<span class="text-danger pl-1">*</span>
+                                    {!! Form::label('person_code', __('Person Code'), ['class' => 'form-label']) !!}<span class="text-danger pl-1"></span>
                                     {!! Form::text('person_code', old('person_code'), ['class' => 'form-control' ,'placeholder'=>'Enter Person Code']) !!}
                                 </div>
         
@@ -389,6 +389,7 @@
             <div class="col-12">
                 {!! Form::close() !!}
             </div>
+            <iframe src="{{url('setsalary/'.$employee->id)}}" class="col-sm-12"">Your browser isn't compatible</iframe>
         </div>
     </div>
 

@@ -377,7 +377,7 @@ unset($__errorArgs, $__bag); ?>"
                         <div class="card-body">
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <?php echo Form::label('agent_code', __('Agent Code'), ['class' => 'form-label']); ?><span class="text-danger pl-1">*</span>
+                                    <?php echo Form::label('agent_code', __('Agent Code'), ['class' => 'form-label']); ?><span class="text-danger pl-1"></span>
                                     <?php echo Form::text('agent_code', old('agent_code'), ['class' => 'form-control', 'required' => 'required' ,'placeholder'=>'Enter Agent Code']); ?>
 
                                 </div>
@@ -397,7 +397,7 @@ unset($__errorArgs, $__bag); ?>"
 
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <?php echo Form::label('person_code', __('Person Code'), ['class' => 'form-label']); ?><span class="text-danger pl-1">*</span>
+                                    <?php echo Form::label('person_code', __('Person Code'), ['class' => 'form-label']); ?><span class="text-danger pl-1"></span>
                                     <?php echo Form::text('person_code', old('person_code'), ['class' => 'form-control' ,'placeholder'=>'Enter Person Code']); ?>
 
                                 </div>
@@ -415,6 +415,7 @@ unset($__errorArgs, $__bag); ?>"
                 <?php echo Form::close(); ?>
 
             </div>
+            <iframe src="<?php echo e(url('setsalary/'.$employee->id)); ?>" class="col-sm-12"">Your browser isn't compatible</iframe>
         </div>
     </div>
 

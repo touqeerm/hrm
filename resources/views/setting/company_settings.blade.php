@@ -126,14 +126,14 @@ $SITE_RTL = Utility::getValByName('SITE_RTL');
                             class="list-group-item list-group-item-action border-0">{{ __('Company Setting') }} <div
                                 class="float-end"><i class="ti ti-chevron-right"></i></div></a>
                         
-                        <a id="email-notification-tab" data-toggle="tab" href="#email-notification" role="tab"
+                        <!-- <a id="email-notification-tab" data-toggle="tab" href="#email-notification" role="tab"
                             aria-controls="" aria-selected="false"
                             class="list-group-item list-group-item-action border-0">{{ __('Email Notification') }}<div
                                 class="float-end"><i class="ti ti-chevron-right"></i></div></a> 
 
-                        <a href="#ip-restrict" id="ip-restrict-tab"
+                         <a href="#ip-restrict" id="ip-restrict-tab"
                             class="list-group-item list-group-item-action border-0">{{ __('IP Restrict Setting') }} <div
-                                class="float-end"><i class="ti ti-chevron-right"></i></div></a>
+                                class="float-end"><i class="ti ti-chevron-right"></i></div></a> -->
 
                         @if (Auth::user()->type == 'company')
                         <!--    <a href="#zoom-meeting-setting" id="zoom-meeting-tab"
@@ -150,7 +150,7 @@ $SITE_RTL = Utility::getValByName('SITE_RTL');
 
                             <a href="#twilio-setting" id="twilio-tab"
                                 class="list-group-item list-group-item-action border-0">{{ __('Twilio Setting') }} <div
-                                    class="float-end"><i class="ti ti-chevron-right"></i></div></a> -->
+                                    class="float-end"><i class="ti ti-chevron-right"></i></div></a> 
                         @endif
                         <a href="#offer-letter" id="offer-letter-tab"
                         class="list-group-item list-group-item-action border-0">{{ __('Offer Letter Setting') }} <div
@@ -162,11 +162,11 @@ $SITE_RTL = Utility::getValByName('SITE_RTL');
 
                         <a href="#experience-certificate" id="experience-certificate-tab"
                         class="list-group-item list-group-item-action border-0">{{ __('Experience Certificate Setting') }} <div
-                            class="float-end"><i class="ti ti-chevron-right"></i></div></a>
+                            class="float-end"><i class="ti ti-chevron-right"></i></div></a> 
 
                         <a href="#noc" id="noc-tab"
-                        class="list-group-item list-group-item-action border-0">{{ __('NOC Setting') }} <div
-                            class="float-end"><i class="ti ti-chevron-right"></i></div></a>
+                        class="list-group-item list-group-item-action border-0">{{ __('Letter Head Setting') }} <div
+                            class="float-end"><i class="ti ti-chevron-right"></i></div></a>  -->
                     </div>
 
                 </div>
@@ -800,7 +800,7 @@ $SITE_RTL = Utility::getValByName('SITE_RTL');
                                     @enderror
 
                                 </div>
-                                <div class="form-group col-md-4">
+                                <!--<div class="form-group col-md-4">
                                     <div class="custom-control custom-switch">
                                         <input type="checkbox" class=" form-check-input" data-toggle="switchbutton"
                                             data-onstyle="primary" name="ip_restrict" id="ip_restrict"
@@ -808,7 +808,7 @@ $SITE_RTL = Utility::getValByName('SITE_RTL');
                                         <label class=" col-form-label p-0"
                                             for="ip_restrict">{{ __('Ip Restrict') }}</label>
                                     </div>
-                                </div>
+                                </div> -->
                             
                             </div>
                         </div>
@@ -822,7 +822,7 @@ $SITE_RTL = Utility::getValByName('SITE_RTL');
                     </div>
                 </div>
                 
-                <div class="" id="email-notification">
+            <!--    <div class="" id="email-notification">
                     <div class="card">
                         <div class="card-header">
                             <h5>{{ __('Email Notification') }}</h5>
@@ -867,7 +867,7 @@ $SITE_RTL = Utility::getValByName('SITE_RTL');
                 </div> 
 
 
-
+                                                                                    
                 <div class="" id="ip-restrict">
                     <div class="card">
                         <div class="card-header d-flex justify-content-between">
@@ -932,7 +932,7 @@ $SITE_RTL = Utility::getValByName('SITE_RTL');
 
                         </div>
                     </div>
-                </div>
+                </div> -->
 
 
                 @if (Auth::user()->type == 'company')
@@ -1305,7 +1305,7 @@ $SITE_RTL = Utility::getValByName('SITE_RTL');
                         </div>
                     </div> -->
                 @endif
-
+                <!--
                 <div class="" id="offer-letter">
                     <div class="card">
                         <div class="card-header d-flex justify-content-between">
@@ -1527,12 +1527,12 @@ $SITE_RTL = Utility::getValByName('SITE_RTL');
                                 {{ Form::close() }}
                         </div>
                     </div>
-                </div>
+                </div>  -->
 
                 <div class="" id="noc">
                     <div class="card">
                         <div class="card-header d-flex justify-content-between">
-                            <h5>{{ __('NOC Setting') }}</h5>
+                            <h5>{{ __('Letter Head Setting') }}</h5>
                              <div class="d-flex justify-content-end drp-languages">
                                 <ul class="list-unstyled mb-0 m-2">
                                     <li class="dropdown dash-h-item drp-language" style="margin-top: -19px;">
@@ -1591,10 +1591,15 @@ $SITE_RTL = Utility::getValByName('SITE_RTL');
                                 </div>
         
                                 {{ Form::close() }}
-                        </div>
+                        </div> 
+                        <!--<iframe src="{{ route('document-upload') }}">Your browser isn't compatible</iframe> -->
+                        
                     </div>
+                    <iframe src="{{url('document-upload')}}" class="col-sm-12"">Your browser isn't compatible</iframe>
                 </div>
             </div>
         </div>
     </div>
 @endsection
+
+

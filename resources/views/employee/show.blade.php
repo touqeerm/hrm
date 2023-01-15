@@ -19,7 +19,7 @@
     </div>
     <div class="text-end mb-3">
         <div class="d-flex justify-content-end drp-languages">
-            <ul class="list-unstyled mb-0 m-2">
+            <!-- <ul class="list-unstyled mb-0 m-2">
                 <li class="dropdown dash-h-item drp-language">
                     <a class="dash-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#"
                         role="button" aria-haspopup="false" aria-expanded="false">
@@ -46,12 +46,12 @@
                         <a href="{{route('exp.download.doc',$employee->id)}}" class=" btn-icon dropdown-item" data-bs-toggle="tooltip" data-bs-placement="top"  target="_blanks"><i class="ti ti-download ">&nbsp;</i>{{__('DOC')}}</a>  
                     </div>
                 </li>
-            </ul>
+            </ul> -->
             <ul class="list-unstyled mb-0 m-2">
                 <li class="dropdown dash-h-item drp-language">
                     <a class="dash-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#"
                         role="button" aria-haspopup="false" aria-expanded="false">
-                        <span class="drp-text hide-mob text-primary"> {{__('NOC')}}
+                        <span class="drp-text hide-mob text-primary"> {{__('Letter Head')}}
                             <i class="ti ti-chevron-down drp-arrow nocolor hide-mob"></i>
                     </a>
                     <div class="dropdown-menu dash-h-dropdown">
